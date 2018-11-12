@@ -1,0 +1,649 @@
+﻿body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	margin: 0;
+	overflow: hidden;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid #ccc;
+}
+
+input[type=text] {
+    background-color: #eee;
+    color: black;
+    border: 0;
+    box-shadow: none;
+    border-radius: 5px;
+}
+
+.hiddenSubmit {
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+}
+
+.backButt {
+    position: absolute;
+    display: inline;
+    height: 50px;
+    width: 100px;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+.backCanv {
+   z-index: 3;
+}
+
+.headerInputs {
+    padding: 1px;
+    border: 1px white solid;
+}
+
+.main-page {
+    border: 2px black solid;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #1D6DA0;
+}
+
+.block-title {
+    color: #fff;
+    opacity: .9;
+    font-family: 'Times New Roman';
+    font-size: 45px;
+}
+
+.tileContainer {
+    position: absolute;
+    height: 400px;
+    width: 325px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #444;
+    overflow-y: scroll;
+}
+
+.tileInput {
+    width: 45%;
+    display: inline-block;
+}
+
+.submitDiv {
+    display: inline-block;
+    float: right;
+    margin: 10px;
+    width: 40%;
+    height: 60%;
+    overflow: auto;
+    padding: 25px;
+    color: black;
+}
+
+.canvasBox {
+    display: inline-block;
+    float: left;
+    margin: 10px;
+    background-color: #ddd;
+    width: 40%;
+    height: 60%;
+    overflow: auto;
+    padding: 25px;
+    border: 1px black solid;
+}
+
+.nameInput {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    display: block;
+}
+
+.selectVersion {
+    width: 50%;
+    display: inline-block;
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.submitNotes {
+    width: 100%;
+    height: 40%;
+    display: block;
+    margin-right: 10px;
+}
+
+.LoremIpsum {
+    width: 90%;
+    height: 22%;
+    margin: 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    overflow-y: hidden;
+}
+
+.placeholder {
+    color: #004690;
+}
+
+.NavDark {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: #222;
+}
+
+.NavPage {
+    background-image: url(/img/grid2.PNG);
+    position: absolute;
+    width: calc(100% - 300px);
+    height: 100%;
+    text-align: center;
+}
+
+.NavIcon {
+    display: block;
+    width: 12vw; /* 20% of the viewport width */
+    height: 12vw;
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+}
+
+.InternalBox {
+    position: relative;
+    height: 80%;
+    width: 70%;
+    margin-left: 15%;
+}
+
+.InternalFrame {
+    position: relative;
+    height: 90%;
+    padding-top : 5%;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.splashBox {
+    height: 55%;
+    width: 45%;
+    margin: 2%;
+    box-shadow: 5px 5px #888;
+    border-radius: 3px;
+    z-index: 1;
+    opacity: 0.9;
+    border: 1px solid #111;
+    background-color: #003a77;
+}
+
+    .splashBox:hover {
+        opacity: 1;
+        background-color: #004690;
+    }
+
+.BigBox {
+    height: 100%;
+    width: 100%;
+    margin: 2%;
+    box-shadow: 5px 5px #888;
+    border-radius: 3px;
+    z-index: 1;
+    opacity: 0.9;
+    border: 1px solid #111;
+    background-color: #003a77;
+}
+
+.DarkBox {
+    height: 65%;
+    width: 75%;
+    margin: auto;
+    margin-top: 4%;
+    border-radius: 3px;
+    text-align: center;
+    z-index: 1;
+    opacity: 1;
+}
+
+.loginBox {
+    height: 65%;
+    width: 75%;
+    margin: auto;
+    margin-top: 5%;
+    box-shadow: 5px 5px #888;
+    border-radius: 3px;
+    text-align: center;
+    z-index: 1;
+    opacity: 1;
+    border: 1px solid #111;
+    background-color: #003a77;
+}
+
+.loginButton {
+    background-color: mediumseagreen;
+    width: 70%;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: white;
+    border: 1px solid black;
+}
+
+.questionPage {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding: 2%;
+    background-color: #1D6DA0;
+}
+
+.filediv {
+    width : 80%;
+    margin-left: 10%;
+    height: 55px;
+    margin-top: 20px;
+    border-top : 1px solid white;
+    border-bottom : 1px solid white;
+    overflow-x : hidden;
+}
+
+.filenotes {
+    width : 50%;
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    color: black;
+}
+
+.filename {
+    width : 45%;
+    float : left;
+    margin-bottom : 30px;
+    margin-left : 10px;
+}
+
+.testItenerary {
+    display: inline-block;
+    width: 20%;
+    height: 90%;
+    float: right;
+    position: relative;
+    margin: 2%;
+    box-shadow: 5px 5px #888;
+    border-radius: 3px;
+    z-index: 1;
+    border: 1px solid #111;
+    overflow-y: scroll;
+    text-align: center;
+    background-color: #003a77;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.innerItenerary {
+    height: 95%;
+    padding: 5px;
+    overflow-y: scroll;
+    margin-bottom: 50px;
+    margin-right: -50px;
+    padding-right: 50px;
+}
+
+.itenerary {
+    color: #ddd;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    border-bottom: 1px solid white;
+}
+
+.submitButton {
+    background-color: mediumseagreen;
+    width: 100%;
+    height: 50px;
+    color: white;
+    border: 1px solid black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.submitPageButton {
+    background-color: mediumseagreen;
+    width: 80%;
+    height: 50px;
+    color: white;
+    border: 1px solid black;
+}
+
+.rollCanvas {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.NamePage {
+    background-color: #222;
+    height: 100%;
+    width: 100%;
+}
+
+.NameBox {
+    background-color: #222;
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+    font-size: 130px;
+    font-family: tekainosFont;
+    color: #cc9900;
+    display: block;
+}
+.questionGroup {
+    display: inline-block;
+    height: 90%;
+    width: 65%;
+    margin: 2%;
+    margin-left: 5%;
+    box-shadow: 5px 5px #888;
+    border-radius: 3px;
+    z-index: 1;
+    border: 1px solid #111;
+    padding: 5%;
+    padding-top: 0px;
+    overflow-y: scroll;
+    text-align: center;
+    background-color: #003a77;
+}
+
+.questionBox {
+    display : block;
+    width : 100%;
+    height : 100%;
+}
+
+.progBar {
+    width: 100%;
+    height: 100px;
+}
+
+.parallelogram {
+    width: 31%;
+    font-size: 20px;
+    display: inline-block;
+    background: #eee;
+    box-shadow: 5px 5px #888;
+    color: #111;
+    margin: 5px;
+    border-radius: 2px;
+}
+    .parallelogram:hover {
+        background: #BED5E3;
+    }
+
+
+.selectedParallelogram {
+    width: 31%;
+    font-size: 20px;
+    display: inline-block;
+    background: #3a7700;
+    box-shadow: 5px 5px #888;
+    color: #fff;
+    margin: 5px;
+    border-radius: 2px;
+}
+
+.loginRow {
+    height: 50px;
+    width: 70%;
+    margin-left: 15%;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #eee;
+}
+
+.loginInput {
+    background-color: #eee;
+    color: black;
+    height: 30px;
+    width: 80%;
+    margin-left: 10px;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.inputIcon {
+    color: black;
+    font-family: "FontAwesome";
+    font-size: 20px;
+}
+
+.questionClass {
+    display: inline-block;
+    width: 100%;
+    margin: 0px;
+    border-radius: 0px 15px 0px 0px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    float: left;
+    border: 1px #666 solid;
+    background-color: #aaa;
+}
+
+.questionFill {
+    width: 60%;
+    margin-top: 15px;
+    color: black;
+}
+
+.questionAnswers {
+    display: inline-block;
+    padding-left: 20px;
+    float: left;
+}
+
+.questionLegend {
+    display: inline-block;
+    text-align: left;
+    background-color: #BED5E3;
+    padding-left: 15px;
+    border-radius: 0px 15px 0px 0px;
+    width: 100%;
+    margin: auto;
+    float: left;
+    color: black;
+    border-bottom: 1px #666 solid;
+    font-size: 20px;
+}
+
+.radioLabel {
+    margin: 15px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+textarea {
+	tab-size: 4;
+	white-space: pre;
+	word-wrap: normal;
+}
+
+	textarea.success {
+		border-color: #8b8 !important;
+	}
+
+	textarea.fail {
+		border-color: #f00 !important;
+		background-color: rgba(255,0,0,0.05);
+	}
+
+textarea, input { outline: none; } /* osx */
+
+.Panel {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	/* No support for these yet */
+	-o-user-select: none;
+	user-select: none;
+}
+
+	.Panel.Collapsible .Static {
+		margin: 0;
+	}
+
+	.Panel.Collapsible .Static .Button {
+		float: left;
+		margin-right: 6px;
+		width: 0;
+		height: 0;
+		border: 6px solid transparent;
+	}
+
+	.Panel.Collapsible.collapsed .Static .Button {
+		margin-top: 2px;
+		border-left-color: #bbb;
+	}
+
+	.Panel.Collapsible:not(.collapsed) .Static .Button {
+		margin-top: 6px;
+		border-top-color: #bbb;
+	}
+
+	.Panel.Collapsible.collapsed .Content {
+		display: none;
+	}
+
+/* CodeMirror */
+
+.CodeMirror {
+
+	position: absolute !important;
+	top: 37px;
+	width: 100% !important;
+	height: calc(100% - 37px) !important;
+
+}
+
+	.CodeMirror .errorLine {
+
+		background: rgba(255,0,0,0.25);
+
+	}
+
+	.CodeMirror .esprima-error {
+
+		color: #f00;
+		text-align: right;
+		padding: 0 20px;
+
+	}
+
+/* outliner */
+
+#outliner .option {
+
+	border: 1px solid transparent;
+}
+
+#outliner .option.drag {
+
+	border: 1px dashed #999;
+
+}
+
+#outliner .option.dragTop {
+
+	border-top: 1px dashed #999;
+
+}
+
+#outliner .option.dragBottom {
+
+	border-bottom: 1px dashed #999;
+
+}
+
+#outliner .type {
+	position:relative;
+	top:-2px;
+	padding: 0 2px;
+	color: #ddd;
+}
+
+#outliner .type:after {
+	content: '■';
+}
+
+#outliner .Scene {
+	color: #ccccff;
+}
+
+#outliner .Object3D {
+	color: #aaaaee;
+}
+
+#outliner .Mesh {
+	color: #8888ee;
+}
+
+#outliner .Line {
+	color: #88ee88;
+}
+
+#outliner .LineSegments {
+	color: #88ee88;
+}
+
+#outliner .Points {
+	color: #ee8888;
+}
+
+/* */
+
+#outliner .PointLight {
+	color: #dddd00;
+}
+
+/* */
+
+#outliner .Geometry {
+	color: #88ff88;
+}
+
+#outliner .BoxGeometry {
+	color: #bbeebb;
+}
+
+#outliner .TorusGeometry {
+	color: #aaeeaa;
+}
+
+/* */
+
+#outliner .Material {
+	color: #ff8888;
+}
+
+#outliner .MeshPhongMaterial {
+	color: #ffaa88;
+}
+
+/* */
+
+#outliner .Script:after {
+	content: '{...}' /* ❮/❯ */
+}

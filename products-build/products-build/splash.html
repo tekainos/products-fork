@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Tekainos FloorPlanner</title>
+        <link href="css/default.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    </head>
+    <body>
+        <script>
+            window.onbeforeunload = function () {
+                return 'Are you sure you want to leave?';
+            };
+
+            Number.isInteger = Number.isInteger || function (value) {
+                return typeof value === "number" &&
+                    isFinite(value) &&
+                    Math.floor(value) === value;
+            };
+        </script>
+
+        <link href="css/main.css" rel="stylesheet" />
+        <link id="theme" href="css/dark.css" rel="stylesheet" />
+        <link id="switch" href="css/switch.css" rel="stylesheet" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="WinJS/css/ui-dark.css" rel="stylesheet" />
+        <link href="WinJS/css/winjs.css" rel="stylesheet" />
+        <script src="js/jquery-3.2.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#tmfp").click(function () {
+                    window.location.href = "ms-appx-web:///index.html";
+                });
+            });
+        </script>
+
+        <div class="main-page" style="width:50%; height:50%; float:left;" id="tmfp">
+            <h1 class="block-title">Measure</h1>
+        </div>
+        <div class="main-page" style="width:50%; height:50%; float:right;" id="isst">
+            <h1 class="block-title">Estimation Form</h1>
+        </div>
+        <div class="main-page" style="width:50%; height:50%; float:left;" id="pics">
+            <h1 class="block-title">Pics and Documents</h1>
+        </div>
+        <div class="main-page" style="width:50%; height:50%; float:right;" id="export">
+            <h1 class="block-title">Export and Submit</h1>
+        </div>
+    </body>
+</html>

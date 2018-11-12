@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tekainos FloorPlanner</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/default.css" rel="stylesheet" />
+    <link href="css/all.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/jquery-ui.structure.min.css" rel="stylesheet">
+    <link href="css/jquery-ui.theme.min.css" rel="stylesheet">
+
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkh5Met-Zoc4_dQTbOZfTD9DYp7ewOMW4&libraries=places"></script>
+    <script src="js/markerclusterer.js"></script>
+
+    <script src="js/uhs.js"></script>
+</head>
+    <body onload="initialize()">
+        <script>
+            window.onbeforeunload = function () {
+                return 'Are you sure you want to leave?';
+            };
+
+            Number.isInteger = Number.isInteger || function (value) {
+                return typeof value === "number" &&
+                    isFinite(value) &&
+                    Math.floor(value) === value;
+            };
+        </script>
+
+        <link href="css/main.css" rel="stylesheet" />
+        <link id="theme" href="css/dark.css" rel="stylesheet" />
+        <link id="switch" href="css/switch.css" rel="stylesheet" />
+        <link href="WinJS/css/ui-dark.css" rel="stylesheet" />
+        <link href="WinJS/css/winjs.css" rel="stylesheet" />
+
+        <script src="WinJS/js/base.js"></script>
+        <script src="WinJS/js/ui.js"></script>
+
+        <script src="js/maker.js"></script>
+        <script src="js/exportToDXF.js"></script>
+
+        <script src="js/DisplayHelpers.js"></script>
+        <script src="js/three.min.js"></script>
+        <script src="js/OutlineEffect.js"></script>
+        <script src="js/jspdf.js"></script>
+
+        <script src="js/system.min.js"></script>
+        <script src="js/signals.min.js"></script>
+        <script src="js/ui.js"></script>
+
+        <script src="js/clipper.js"></script>
+        <script src="js/earcut.js"></script>
+
+        <script src="js/managerClass.js"></script>
+        <script src="js/Sidebar.Class.js"></script>
+        <script src="js/drawClass.js"></script>
+        <script src="js/featureClass.js"></script>
+        <script src="js/stairClass.js"></script>
+        <script src="js/floorFeatureClass.js"></script>
+        <script src="js/wallClass.js"></script>
+        <script src="js/wallSetClass.js"></script>
+        <script src="js/roomClass.js"></script>
+        <script src="js/layoutClass.js"></script>
+        <script src="js/menuClass.js"></script>
+        <script src="js/rollClass.js"></script>
+        <script src="js/saveClass.js"></script>
+        <script src="js/measureClass.js"></script>
+
+        <script src="js/Config.js"></script>
+        <script src="js/Editor2D.js"></script>
+        <script src="js/EditorControls.js"></script>
+        <script src="js/EditorControls2D.js"></script>
+        <script src="js/Sidebar.js"></script>
+        <script src="js/Sidebar.Bluetooth.js"></script>
+        <script src="js/Sidebar.Draw2D.js"></script>
+        <script src="js/Sidebar.Head.js"></script>
+        <script src="js/Sidebar.Save.js"></script>
+        <script src="js/Sidebar.Load.js"></script>
+        <script src="js/outputPDF.js"></script>
+
+        <script src="js/PIP.js"></script>
+        <script src="js/Toolbar.js"></script>
+        <script src="js/ThreeCSG.js"></script>
+
+        <script src="js/Viewport.js"></script>
+        <script src="js/LoginPage.js"></script>
+        <script src="js/ProjectPage.js"></script>
+        <script src="js/UploadPage.js"></script>
+        <script src="js/SubmitPage.js"></script>
+        <script src="js/LoadPage.js"></script>
+        <script src="js/splashClass.js"></script>
+        <script src="js/formClass.js"></script>
+        <script src="js/tileClass.js"></script>
+        <script src="js/notationClass.js"></script>
+        <script src="js/makeJobClass.js"></script>
+        <script src="js/jobLoadClass.js"></script>
+        
+        <script src="js/init.js"></script>
+
+        <div class="NavDark appPage" id="Home" style="display: none; width: 100%;">
+            <div class="InternalFrame">
+                <h3 class='tekheaders' style="width: 15%; height: 30px; text-align: left; float: left; color: #F2F2F2; display: inline-block;  margin-left: 15px; margin-top: 15px; overflow: hidden; ">Scheduled Jobs -</h3>
+                <h4 class='tekheaders' style="width: 15%; text-align: left; color:green; float: left; display: inline-block; line-height:26.4px; text-align: bottom; margin-top: 15px; margin-left: 5px; overflow: hidden; height: 30px;" id="rescount"></h4>
+                <input type='button' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 2px;" id='loadjobbutt' value="Load">
+                <!--<input type='button' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 2%;" id='loadjoblocal' value="Load Local">-->
+                <input type='text' class='form-control' placeholder='End Date' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 2%;" id='datemap1'>
+                <p style='float:right; margin-top: 20px; margin-right:1%;'> TO </p>
+                <input type='text' class='form-control' placeholder='Start Date' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 1%;" id='datemap0'>
+                <select class="house_sel" style="color: black; width: 10%; display: inline-block; float: right; margin-top: 20px; margin-right: 1%;" id='jobtype_select'>
+                    <option value='detail'>Details Only</option>
+                    <option value='all'>All Jobs</option>
+                    <option value='job'>Jobs Only</option>
+                </select>
+                <select class="house_sel" style="color: black; width: 5%; display: inline-block; float: right; margin-top: 20px;" id='jobreg_select'>
+                    <option value='All'>All</option>
+                    <option value='20'>20</option>
+                    <option value='22'>22</option>
+                    <option value='23'>23</option>
+                    <option value='24'>24</option>
+                    <option value='30'>30</option>
+                    <option value='40'>40</option>
+                    <option value='41'>41</option>
+                    <option value='42'>42</option>
+                    <option value='43'>43</option>
+                    <option value='44'>44</option>
+                    <option value='45'>45</option>
+                    <option value='60'>60</option>
+                    <option value='61'>61</option>
+                    <option value='62'>62</option>
+                    <option value='63'>63</option>
+                    <option value='64'>64</option>
+                    <option value='65'>65</option>
+                </select>
+                <br />
+                <br /><br />
+                <div style="height:80%;width:55%; margin-right: 7.5%; float: right;">
+                    <div id="map" style="height:100%;"></div>
+                </div>
+                <select class="house_selector" name="house" id='houseselect' style="color: black; height:80%; width: 30%; float: right; margin-left: 2%; display: inline-block;" size="5"></select>
+            </div>
+            </div>
+    </body>
+</html>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+      <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+      <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+      <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>5fa68c94-d3ac-43e2-82ea-7419df6d7df5</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '15.0'">
+    <VisualStudioVersion>15.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
+  <PropertyGroup>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.17134.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>$(VersionNumberMajor).$(VersionNumberMinor)</MinimumVisualStudioVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <PackageCertificateKeyFile>TMFloorPlanner_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>C:\Users\Austin\Desktop\TekMeasureBuilds\</AppxPackageDir>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <PackageCertificateThumbprint>773CE097599221A52C7151F3D1B26A9DE396E152</PackageCertificateThumbprint>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="css\all.css" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.css.map" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap-theme.min.css.map" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.css.map" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\bootstrap.min.css.map" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\dark.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\jquery-ui.css" />
+    <Content Include="css\jquery-ui.min.css" />
+    <Content Include="css\jquery-ui.structure.min.css" />
+    <Content Include="css\jquery-ui.theme.min.css" />
+    <Content Include="css\justified-nav.css" />
+    <Content Include="css\light.css" />
+    <Content Include="css\main.css" />
+    <Content Include="css\site.css" />
+    <Content Include="css\switch.css" />
+    <Content Include="fonts\helvetiker_regular.typeface.json" />
+    <Content Include="icon\approve-MCTR.png" />
+    <Content Include="icon\back-MCTR.png" />
+    <Content Include="icon\bluetooth-MCTR.png" />
+    <Content Include="icon\bluetooth2-MCTR.png" />
+    <Content Include="icon\camera-MCTR.png" />
+    <Content Include="icon\contact-MCTR.png" />
+    <Content Include="icon\download-MCTR.png" />
+    <Content Include="icon\forward-MCTR.png" />
+    <Content Include="icon\hand-arrow-MCTR.png" />
+    <Content Include="icon\hand-shake-MCTR.png" />
+    <Content Include="icon\install-MCTR.png" />
+    <Content Include="icon\install2-MCTR.png" />
+    <Content Include="icon\left-MCTR.png" />
+    <Content Include="icon\mail-MCTR.png" />
+    <Content Include="icon\measure-MCTR.png" />
+    <Content Include="icon\notepad-MCTR.png" />
+    <Content Include="icon\notes-NB.png" />
+    <Content Include="icon\notes-REC.png" />
+    <Content Include="icon\pause-MCTR.png" />
+    <Content Include="icon\play-MCTR.png" />
+    <Content Include="icon\reload-MCTR.png" />
+    <Content Include="icon\right-MCTR.png" />
+    <Content Include="icon\schedule-MCTR.png" />
+    <Content Include="icon\stair-MCTR.png" />
+    <Content Include="icon\stop-MCTR.png" />
+    <Content Include="icon\upload-MCTR.png" />
+    <Content Include="images\image3721.png" />
+    <Content Include="img\measle.png" />
+    <Content Include="js\exportToDXF.js" />
+    <Content Include="js\jobLoadClass.js" />
+    <Content Include="js\LoadPage.js" />
+    <Content Include="js\makeJobClass.js" />
+    <Content Include="js\maker.js" />
+    <Content Include="js\markerclusterer.js" />
+    <Content Include="js\notationClass.js" />
+    <Content Include="js\paintClass.js" />
+    <Content Include="js\uhs.js" />
+    <Content Include="js\tileClass.js" />
+    <None Include="TMFloorPlanner_TemporaryKey.pfx" />
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="db.php" />
+    <Content Include="fonts\Babes In Toyland NF Regular.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="icon\77.png" />
+    <Content Include="icon\approve-NB.png" />
+    <Content Include="icon\approve-R.png" />
+    <Content Include="icon\approve-RC.png" />
+    <Content Include="icon\approve-REC.png" />
+    <Content Include="icon\approve.png" />
+    <Content Include="icon\bluetooth-NB.png" />
+    <Content Include="icon\bluetooth-R.png" />
+    <Content Include="icon\bluetooth-RC.png" />
+    <Content Include="icon\bluetooth-REC.png" />
+    <Content Include="icon\bluetooth.png" />
+    <Content Include="icon\camera-NB.png" />
+    <Content Include="icon\camera-R.png" />
+    <Content Include="icon\camera-RC.png" />
+    <Content Include="icon\camera-REC.png" />
+    <Content Include="icon\camera.png" />
+    <Content Include="icon\carpet-samples-1600by200.png" />
+    <Content Include="icon\contact-NB.png" />
+    <Content Include="icon\contact-R.png" />
+    <Content Include="icon\contact-RC.png" />
+    <Content Include="icon\contact-REC.png" />
+    <Content Include="icon\contact.png" />
+    <Content Include="icon\door-NB.png" />
+    <Content Include="icon\door-R.png" />
+    <Content Include="icon\door-RC.png" />
+    <Content Include="icon\door-REC.png" />
+    <Content Include="icon\door.png" />
+    <Content Include="icon\download-NB.png" />
+    <Content Include="icon\download-R.png" />
+    <Content Include="icon\download-RC.png" />
+    <Content Include="icon\download-REC.png" />
+    <Content Include="icon\download.png" />
+    <Content Include="icon\hand-arrows-NB.png" />
+    <Content Include="icon\hand-arrows-R.png" />
+    <Content Include="icon\hand-arrows-RC.png" />
+    <Content Include="icon\hand-arrows-REC.png" />
+    <Content Include="icon\hand-arrows.png" />
+    <Content Include="icon\hand-shake-nb.png" />
+    <Content Include="icon\hand-shake-R.png" />
+    <Content Include="icon\hand-shake-RC.png" />
+    <Content Include="icon\hand-shake-REC.png" />
+    <Content Include="icon\hand-shake.png" />
+    <Content Include="icon\hand.png" />
+    <Content Include="icon\install-NB.png" />
+    <Content Include="icon\install-R.png" />
+    <Content Include="icon\install-RC.png" />
+    <Content Include="icon\install-REC.png" />
+    <Content Include="icon\install.png" />
+    <Content Include="icon\mail-NB.png" />
+    <Content Include="icon\mail-R.png" />
+    <Content Include="icon\mail-RC.png" />
+    <Content Include="icon\mail-REC.png" />
+    <Content Include="icon\mail.png" />
+    <Content Include="icon\measure-NB.png" />
+    <Content Include="icon\measure-R.png" />
+    <Content Include="icon\measure-RC.png" />
+    <Content Include="icon\measure-REC.png" />
+    <Content Include="icon\measure.png" />
+    <Content Include="icon\note-NB.png" />
+    <Content Include="icon\note-REC.png" />
+    <Content Include="icon\notepad-NB.png" />
+    <Content Include="icon\notepad-R.png" />
+    <Content Include="icon\notepad-RC.png" />
+    <Content Include="icon\notepad-REC.png" />
+    <Content Include="icon\notepad.png" />
+    <Content Include="icon\notes-R.png" />
+    <Content Include="icon\notes-RC.png" />
+    <Content Include="icon\notes.png" />
+    <Content Include="icon\pencil-NB.png" />
+    <Content Include="icon\pencil-R.png" />
+    <Content Include="icon\pencil-RC.png" />
+    <Content Include="icon\pencil-REC.png" />
+    <Content Include="icon\pencil.png" />
+    <Content Include="icon\schedule-NB.png" />
+    <Content Include="icon\schedule-R.png" />
+    <Content Include="icon\schedule-RC.png" />
+    <Content Include="icon\schedule-REC.png" />
+    <Content Include="icon\schedule.png" />
+    <Content Include="icon\stair-dark.png" />
+    <Content Include="icon\stair-NB.png" />
+    <Content Include="icon\stair-R.png" />
+    <Content Include="icon\stair-RC.png" />
+    <Content Include="icon\stair-REC.png" />
+    <Content Include="icon\stair.png" />
+    <Content Include="icon\tankvac-NB.png" />
+    <Content Include="icon\tankvac-R.png" />
+    <Content Include="icon\tankvac-RC.png" />
+    <Content Include="icon\tankvac-REC.png" />
+    <Content Include="icon\tankvac.png" />
+    <Content Include="icon\tcut-NB.png" />
+    <Content Include="icon\tcut-R.png" />
+    <Content Include="icon\tcut-RC.png" />
+    <Content Include="icon\tcut-REC.png" />
+    <Content Include="icon\tcut.png" />
+    <Content Include="icon\UHS.png" />
+    <Content Include="icon\UHSfavicon.png" />
+    <Content Include="icon\upload-NB.png" />
+    <Content Include="icon\upload-R.png" />
+    <Content Include="icon\upload-RC.png" />
+    <Content Include="icon\upload-REC.png" />
+    <Content Include="icon\upload.png" />
+    <Content Include="icon\vacuum-NB.png" />
+    <Content Include="icon\vacuum-R.png" />
+    <Content Include="icon\vacuum-RC.png" />
+    <Content Include="icon\vacuum-REC.png" />
+    <Content Include="icon\vacuum.png" />
+    <Content Include="images\LargeTile.scale-100.png" />
+    <Content Include="images\LargeTile.scale-125.png" />
+    <Content Include="images\LargeTile.scale-150.png" />
+    <Content Include="images\LargeTile.scale-200.png" />
+    <Content Include="images\LargeTile.scale-400.png" />
+    <Content Include="images\SmallTile.scale-100.png" />
+    <Content Include="images\SmallTile.scale-125.png" />
+    <Content Include="images\SmallTile.scale-150.png" />
+    <Content Include="images\SmallTile.scale-200.png" />
+    <Content Include="images\SmallTile.scale-400.png" />
+    <Content Include="images\splashscreen.scale-100.png" />
+    <Content Include="images\splashscreen.scale-125.png" />
+    <Content Include="images\splashscreen.scale-150.png" />
+    <Content Include="images\splashscreen.scale-400.png" />
+    <Content Include="images\Square150x150Logo.scale-100.png" />
+    <Content Include="images\Square150x150Logo.scale-125.png" />
+    <Content Include="images\Square150x150Logo.scale-150.png" />
+    <Content Include="images\Square150x150Logo.scale-400.png" />
+    <Content Include="images\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="images\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="images\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="images\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="images\Square44x44Logo.scale-100.png" />
+    <Content Include="images\Square44x44Logo.scale-125.png" />
+    <Content Include="images\Square44x44Logo.scale-150.png" />
+    <Content Include="images\Square44x44Logo.scale-400.png" />
+    <Content Include="images\Square44x44Logo.targetsize-16.png" />
+    <Content Include="images\Square44x44Logo.targetsize-24.png" />
+    <Content Include="images\Square44x44Logo.targetsize-256.png" />
+    <Content Include="images\Square44x44Logo.targetsize-32.png" />
+    <Content Include="images\Square44x44Logo.targetsize-48.png" />
+    <Content Include="images\storelogo.scale-100.png" />
+    <Content Include="images\storelogo.scale-125.png" />
+    <Content Include="images\storelogo.scale-150.png" />
+    <Content Include="images\storelogo.scale-200.png" />
+    <Content Include="images\storelogo.scale-400.png" />
+    <Content Include="images\Wide310x150Logo.scale-100.png" />
+    <Content Include="images\Wide310x150Logo.scale-125.png" />
+    <Content Include="images\Wide310x150Logo.scale-150.png" />
+    <Content Include="images\Wide310x150Logo.scale-400.png" />
+    <Content Include="img\blueb3.jpg" />
+    <Content Include="img\grave.png" />
+    <Content Include="img\gravel.png" />
+    <Content Include="img\grid.PNG" />
+    <Content Include="img\grid2.PNG" />
+    <Content Include="img\loader.gif" />
+    <Content Include="img\loading.gif" />
+    <Content Include="img\LogoSmall.png" />
+    <Content Include="img\LogoSmall2.png" />
+    <Content Include="img\LogoTek.png" />
+    <Content Include="icon\measure-CLEAR.png" />
+    <Content Include="img\TekBW.png" />
+    <Content Include="img\TekHead.png" />
+    <Content Include="img\test.jpg" />
+    <Content Include="index.html" />
+    <Content Include="images\LockScreenLogo.scale-200.png" />
+    <Content Include="images\SplashScreen.scale-200.png" />
+    <Content Include="images\Square150x150Logo.scale-200.png" />
+    <Content Include="images\Square44x44Logo.scale-200.png" />
+    <Content Include="images\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="images\Wide310x150Logo.scale-200.png" />
+    <Content Include="JSON\QA.json" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\clipper.js" />
+    <Content Include="js\Config.js" />
+    <Content Include="js\DisplayHelpers.js" />
+    <Content Include="js\drawClass.js" />
+    <Content Include="js\earcut.js" />
+    <Content Include="js\Editor2D.js" />
+    <Content Include="js\EditorControls.js" />
+    <Content Include="js\EditorControls2D.js" />
+    <Content Include="js\featureClass.js" />
+    <Content Include="js\floorFeatureClass.js" />
+    <Content Include="js\formClass.js" />
+    <Content Include="js\images\ui-icons_444444_256x240.png" />
+    <Content Include="js\images\ui-icons_555555_256x240.png" />
+    <Content Include="js\images\ui-icons_777620_256x240.png" />
+    <Content Include="js\images\ui-icons_777777_256x240.png" />
+    <Content Include="js\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="js\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="js\init.js" />
+    <Content Include="js\jquery-3.2.0.min.js" />
+    <Content Include="js\jquery-ui.min.js" />
+    <Content Include="js\jspdf.js" />
+    <Content Include="js\layoutClass.js" />
+    <Content Include="css\default.css" />
+    <Content Include="js\LoginPage.js" />
+    <Content Include="js\managerClass.js" />
+    <Content Include="js\menuClass.js" />
+    <Content Include="js\OutlineEffect.js" />
+    <Content Include="js\outputPDF.js" />
+    <Content Include="js\ProjectPage.js" />
+    <Content Include="js\rollClass.js" />
+    <Content Include="js\roomClass.js" />
+    <Content Include="js\Non-BufferDraw.js" />
+    <Content Include="js\saveClass.js" />
+    <Content Include="js\measureClass.js" />
+    <Content Include="js\Sidebar.Bluetooth.js" />
+    <Content Include="js\Sidebar.Class.js" />
+    <Content Include="js\PIP.js" />
+    <Content Include="js\Sidebar.Draw2D.js" />
+    <Content Include="js\Sidebar.js" />
+    <Content Include="js\Sidebar.Head.js" />
+    <Content Include="js\Sidebar.Load.js" />
+    <Content Include="js\Sidebar.Save.js" />
+    <Content Include="js\signals.min.js" />
+    <Content Include="js\splashClass.js" />
+    <Content Include="js\stairClass.js" />
+    <Content Include="js\SubmitPage.js" />
+    <Content Include="js\system.min.js" />
+    <Content Include="js\three.min.js" />
+    <Content Include="js\ThreeCSG.js" />
+    <Content Include="js\Toolbar.js" />
+    <Content Include="js\ui.js" />
+    <Content Include="js\UploadPage.js" />
+    <Content Include="js\Viewport.js" />
+    <Content Include="js\wallClass.js" />
+    <Content Include="js\wallSetClass.js" />
+    <Content Include="MainWindow.xaml.cs" />
+    <Content Include="splash.html" />
+    <Content Include="WinJS\css\ui-dark.css" />
+    <Content Include="WinJS\css\ui-dark.min.css" />
+    <Content Include="WinJS\css\ui-light.css" />
+    <Content Include="WinJS\css\ui-light.min.css" />
+    <Content Include="WinJS\css\winjs.css" />
+    <Content Include="WinJS\fonts\Symbols.ttf" />
+    <Content Include="WinJS\js\base.js" />
+    <Content Include="WinJS\js\base.min.js" />
+    <Content Include="WinJS\js\base.min.js.map" />
+    <Content Include="WinJS\js\en-US\ui.strings.js" />
+    <Content Include="WinJS\js\ui.js" />
+    <Content Include="WinJS\js\ui.min.js" />
+    <Content Include="WinJS\js\ui.min.js.map" />
+    <Content Include="WinJS\js\WinJS.intellisense-setup.js" />
+    <Content Include="WinJS\js\WinJS.intellisense.js" />
+    <Content Include="WinJS\License.txt" />
+    <Content Include="WinJS\README.md" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
+  <!-- To modify your build process, add your task inside one of the targets below then uncomment
+       that target and the DisableFastUpToDateCheck PropertyGroup. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <PropertyGroup>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+  -->
+</Project>

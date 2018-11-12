@@ -1,0 +1,233 @@
+﻿body {
+	font-size: 15px;
+	color: #111;
+	background: #f9f9f9
+}
+img {
+	border: 0;
+}
+.container {
+	max-width: 100%;
+	min-width: 100%;
+	width: 100%
+}
+a:hover {
+	text-decoration: underline;
+	color: #0B2333;
+	
+}
+a:focus { text-decoration: none;
+}
+h1 {
+	font-weight: 600;
+	color: #333;
+	font-size: 30px;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+h2 {
+	font-weight: 600;
+	color: #555;
+	padding: 0;
+	margin: 0;
+	font-size: 21px;
+	text-align: left;
+
+}
+h3 {
+	font-size: 18px;
+	color: #555;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 5px;
+	text-align: left;
+}
+hr {
+	border-top: 0; 
+	border-bottom: thin #E9E9E9 solid;
+	border-width: 4px;
+}
+ol li {
+	line-height: 22px
+}
+blockquote {
+	font-size: 14px;
+	border-left: 0;
+	margin-left: 40px
+}
+.logo {
+	margin-bottom: 10px;
+}
+.goBorderRight {
+	border-right: thin #E9E9E9 solid;
+	min-height: 100px
+}
+.PoPoBoxed {
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	padding-top: 10px;
+}
+.portalNoSign {
+	font-size: 22px;
+	padding-top: 10px;
+	font-weight: bold;
+	text-align: center
+}
+.portalNoSign .fa {
+	font-size: 70px;
+	margin-bottom: 12px
+}
+
+.attachBoxed {
+	border-top: thin #E9E9E9 solid;
+	padding-top: 20px;
+	margin-top: 20px;
+	padding-bottom: 10px;
+}
+.noteWrapp {
+	border: thin #E4E4E4 solid;
+	border-top: 0;
+	padding: 8px;
+	background: #fff;
+	font-size: 13px;
+}
+.noteWrappTop {
+	border-top: thin #E4E4E4 solid;
+}
+.storeNumButt button {
+	padding: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border: thin #CCC solid;
+}
+
+.storeNumButt .editHover {
+	display: inline-block;
+	width: 55%;
+	min-width: 55%;
+	max-width: 55%;
+}
+
+
+
+.rowWrapp {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	font-size: 14px;
+	border-bottom: thin #ccc dotted
+}
+.rowWrapp:hover  {
+	background: #ebebeb
+}
+.reePage {
+	float:right; color: #999; cursor: pointer; font-size: 18px;
+	margin-right: 20px;
+	margin-top: 10px;
+}
+.whiteTop {
+	background: #fff;
+	padding-top: 50px;
+	padding-bottom: 20px;
+	padding-left: 25px;
+	margin-top: -80px;
+	margin-left: -15px;
+	width: 103%;
+	border-bottom: thin #E9E9E9 solid
+}
+.contactList {
+	padding-top: 14px;
+	padding-left: 12px;
+}
+.sideBlack {
+	background: #444446;
+	min-height: 650px;
+}
+.bgImg {
+	padding-top: 80px;
+	padding-left: 20px;
+	padding-bottom: 20px
+}
+.form-group input , .form-group select {
+	border-radius: 1px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+}
+.sideBlackContent {
+	padding: 20px;
+	padding-top: 50px;
+	color: #A3A4A5;
+}
+.sideBlackContent hr {
+	border-top: 0; 
+	border-bottom: 4px #AAA solid;
+}
+.storePortal {
+	font-size: 18px;
+	margin-top: 40px;
+}
+.sideButtons {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	min-height: 220px
+}
+.sideButtons a {
+	border: thin #A3A4A5 solid;
+	color: #A3A4A5;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	padding: 14px;
+	padding-left: 15px;
+	display: block;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	font-size: 17px;
+	text-decoration: none;
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+}
+.sideButtons a:hover {
+	background:#58595A;
+	color: #BDBEBF;
+
+}
+.btnStyle .btn-default {
+	border-radius: 1px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	font-size: 13px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.copyright {
+	margin-top: 40px;
+	font-size: 14px;
+}
+
+
+.showPhone{ display: none}
+
+@media (max-width: 1200px) { 
+}
+@media (max-width: 1100px) {
+}
+@media (max-width: 1000px) {
+}
+@media (max-width: 768px) { 
+.showPhone { display: inline }
+
+}
+
+@media (max-width: 750px) {
+}
+
+@media (max-width: 450px) { 
+}
