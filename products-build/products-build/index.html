@@ -22,130 +22,320 @@
 
     <script src="js/uhs.js"></script>
 </head>
-    <body onload="initialize()">
-        <script>
-            window.onbeforeunload = function () {
-                return 'Are you sure you want to leave?';
-            };
+<body onload="initialize()">
+    <script>
+        window.onbeforeunload = function () {
+            return 'Are you sure you want to leave?';
+        };
 
-            Number.isInteger = Number.isInteger || function (value) {
-                return typeof value === "number" &&
-                    isFinite(value) &&
-                    Math.floor(value) === value;
-            };
-        </script>
+        Number.isInteger = Number.isInteger || function (value) {
+            return typeof value === "number" &&
+                isFinite(value) &&
+                Math.floor(value) === value;
+        };
+    </script>
 
-        <link href="css/main.css" rel="stylesheet" />
-        <link id="theme" href="css/dark.css" rel="stylesheet" />
-        <link id="switch" href="css/switch.css" rel="stylesheet" />
-        <link href="WinJS/css/ui-dark.css" rel="stylesheet" />
-        <link href="WinJS/css/winjs.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link id="theme" href="css/dark.css" rel="stylesheet" />
+    <link id="switch" href="css/switch.css" rel="stylesheet" />
+    <link href="WinJS/css/ui-dark.css" rel="stylesheet" />
+    <link href="WinJS/css/winjs.css" rel="stylesheet" />
 
-        <script src="WinJS/js/base.js"></script>
-        <script src="WinJS/js/ui.js"></script>
+    <script src="WinJS/js/base.js"></script>
+    <script src="WinJS/js/ui.js"></script>
 
-        <script src="js/maker.js"></script>
-        <script src="js/exportToDXF.js"></script>
+    <script src="js/maker.js"></script>
+    <script src="js/exportToDXF.js"></script>
 
-        <script src="js/DisplayHelpers.js"></script>
-        <script src="js/three.min.js"></script>
-        <script src="js/OutlineEffect.js"></script>
-        <script src="js/jspdf.js"></script>
+    <script src="js/DisplayHelpers.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/OutlineEffect.js"></script>
+    <script src="js/jspdf.js"></script>
 
-        <script src="js/system.min.js"></script>
-        <script src="js/signals.min.js"></script>
-        <script src="js/ui.js"></script>
+    <script src="js/system.min.js"></script>
+    <script src="js/signals.min.js"></script>
+    <script src="js/ui.js"></script>
 
-        <script src="js/clipper.js"></script>
-        <script src="js/earcut.js"></script>
+    <script src="js/clipper.js"></script>
+    <script src="js/earcut.js"></script>
 
-        <script src="js/managerClass.js"></script>
-        <script src="js/Sidebar.Class.js"></script>
-        <script src="js/drawClass.js"></script>
-        <script src="js/featureClass.js"></script>
-        <script src="js/stairClass.js"></script>
-        <script src="js/floorFeatureClass.js"></script>
-        <script src="js/wallClass.js"></script>
-        <script src="js/wallSetClass.js"></script>
-        <script src="js/roomClass.js"></script>
-        <script src="js/layoutClass.js"></script>
-        <script src="js/menuClass.js"></script>
-        <script src="js/rollClass.js"></script>
-        <script src="js/saveClass.js"></script>
-        <script src="js/measureClass.js"></script>
+    <script src="js/managerClass.js"></script>
+    <script src="js/Sidebar.Class.js"></script>
+    <script src="js/drawClass.js"></script>
+    <script src="js/featureClass.js"></script>
+    <script src="js/stairClass.js"></script>
+    <script src="js/floorFeatureClass.js"></script>
+    <script src="js/wallClass.js"></script>
+    <script src="js/wallSetClass.js"></script>
+    <script src="js/roomClass.js"></script>
+    <script src="js/layoutClass.js"></script>
+    <script src="js/menuClass.js"></script>
+    <script src="js/rollClass.js"></script>
+    <script src="js/saveClass.js"></script>
+    <script src="js/measureClass.js"></script>
 
-        <script src="js/Config.js"></script>
-        <script src="js/Editor2D.js"></script>
-        <script src="js/EditorControls.js"></script>
-        <script src="js/EditorControls2D.js"></script>
-        <script src="js/Sidebar.js"></script>
-        <script src="js/Sidebar.Bluetooth.js"></script>
-        <script src="js/Sidebar.Draw2D.js"></script>
-        <script src="js/Sidebar.Head.js"></script>
-        <script src="js/Sidebar.Save.js"></script>
-        <script src="js/Sidebar.Load.js"></script>
-        <script src="js/outputPDF.js"></script>
+    <script src="js/Config.js"></script>
+    <script src="js/Editor2D.js"></script>
+    <script src="js/EditorControls.js"></script>
+    <script src="js/EditorControls2D.js"></script>
+    <script src="js/Sidebar.js"></script>
+    <script src="js/Sidebar.Bluetooth.js"></script>
+    <script src="js/Sidebar.Draw2D.js"></script>
+    <script src="js/Sidebar.Head.js"></script>
+    <script src="js/Sidebar.Save.js"></script>
+    <script src="js/Sidebar.Load.js"></script>
+    <script src="js/outputPDF.js"></script>
 
-        <script src="js/PIP.js"></script>
-        <script src="js/Toolbar.js"></script>
-        <script src="js/ThreeCSG.js"></script>
+    <script src="js/PIP.js"></script>
+    <script src="js/Toolbar.js"></script>
+    <script src="js/ThreeCSG.js"></script>
 
-        <script src="js/Viewport.js"></script>
-        <script src="js/LoginPage.js"></script>
-        <script src="js/ProjectPage.js"></script>
-        <script src="js/UploadPage.js"></script>
-        <script src="js/SubmitPage.js"></script>
-        <script src="js/LoadPage.js"></script>
-        <script src="js/splashClass.js"></script>
-        <script src="js/formClass.js"></script>
-        <script src="js/tileClass.js"></script>
-        <script src="js/notationClass.js"></script>
-        <script src="js/makeJobClass.js"></script>
-        <script src="js/jobLoadClass.js"></script>
-        
-        <script src="js/init.js"></script>
+    <script src="js/Viewport.js"></script>
+    <script src="js/LoginPage.js"></script>
+    <script src="js/ProjectPage.js"></script>
+    <script src="js/UploadPage.js"></script>
+    <script src="js/SubmitPage.js"></script>
+    <script src="js/LoadPage.js"></script>
+    <script src="js/splashClass.js"></script>
+    <script src="js/formClass.js"></script>
+    <script src="js/tileClass.js"></script>
+    <script src="js/notationClass.js"></script>
+    <script src="js/makeJobClass.js"></script>
+    <script src="js/jobLoadClass.js"></script>
+    <script src="js/productPicker.js"></script>
 
-        <div class="NavDark appPage" id="Home" style="display: none; width: 100%;">
-            <div class="InternalFrame">
-                <h3 class='tekheaders' style="width: 15%; height: 30px; text-align: left; float: left; color: #F2F2F2; display: inline-block;  margin-left: 15px; margin-top: 15px; overflow: hidden; ">Scheduled Jobs -</h3>
-                <h4 class='tekheaders' style="width: 15%; text-align: left; color:green; float: left; display: inline-block; line-height:26.4px; text-align: bottom; margin-top: 15px; margin-left: 5px; overflow: hidden; height: 30px;" id="rescount"></h4>
-                <input type='button' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 2px;" id='loadjobbutt' value="Load">
-                <!--<input type='button' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 2%;" id='loadjoblocal' value="Load Local">-->
-                <input type='text' class='form-control' placeholder='End Date' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 2%;" id='datemap1'>
-                <p style='float:right; margin-top: 20px; margin-right:1%;'> TO </p>
-                <input type='text' class='form-control' placeholder='Start Date' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 1%;" id='datemap0'>
-                <select class="house_sel" style="color: black; width: 10%; display: inline-block; float: right; margin-top: 20px; margin-right: 1%;" id='jobtype_select'>
-                    <option value='detail'>Details Only</option>
-                    <option value='all'>All Jobs</option>
-                    <option value='job'>Jobs Only</option>
-                </select>
-                <select class="house_sel" style="color: black; width: 5%; display: inline-block; float: right; margin-top: 20px;" id='jobreg_select'>
-                    <option value='All'>All</option>
-                    <option value='20'>20</option>
-                    <option value='22'>22</option>
-                    <option value='23'>23</option>
-                    <option value='24'>24</option>
-                    <option value='30'>30</option>
-                    <option value='40'>40</option>
-                    <option value='41'>41</option>
-                    <option value='42'>42</option>
-                    <option value='43'>43</option>
-                    <option value='44'>44</option>
-                    <option value='45'>45</option>
-                    <option value='60'>60</option>
-                    <option value='61'>61</option>
-                    <option value='62'>62</option>
-                    <option value='63'>63</option>
-                    <option value='64'>64</option>
-                    <option value='65'>65</option>
-                </select>
-                <br />
-                <br /><br />
-                <div style="height:80%;width:55%; margin-right: 7.5%; float: right;">
-                    <div id="map" style="height:100%;"></div>
+    <script src="js/init.js"></script>
+
+    <div class="appPage" id="login" style="display: none;">
+        <div class="NameBox">Tekainos</div>
+        <div class="InternalBox" style="width: 50%; margin-left: 25%;">
+            <div class="DarkBox" id="LoginBox">
+                <form class="form-group" style="display: none;" id="registerForm">
+                    <h1 class="block-title">Create Account</h1>
+                    <h3 style="color: red; display: none;" id="regPassMatch">Passwords Do Not Match</h3>
+                    <h3 style="color: red; display: none;" id="contactAdmin">This is a Closed Beta, Please Contact Administrator for Instructions</h3>
+                    <h3 style="color: red; display: none;" id="unableReg">Unable to Create Account, E-Mail in Use</h3>
+                    <div class="loginRow"><label class="inputIcon" for="emailReg"><i class="fas fa-user-shield fa-fw" id="icon"></i></label><input name="emailReg" class="loginInput" id="emailReg" required="" type="text" placeholder="E-Mail"></div>
+                    <br>
+                    <div class="loginRow"><label class="inputIcon" for="password2"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password2" class="loginInput" id="password2" required="" type="password" placeholder="Password"></div>
+                    <br>
+                    <div class="loginRow"><label class="inputIcon" for="password3"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password3" class="loginInput" id="password3" required="" type="password" placeholder="Re-Enter Password"></div>
+                    <br><button class="loginButton" type="submit" id="submitCreateButton">Create Account</button>
+                </form>
+                <form class="form-group" id="LoginForm">
+                    <h1 class="block-title">Login</h1>
+                    <h3 style="color: red; display: none;" id="loginWrong">E-Mail or Password Incorrect</h3>
+                    <div class="loginRow"><label class="inputIcon" for="username"><i class="fas fa-user-shield fa-fw" id="icon"></i></label><input name="username" class="loginInput" id="username" required="" type="text" placeholder="Email"></div>
+                    <br>
+                    <div class="loginRow"><label class="inputIcon" for="password"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password" class="loginInput" id="password" required="" type="password" placeholder="Password"></div>
+                    <button class="loginButton" type="submit" id="loginButton">Login</button>
+                </form>
+                <button class="loginButton" style="background-color: rgb(0, 70, 144);" id="createAccountButton">Create Account</button>
+                <button class="loginButton" style="display: none; background-color: rgb(0, 70, 144);" id="loginBackButton">Back</button>
+                <button class="loginButton" style="display: none;" id="offlineButton">Start Offline</button>
+                <button class="loginButton" style="display: none; background-color: rgb(0, 70, 144);" id="retryConnectionButton">Retry Connection</button>
+            </div>
+        </div>
+    </div>
+    <div class="NavDark appPage" id="loadJob" style="display: none;">
+        <div class="NameBox">Tekainos</div>
+        <div class="InternalBox" style="width: 75%; margin-left: 12.5%;">
+            <div class="DarkBox" id="JobBox">
+                <div class="splashBox" id="CreateJobBox" style="float: left;">
+                    <h1 class="block-title">Create Job</h1>
+                    <div class="LoremIpsum">Create a new job to be saved locally or assigned to project number at a future date.</div>
                 </div>
-                <select class="house_selector" name="house" id='houseselect' style="color: black; height:80%; width: 30%; float: right; margin-left: 2%; display: inline-block;" size="5"></select>
+                <div class="splashBox" id="LoadLocalBox" style="float: left;">
+                    <h1 class="block-title">Load Local</h1>
+                    <div class="LoremIpsum">Load a job that has been saved locally to this device.</div>
+                </div>
+                <div class="splashBox" id="LoadIMSBox" style="float: left;">
+                    <h1 class="block-title">Load From IMS</h1>
+                    <div class="LoremIpsum">Load a job from the cloud that has been assigned to this account.</div>
+                </div>
+                <div class="splashBox" id="UploadJobBox" style="float: left;">
+                    <h1 class="block-title">Upload</h1>
+                    <div class="LoremIpsum">Upload jobs that have been saved locally, assign them to a project number, or share with another account</div>
+                </div>
             </div>
+        </div>
+    </div>
+    <div class="NavDark appPage" id="makeJob" style="display: none;">
+        <div class="NameBox">Tekainos</div>
+        <div class="InternalBox" style="width: 75%; margin-left: 12.5%;">
+            <div class="DarkBox" id="JobBox">
+                <div class="form-group" id="createJobBox">
+                </div>
+                <button class="loginButton" id="createJobLocal" style="background-color: rgb(0, 70, 144);">Create Job</button>
             </div>
-    </body>
+        </div>
+    </div>
+
+    <div class="NavPage appPage" id="splashPage" style="display: none;">
+        <div class="InternalBox">
+            <div class="splashBox" id="ViewportBox" style="float: left;">
+                <img class="NavIcon" src="/icon/bluetooth-REC.png">
+                <h1 class="block-title">Measure</h1>
+                <div class="LoremIpsum"> Capture room measurements, add room features such as stairs, cabinets, doors, pillars.  Select new flooring type, layout patterns and directions, and  seam placement .  Calculate material sizes needed.</div>
+            </div>
+            <div class="splashBox" id="FormBox" style="float: right;">
+                <img class="NavIcon" src="/icon/note-REC.png">
+                <h1 class="block-title">Estimate</h1>
+                <div class="LoremIpsum">Enter home and room project information, demolition and preparation requirements, appliance and fixture movement, and select new product materials.</div>
+            </div>
+            <div class="splashBox" id="DocumentBox" style="float: left;">
+                <img class="NavIcon" src="/icon/upload-REC.png">
+                <h1 class="block-title">Attach</h1>
+                <div class="LoremIpsum">Save job photographs and documents such as spreadsheets and permits.</div>
+            </div>
+            <div class="splashBox" id="SubmitBox" style="float: right;">
+                <img class="NavIcon" src="/icon/approve-REC.png">
+                <h1 class="block-title">Submit</h1>
+                <div class="LoremIpsum"> Submit completed projects to enter into the bid process defined by your organization.</div>
+            </div>
+        </div>
+    </div>
+    <div class="NavPage appPage" id="uploadPage" style="display: none;">
+        <div class="InternalFrame">
+            <div class="BigBox" id="UploadBox">
+                <h1 class="block-title">Upload</h1>
+                <button class="Button" style="width: 30%; color: black;" id="uploadButton">Upload</button>
+            </div>
+        </div>
+    </div>
+    <div class="NavPage appPage" id="submitPage" style="display: none;">
+        <div class="InternalFrame">
+            <div class="BigBox" id="UploadBox">
+                <h1 class="block-title">Submit</h1>
+                <div class="canvasBox" id="canvBox"></div>
+                <div class="submitDiv">
+                    <select class="selectVersion">
+                        <option>Draft</option>
+                        <option>Final</option>
+                        <option>Refigure</option>
+                    </select>
+                    <input class="nameInput" placeholder="Submission Name">
+                    <textarea class="submitNotes" placeholder="Notes"></textarea>
+                </div>
+                <button class="submitPageButton" id="submitProject" style="width: 80%;">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="NavDark appPage" id="Home" style="display: none; width: 100%;">
+        <div class="InternalFrame">
+            <h3 class='tekheaders' style="width: 15%; height: 30px; text-align: left; float: left; color: #F2F2F2; display: inline-block;  margin-left: 15px; margin-top: 15px; overflow: hidden; ">Scheduled Jobs -</h3>
+            <h4 class='tekheaders' style="width: 15%; text-align: left; color:green; float: left; display: inline-block; line-height:26.4px; text-align: bottom; margin-top: 15px; margin-left: 5px; overflow: hidden; height: 30px;" id="rescount"></h4>
+            <input type='button' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 2px;" id='loadjobbutt' value="Load">
+            <!--<input type='button' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 2%;" id='loadjoblocal' value="Load Local">-->
+            <input type='text' class='form-control' placeholder='End Date' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 2%;" id='datemap1'>
+            <p style='float:right; margin-top: 20px; margin-right:1%;'> TO </p>
+            <input type='text' class='form-control' placeholder='Start Date' style="color: black; width: 10%; display: inline-block; float: right; margin-top: 15px; margin-right: 1%;" id='datemap0'>
+            <select class="house_sel" style="color: black; width: 10%; display: inline-block; float: right; margin-top: 20px; margin-right: 1%;" id='jobtype_select'>
+                <option value='detail'>Details Only</option>
+                <option value='all'>All Jobs</option>
+                <option value='job'>Jobs Only</option>
+            </select>
+            <select class="house_sel" style="color: black; width: 5%; display: inline-block; float: right; margin-top: 20px;" id='jobreg_select'>
+                <option value='All'>All</option>
+                <option value='20'>20</option>
+                <option value='22'>22</option>
+                <option value='23'>23</option>
+                <option value='24'>24</option>
+                <option value='30'>30</option>
+                <option value='40'>40</option>
+                <option value='41'>41</option>
+                <option value='42'>42</option>
+                <option value='43'>43</option>
+                <option value='44'>44</option>
+                <option value='45'>45</option>
+                <option value='60'>60</option>
+                <option value='61'>61</option>
+                <option value='62'>62</option>
+                <option value='63'>63</option>
+                <option value='64'>64</option>
+                <option value='65'>65</option>
+            </select>
+            <br />
+            <br /><br />
+            <div style="height:80%;width:55%; margin-right: 7.5%; float: right;">
+                <div id="map" style="height:100%;"></div>
+            </div>
+            <select class="house_selector" name="house" id='houseselect' style="color: black; height:80%; width: 30%; float: right; margin-left: 2%; display: inline-block;" size="5"></select>
+        </div>
+    </div>
+
+    <div class="NavPage appPage" id="questionPage" style="display: none;">
+        <div class="questionGroup" id="questionGroup">
+            <h1>The Question Page</h1>
+            <div class="progBar" id="progBar"></div>
+        </div>
+        <div class="testItenerary" id="testItenerary">
+            <div class="innerItenerary" id="innerItenerary">
+            </div>
+            <button class="submitButton" id="submitFilledForm">Verify</button>
+        </div>
+    </div>
+
+
+    <div class="NavDark appPage" id="productsPage" style="display: none; width: 100%;">
+        <div class="InternalFrame overflow--hidden">
+            <div class="NameBox">Tekainos</div>
+            <div class="overflow--y-scroll">
+                <h2>Products Picker</h2>
+                <!-- <div class="products-breadcrumbs">Flooring > Carpet</div> -->
+                <div class="product-category">
+                    <h3 id="floor-picker" class="prodcat-picker">Select floor type</h3>
+                    <div class="prodcat-options">
+                        <div class="product-type">
+                            <img src="https://lda.lowes.com/is/image/Lowes/Carpet_4COL_carpettile?$JPEG-HQ$&wid=234" />
+                            <p>Carpet</p>
+                        </div><!-- end product-type -->
+                        <div class="product-type">
+                            <img src="https://lda.lowes.com/is/image/Lowes/Carpet_4COL_tile?$JPEG-HQ$&wid=234" />
+                            <p>Tile</p>
+                        </div><!-- end product-type -->
+                        <div class="product-type">
+                            <img src="https://lda.lowes.com/is/image/Lowes/DP18-47440_082918_DT_Flooring_hardwood?$JPEG-HQ$&wid=234" />
+                            <p>Hardwoood</p>
+                        </div><!-- end product-type -->
+                    </div>
+                </div><!-- end floor-selection -->
+                <div class="product-category">
+                    <h3 id="transition-picker" class="prodcat-picker">Select transition type for doorways and room changes</h3>
+                    <div class="prodcat-options">
+                        <div class="product-type">
+                            <img src="https://mobileimages.lowes.com/product/converted/043374/043374119244lg.jpg" />
+                            <p>Wood Threshold</p>
+                        </div><!-- end product-type -->
+                        <div class="product-type">
+                            <img src="https://mobileimages.lowes.com/product/converted/043374/043374110562lg.jpg" />
+                            <p>Metal Threshold</p>
+                        </div><!-- end product-type -->
+                        <div class="product-type">
+                            <img src="https://mobileimages.lowes.com/product/converted/077578/077578056906lg.jpg" />
+                            <p>Plastic</p>
+                        </div><!-- end product-type -->
+                    </div>
+                </div><!-- end transition-selection -->
+                <div class="product-category">
+                    <h3 id="moulding-picker" class="prodcat-picker">Select moulding/trim type</h3>
+                    <div class="prodcat-options">
+                        <div class="product-type">
+                            <img src="https://mobileimages.lowes.com/product/converted/836217/836217118548lg.jpg" />
+                            <p>Stair Nose</p>
+                        </div><!-- end product-type -->
+                        <div class="product-type">
+                            <img src="https://mobileimages.lowes.com/product/converted/604743/604743122106lg.jpg" />
+                            <p>Threshold</p>
+                        </div><!-- end product-type -->
+                        <div class="product-type">
+                            <img src="https://mobileimages.lowes.com/product/converted/836211/836211690910lg.jpg" />
+                            <p>Quarter Round</p>
+                        </div><!-- end product-type -->
+                    </div>
+                </div><!-- end moulding-selection -->
+            </div>
+        </div><!-- end InternalFrame-->
+    </div>
+</body>
 </html>

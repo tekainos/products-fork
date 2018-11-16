@@ -118,6 +118,7 @@
     <Content Include="icon\upload-MCTR.png" />
     <Content Include="images\image3721.png" />
     <Content Include="img\measle.png" />
+    <Content Include="JSON\products-test.json" />
     <Content Include="js\exportToDXF.js" />
     <Content Include="js\jobLoadClass.js" />
     <Content Include="js\LoadPage.js" />
@@ -126,6 +127,7 @@
     <Content Include="js\markerclusterer.js" />
     <Content Include="js\notationClass.js" />
     <Content Include="js\paintClass.js" />
+    <Content Include="js\productPicker.js" />
     <Content Include="js\uhs.js" />
     <Content Include="js\tileClass.js" />
     <None Include="TMFloorPlanner_TemporaryKey.pfx" />

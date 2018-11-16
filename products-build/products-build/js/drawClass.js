@@ -26,6 +26,7 @@
     get array() { return this._arr; }
     get array2d() { return this.get2D(); }
     get pointCount() { return this._pts.length; }
+    get pointArray() { return bufferToVertices(this._line); }
 
     start(point) {
         console.log("Start");

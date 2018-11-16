@@ -5,22 +5,7 @@
     var tempCam = editor.camera;
     var scene = editor.scene;
     var config = editor.config;
-
-    // Splash Dom Element
-    var container = new UI.Panel();
-    container.setId('makeJob');
-    container.dom.className = 'NavDark appPage';
-
-    var internal = document.createElement('div');
-    internal.className = "InternalBox";
-    internal.style.width = '75%';
-    internal.style.marginLeft = '12.5%';
-
-
-    var tekainos = document.createElement("div");
-    tekainos.className = "NameBox";
-    tekainos.appendChild(document.createTextNode("Tekainos"));
-    container.dom.appendChild(tekainos);
+    var container = document.getElementById("makeJob");
 
     var fields = [ {
             "id": "inputJobid",
@@ -87,14 +72,8 @@
             "required": false
         }
     ];
-
-    var bx0 = document.createElement("div");
-    bx0.id = "JobBox";
-    bx0.className = 'DarkBox';
-
-    var form = document.createElement("div");
-    form.className = "form-group";
-
+    
+    var form = document.getElementById("createJobBox");
     fields.forEach(function (field) {
         var label = document.createElement("label");
         label.htmlFor = field.name;
@@ -124,14 +103,7 @@
         //form.appendChild(document.createElement("br"));
     });
 
-    bx0.appendChild(form);
-
-    var lines = document.createElement("button");
-    lines.innerHTML = "Create Job";
-    lines.className = "loginButton";
-    lines.id = 'createJobLocal';
-    lines.style.backgroundColor = '#004690';
-    bx0.appendChild(lines);
+    var lines = document.getElementById("createJobLocal");
     lines.onclick = function () {
         $('#loadJob').hide();
         $('#sidebar').show();
@@ -148,10 +120,6 @@
         signals.loadProjURL.dispatch(data);
         signals.changePage.dispatch('splashPage', false);
     };
-
-    internal.appendChild(bx0);
-
-    container.dom.appendChild(internal);
 
     return container;
 };

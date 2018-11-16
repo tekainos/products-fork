@@ -1,10 +1,6 @@
 ﻿var Form = function (editor, json) {
     var container = new UI.Panel();
-    container.setId('questionPage');
-    container.dom.className = 'NavPage appPage';
-
     var qs = makeQuestionPage(json, editor);
-    container.dom.appendChild(qs.questions);
     
     var choices = {};
 
@@ -81,19 +77,6 @@
         $(".questionBox").hide();
         $(groups[grp]).show();
     });
-
-    var qright = document.createElement("div");
-    qright.className = 'testItenerary';
-
-    qright.appendChild(qs.lineSheet);
-
-    var lines = document.createElement("button");
-    lines.innerHTML = "Verify";
-    lines.className = "submitButton";
-    qright.appendChild(lines);
-
-    container.dom.appendChild(qright);
-
     return [container, qs.radios];
 }
 
@@ -102,21 +85,13 @@ function makeQuestionPage(json, editor) {
     var lineItems = {};
     var parents = {};
 
-    var grouped = document.createElement("div");
-    grouped.className = 'questionGroup';
+    var grouped = document.getElementById("questionGroup");
 
-    var headText = document.createElement("h1");
-    headText.appendChild(document.createTextNode("The Question Page"));
-    grouped.appendChild(headText);
-
-    var headBar = document.createElement("div");
-    headBar.className = 'progBar';
-    grouped.appendChild(headBar);
+    var headBar = document.getElementById("progBar");
 
     var hiderest = false;
 
-    var qright = document.createElement("div");
-    qright.className = "innerItenerary";
+    var qright = document.getElementById("innerItenerary");
 
     var numrad = 0;
     for (var i = 0; i < json.length; i++) {

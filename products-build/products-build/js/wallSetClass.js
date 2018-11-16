@@ -19,6 +19,7 @@
         this._meshSet = [];
         this._lineSet = [];
         this._winding;
+        this._genVerts;
     }
 
     get name() { return this._name; }
@@ -29,6 +30,8 @@
     get walls() { return this._wallSet; }
     get meshSet() { return this._meshSet; }
     get lineSet() { return this._lineSet; }
+    get vertices() { return this._genVerts; }
+
 
     generateWalls(vertices, thickness) {
         thickness = thickness ? thickness : 0.1143; //Default value 4 inches
@@ -36,6 +39,7 @@
         this._vertices = vertices;
         this._winding = getWinding(vertices);
         var intop = calculateWalls(vertices, thickness);
+        this._genVerts = [];
         for (var i = 0; i < intop.length; i++) {
             var ind0 = i;
             var ind1 = i === intop.length - 1 ? 0 : i + 1;
@@ -44,6 +48,7 @@
             var curr = intop[i];
             var newwall = new Wall(this._editor, this._origin, this._room, this._room + 'w' + i, curr, pre, nxt, ind0, ind1, this._sidebar, this._materials, this._winding);
             this._scene.add(newwall.obj[0]);
+            this._genVerts.push(newwall.obj[0].geometry.vertices);
             this._scene.add(newwall.obj[1]);
             this._wallSet.push(newwall);
             this._meshSet.push(newwall.mesh);

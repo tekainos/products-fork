@@ -13,7 +13,6 @@
     var providePinTaskSrc;
     var confirmPinTaskSrc;
 
-
     var rfcomm = Windows.Devices.Bluetooth.Rfcomm;
     var sockets = Windows.Networking.Sockets;
     var streams = Windows.Storage.Streams;

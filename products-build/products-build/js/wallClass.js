@@ -29,7 +29,7 @@
     get left() { return this._left; }
     get right() { return this._right; }
     get length() { return this._length; }
-    get obj() { return this._obj; }
+    get obj()  { return this._obj; }
     get mesh() { return this._mesh; }
     get line() { return this._line; }
     get indicies() { return this._indices; }

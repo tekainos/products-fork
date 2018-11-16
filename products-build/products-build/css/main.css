@@ -527,6 +527,76 @@ textarea, input { outline: none; } /* osx */
 		display: none;
 	}
 
+
+
+/**************    Products Picker - Derek Will    **************/
+
+.overflow--y-scroll {
+    overflow-y: auto;
+}
+
+.overflow--hidden {
+    overflow: hidden;
+}
+
+#productsPage {
+    font-family: 'Times New Roman';
+    position: relative;
+}
+
+#productsPage .product-type img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+#productsPage .overflow--y-scroll {
+    height: 68%;
+    box-sizing: border-box;
+}
+
+#productsPage h2 {
+    font-size: 3em;
+    text-align: left;
+}
+
+.product-category {
+    font-size: 2.5em;
+    color: white;
+    margin: 0;
+}
+
+.prodcat-options {
+    display: none;
+}
+
+.product-category h3 {
+    text-align: left;
+    font-size: 24px;
+    font-weight: 600;
+    background: #444;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.product-type {
+    display: inline-block;
+    width: calc(90% / 3);
+    height: 150px;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
 /* CodeMirror */
 
 .CodeMirror {

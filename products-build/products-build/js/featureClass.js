@@ -19,9 +19,11 @@
         this._dragPoint = null;
         this._wall = wall;
         this._swing;
+        this._type;
         this._id;
         this._odist;
         this._winding = winding;
+        this._swingObj;
     }
 
     get mesh() { return this._mesh.mesh; }
@@ -54,8 +56,8 @@
     }
 
     shift(chn) {
-        this._mesh.translateX(chn.x);
-        this._mesh.translateZ(chn.z);
+        this._mesh.mesh.translateX(chn.x);
+        this._mesh.mesh.translateZ(chn.z);
     }
 
     setMaterial(matChoice) {
@@ -81,6 +83,7 @@
         return box;
     }
 
+
     updatePos() {
         var newv = this._sidebar.getFeatMeas(this._name);
         var width = convertToMeters(0, newv.indoor);
@@ -102,7 +105,9 @@
         width = width > this._mesh.odist ? this._mesh.odist - 0.2 : width;
         chn = chn + width > this._mesh.odist ? this._mesh.odist - width - 0.1 : chn;
         this._swing = newv.select;
+        this._type = newv.type;
         this.setPosition(chn, width, convertToMeters(newv.ft2, newv.in2), convertToMeters(newv.ft3, newv.in3));
+        this.calculateSwing();
     }
 
     validatePosition(roomArr, failback) {
@@ -122,7 +127,81 @@
         }
     }
 
+    calculateSwing() {
+        if (this._swingObj) {
+            this._scene.remove(this._swingObj);
+        }
+        if (this._swing == 'Leaf' || this._type == 'Window') {
+            return;
+        }
+        var ln0, ln1, ln2, ln3;
+        var verts = this._mesh.mesh.geometry.vertices;
+        switch (this._swing) {
+            case "RH In Swing":
+                ln0 = new THREE.Vector3(verts[0].x, 0.2, verts[0].z);
+                ln1 = new THREE.Vector3(verts[3].x, 0.2, verts[3].z);
+                ln2 = new THREE.Vector3(verts[1].x, 0.2, verts[1].z);
+                ln3 = new THREE.Vector3(verts[2].x, 0.2, verts[2].z);
+                break;
+            case "LH In Swing":
+                ln0 = new THREE.Vector3(verts[1].x, 0.2, verts[1].z);
+                ln1 = new THREE.Vector3(verts[2].x, 0.2, verts[2].z);
+                ln2 = new THREE.Vector3(verts[0].x, 0.2, verts[0].z);
+                ln3 = new THREE.Vector3(verts[3].x, 0.2, verts[3].z);
+                break;
+            case "LH Out Swing":
+                ln0 = new THREE.Vector3(verts[2].x, 0.2, verts[2].z);
+                ln1 = new THREE.Vector3(verts[1].x, 0.2, verts[1].z);
+                ln2 = new THREE.Vector3(verts[3].x, 0.2, verts[3].z);
+                ln3 = new THREE.Vector3(verts[0].x, 0.2, verts[0].z);
+                break;
+            case "RH Out Swing":
+                ln0 = new THREE.Vector3(verts[3].x, 0.2, verts[3].z);
+                ln1 = new THREE.Vector3(verts[0].x, 0.2, verts[0].z);
+                ln2 = new THREE.Vector3(verts[2].x, 0.2, verts[2].z);
+                ln3 = new THREE.Vector3(verts[1].x, 0.2, verts[1].z);
+                break;
+            case "French In Doors":
+                ln0 = new THREE.Vector3(verts[0].x, 0.2, verts[0].z);
+                ln1 = new THREE.Vector3(verts[3].x, 0.2, verts[3].z);
+                ln2 = new THREE.Vector3(verts[1].x, 0.2, verts[1].z);
+                ln3 = new THREE.Vector3(verts[2].x, 0.2, verts[2].z);
+                break;
+            case "French Out Doors":
+                ln0 = new THREE.Vector3(verts[3].x, 0.2, verts[3].z);
+                ln1 = new THREE.Vector3(verts[0].x, 0.2, verts[0].z);
+                ln2 = new THREE.Vector3(verts[2].x, 0.2, verts[2].z);
+                ln3 = new THREE.Vector3(verts[1].x, 0.2, verts[1].z);
+                break;
+        }
+        var dist = ln0.distanceTo(ln1);
+        var comb = this._swing != 'French In Doors' && this._swing != 'French Out Doors' ? (this._width + dist) / dist : (this._width/2 + dist) / dist;
+        var pt = new THREE.Vector3().lerpVectors(ln0, ln1, comb);
+        var p2 = new THREE.Vector3().lerpVectors(ln2, ln3, comb);
+        var curve = new THREE.QuadraticBezierCurve3(ln1, pt, p2);
+        var points = curve.getPoints(15);
+        if (this._swing == 'French In Doors' || this._swing == 'French Out Doors') {
+            var lnt = new THREE.Vector3().lerpVectors(ln1, ln3, 0.5);
+            var pt3 = new THREE.Vector3().lerpVectors(pt, p2, 0.5);
+            var curve2 = new THREE.QuadraticBezierCurve3(lnt, pt3, pt);
+            var curve3 = new THREE.QuadraticBezierCurve3(lnt, pt3, p2);
+            var points2 = curve2.getPoints(15);
+            points2.push(ln1);
+            points = points2.concat(curve3.getPoints(15));
+        }
+        points.push(ln3);
+        var geometry = new THREE.BufferGeometry().setFromPoints(points);
+        var material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+        var curveObject = new THREE.Line(geometry, material);
+
+        this._swingObj = curveObject;
+        this._scene.add(this._swingObj);
+    }
+
     setPosition(length, width, top, bottom) {
+        if (this._swingObj) {
+            this._scene.remove(this._swingObj);
+        }
         this._scene.remove(this._mesh.mesh);
         this._width = width;
         this._top = top >= this._height-0.15 ? this._height - 0.15 : top;
@@ -132,6 +211,7 @@
         this._odist = this._mesh.odist;
         this._sidebar.updateFeatureLine(this._mesh, this._room, this._id);
         this._scene.add(this._mesh.mesh);
+        this.calculateSwing();
     }
 
     serialize() {
@@ -141,6 +221,9 @@
 
     clear() {
         this._scene.remove(this._mesh.mesh);
+        if (this._swingObj) {
+            this._scene.remove(this._swingObj);
+        }
         this._sidebar.removeFeatureLine(this._room, this._name);
     }
 }

@@ -283,7 +283,8 @@
             'ft3': $("#" + id).find(".feetBottom").val(),
             'in3': $("#" + id).find(".inchBottom").val(),
             'indoor': $("#" + id).find(".width").val(),
-            'select': $("#" + id).find(".swing").val()
+            'select': $("#" + id).find(".swing").val(), 
+            'type': $("#" + id).find(".type").val()
         };
     }
 
@@ -1234,7 +1235,7 @@ function addDoorLine(featurebox, f, featname, len1, len2, width, winding, top, b
     featnum.style.width = '60px';
     featnum.textContent = "WFeat" + f + " : ";
 
-    var oplist = ['LH In Swing', 'LH Out Swing', 'RH In Swing', 'RH Out Swing', 'French Doors', 'Leaf'];
+    var oplist = ['LH In Swing', 'LH Out Swing', 'RH In Swing', 'RH Out Swing', 'French In Doors', 'French Out Doors', 'Leaf'];
     var swingSel = document.createElement("select");
     swingSel.className = 'boxselect swing';
     swingSel.id = 'sel' + f;
@@ -1245,6 +1246,10 @@ function addDoorLine(featurebox, f, featname, len1, len2, width, winding, top, b
         option.text = oplist[i];
         swingSel.appendChild(option);
     }
+
+    swingSel.onchange = function () {
+        editor.signals.updateFeature.dispatch(this.parentNode.id);
+    };
 
     var oplist2 = ['No Transition', 'Carpet', 'Hardwood', 'Linoleum', 'Vinyl', 'Tile', 'Laminate'];
     var cutSel = document.createElement("select");
@@ -1260,7 +1265,7 @@ function addDoorLine(featurebox, f, featname, len1, len2, width, winding, top, b
 
     var oplist1 = ['Door', 'Window'];
     var typeSel = document.createElement("select");
-    typeSel.className = 'boxselect trans';
+    typeSel.className = 'boxselect type';
     typeSel.id = 'csel' + f;
 
     for (var d = 0; d < oplist1.length; d++) {
@@ -1273,6 +1278,7 @@ function addDoorLine(featurebox, f, featname, len1, len2, width, winding, top, b
     typeSel.onchange = function () {
         $(cutSel).toggle();
         $(swingSel).toggle();
+        editor.signals.updateFeature.dispatch(this.parentNode.id);
     };
     
     var del = document.createElement("button");

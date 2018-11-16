@@ -227,7 +227,7 @@ var Viewport = function (editor) {
         }
     });
     signals.exportDXF.add(function () {
-        exportToDXF();
+        manager.export();
     });
     signals.completeRoom.add(function (n) {
         console.log("Complete Room");
