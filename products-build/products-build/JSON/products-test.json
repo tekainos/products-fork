@@ -1,4 +1,4 @@
-var demo = {
+{
 	"table": "carpet",
 	"rows":
 	[
@@ -7,6 +7,7 @@ var demo = {
       "StyleNumber": "7L74800501",
       "Descr": null,
       "WaterResistant": "No",
+      "imageURL": "https://lda.lowes.com/is/image/Lowes/FLOR_grtMrtr_4COL_Mortar?$JPEG-HQ$&wid=234",
       "ivm": "896769-373-7L74800501",
       "Review": "0",
       "Commercial_Residential": "Residential",
