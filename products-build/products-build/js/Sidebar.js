@@ -4,8 +4,11 @@
 */
 
 var Sidebar = function ( editor ) {
-	var signals = editor.signals;
-	var container = new UI.Panel();
+    var signals = editor.signals;
+    var container = document.getElementById('pledit6');
+    var bt = new Sidebar.Bluetooth(editor);
+    container.appendChild(bt.dom);
+	/*var container = new UI.Panel();
 	container.setId( 'sidebar' );
 
     var measureTab = new UI.Text('Draw Room').onClick(onClick);
@@ -81,15 +84,6 @@ var Sidebar = function ( editor ) {
     containerF.dom.id = 'pledit5';
     containerF.dom.className += ' viewportSidebar';
 
-    var measure = new UI.Span().add(
-        containerD,
-        containerB,
-        containerC,
-        containerE,
-        containerF,
-        new Sidebar.Bluetooth(editor)
-	);
-    container.add(measure);
 
     var save = new UI.Span().add(
         new Sidebar.Save(editor)
@@ -113,7 +107,7 @@ var Sidebar = function ( editor ) {
 	var project = new UI.Span().add(
 		new Sidebar.Project( editor )
 	);*/
-	
+	/*
 	function select( section ) {
 		designTab.setClass( '' );
         measureTab.setClass('');
@@ -215,6 +209,6 @@ var Sidebar = function ( editor ) {
 
 	select( 'MEASURE' );
 	*/
-	return container;
-
+	//return container;
+    
 };

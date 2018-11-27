@@ -1,5 +1,5 @@
 ﻿class Feature {
-    constructor(editor, origin, height, width, room, name, bounds, sidebar, materials, indices, wall, top, bottom, winding) {
+    constructor(editor, origin, height, width, room, name, bounds, sidebar, materials, indices, wall, top, bottom, winding, type, swing) {
         this._scene = editor.scene;
         this._signals = editor.signals;
         this._origin = origin;
@@ -18,8 +18,8 @@
         this._bottom = bottom;
         this._dragPoint = null;
         this._wall = wall;
-        this._swing;
-        this._type;
+        this._swing = swing;
+        this._type = type;
         this._id;
         this._odist;
         this._winding = winding;
@@ -38,11 +38,13 @@
     get top() { return this._top; }
     get bottom() { return this._bottom; }
     get height() { return this._height; }
+    get swing() { return this._swing; }
+    get type() { return this._type; }
 
     addToScene() {
         this._scene.add(this._mesh.mesh);
         this._signals.addDoorway.dispatch(this._mesh.doorway, this._indices);
-        this._id = this._sidebar.addFeatureLine(this._mesh, this._room, this._name, this._winding, this._top, this._bottom);
+        this._id = this._sidebar.addFeatureLine(this._mesh, this._room, this._name, this._winding, this._top, this._bottom, this._type, this._swing);
         this.updatePos();
     }
 
@@ -51,6 +53,10 @@
         var verts = this._mesh.mesh.geometry.vertices;
         for (var i = 0; i < verts.length; i++) {
             ret.push(new THREE.Vector2(verts[i].x, verts[i].z));
+        }
+        var swing = this._swingObj.geometry.attributes.position.array;
+        for (var c = 0; c < swing.length; c += 3) {
+            ret.push(new THREE.Vector2(swing[c], swing[c+2]));
         }
         return { "Type": "Doorway", "Wall": this.wall, "Coordinates": ret, "Width": this.width, "Swing": this._swing };
     }
@@ -102,8 +108,8 @@
         } else {
             chn = convertToMeters(newv.ft0, newv.in0);
         }
-        width = width > this._mesh.odist ? this._mesh.odist - 0.2 : width;
-        chn = chn + width > this._mesh.odist ? this._mesh.odist - width - 0.1 : chn;
+        width = width > this._mesh.odist ? this._mesh.odist - 0.00002 : width;
+        chn = chn + width > this._mesh.odist ? this._mesh.odist - width - 0.00001 : chn;
         this._swing = newv.select;
         this._type = newv.type;
         this.setPosition(chn, width, convertToMeters(newv.ft2, newv.in2), convertToMeters(newv.ft3, newv.in3));
@@ -121,7 +127,7 @@
 
     drag(pos) {
         var meas = updateFeature(pos, this._vector);
-        if (meas > 0.0254) {
+        if (meas > 0) {
             this._sidebar.setFeatMeas(this._id, this._room, meas);
             this._signals.updateFeature.dispatch(this._name);
         }
@@ -215,7 +221,7 @@
     }
 
     serialize() {
-        var parts = { 'id': this._id, 'vector' : this._vector, 'height' : this._height, 'top': this._top, 'bottom' : this._bottom, 'width' : this._width, 'name' : this._name, 'origin' : this.dist };
+        var parts = { 'id': this._id, 'vector' : this._vector, 'height' : this._height, 'top': this._top, 'bottom' : this._bottom, 'width' : this._width, 'name' : this._name, 'origin' : this.dist, 'type' : this._type, 'swing' : this._swing };
         return parts;
     }
 
@@ -252,10 +258,6 @@ function interpolateOnLine(currPos, vec0, vec1) {
 
 function calcFeatureAtLength(len, height, width, vecSet, name, material) {
     var nv = [];
-    vecSet.forEach(function (vec) {
-        nv.push(new THREE.Vector3(vec.x, vec.y, vec.z));
-    })
-    vecSet = nv;
     var dist = vecSet[0].distanceTo(vecSet[1]);
     var ratio = len / dist;
     return calculateFeatureBox(ratio, height, width, vecSet, name, material);
@@ -276,27 +278,26 @@ function calculateFeatureBox(pos, height, width, vecSet, name, material) {
     var tpos;
     if (!pos.isVector3) {
         if (pos == 0) {
-            pos == 0.0001;
+            pos = 0.0001;
         }
         tpos = new THREE.Vector3().lerpVectors(vecSet[0], vecSet[1], pos);
     } else {
         tpos = new THREE.Vector3(pos.x, 0.1, pos.z);
     }
-    
     var dist = new THREE.Vector3().subVectors(tpos, vecSet[0]);
     var odist = new THREE.Vector3().subVectors(vecSet[1], vecSet[0]);
     var ang = dist.angleTo(odist);
     var d1 = dist.length() * Math.cos(ang);
-    console.log(dist);
-    console.log(d1);
-    console.log(odist);
 
     var ddist = new THREE.Vector3().subVectors(tpos, vecSet[2]);
     var oddist = new THREE.Vector3().subVectors(vecSet[3], vecSet[2]);
     var dang = ddist.angleTo(oddist);
 
-    var newv = new THREE.Vector3().lerpVectors(vecSet[0], vecSet[1], d1 / odist.length());
-    var newvend = new THREE.Vector3().lerpVectors(vecSet[0], vecSet[1], (d1 + width) / odist.length());
+    var lerpL = d1 / odist.length();
+    var lerpR = (d1 + width) / odist.length();
+
+    var newv = new THREE.Vector3().lerpVectors(vecSet[0], vecSet[1], lerpL);
+    var newvend = new THREE.Vector3().lerpVectors(vecSet[0], vecSet[1], lerpR);
 
     var onewv = new THREE.Vector3().lerpVectors(vecSet[2], vecSet[3], d1 / oddist.length());
     var onewvend = new THREE.Vector3().lerpVectors(vecSet[2], vecSet[3], (d1 + width) / oddist.length());

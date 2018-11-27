@@ -48,11 +48,11 @@
         //todo : Update Right Angle
     }
 
-    addFeature(pos, feature, height, width, top, bottom) {
+    addFeature(pos, feature, height, width, top, bottom, type, swing) {
         var feat;
         var nm = "Box" + this._features.length.toString() + "-" + this._name;
         console.log(bottom);
-        feat = new Feature(this._editor, pos, height, width, this._room, nm, this._vector, this._sidebar, this._materials, this._indices, this._name, top, bottom, this._winding);
+        feat = new Feature(this._editor, pos, height, width, this._room, nm, this._vector, this._sidebar, this._materials, this._indices, this._name, top, bottom, this._winding, type, swing);
         feat.addToScene();
         this._features.push(feat);
         this.cutDoor();

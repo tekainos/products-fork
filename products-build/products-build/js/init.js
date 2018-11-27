@@ -13,7 +13,9 @@ backButt.addEventListener('click', function (event) {
 backButt.style.display = 'none';
 document.body.appendChild(backButt);
 
+
 $(function () {
+    var sidebar = new Sidebar(editor);
     var login = new Login(editor);
     login.style.display = 'block';
     var loadJob = new JobLoad(editor);
@@ -21,6 +23,10 @@ $(function () {
     var splash = new Splash(editor);
     var upload = new Upload(editor);
     var submit = new Submit(editor);
+    var menubar = new Menubar(editor);
+    //var head = new Sidebar.Head(editor);
+    //var ld = new Sidebar.Load(editor);
+    //var sv = new Sidebar.Save(editor);
 });
 
 var tileEditor = new TileEditor(editor);
@@ -33,14 +39,6 @@ viewport.dom.style.display = 'none';
 viewport.dom.className = 'appPage';
 
 var isMobile = false; //initiate as false
-
-var sidebar = new Sidebar(editor);
-document.body.appendChild(sidebar.dom);
-sidebar.dom.style.display = 'none';
-
-var menubar = new Menubar(editor);
-document.body.appendChild(menubar.container.dom);
-menubar.container.dom.style.display = 'none';
 
 editor.setTheme(editor.config.getKey('theme'));
 var config = editor.config;
@@ -211,11 +209,11 @@ var link = document.createElement('a');
 link.style.display = 'none';
 document.body.appendChild(link);
 
-function save(blob, filename) {
+function save(blob, filename, type) {
 
-    link.href = URL.createObjectURL(blob);
-    link.download = filename || 'data.json';
-    link.click();
+    //link.href = URL.createObjectURL(blob);
+    //link.download = filename || 'data.json';
+    writeBlobToFile(blob, filename, type);
 
     // URL.revokeObjectURL( url ); breaks Firefox...
 

@@ -24,6 +24,7 @@
         this._renderLimit = Date.now();
         this._linear;
         this._tseam = false;
+        this._pattern;
     }
 
     get linear() { return this._linear; }
@@ -32,6 +33,7 @@
 
     createContainer(hide) {
         var lay2d = makeLayout2D(this._layout, this._packet.Grain, this._cutGap);
+        console.log(lay2d);
         this._laycuts = lay2d.Cuts;
         this._linear = lay2d.Linear;
         var temp = drawCanvas(this._packet, this._linear * 1.25);
@@ -52,7 +54,9 @@
     newLayout(layout, packet) {
         this._layout = layout;
         this._packet = packet;
+        this._pattern = packet.Pattern;
         var lay2d = makeLayout2D(this._layout, this._packet.Grain, this._cutGap);
+        console.log(lay2d);
         this._laycuts = lay2d.Cuts;
         this._linear = lay2d.Linear;
 
@@ -76,9 +80,10 @@
         this._tseam = false;
         this._ctx = this._canvas.getContext("2d");
         var width = this._packet.Width;
+        this._pattern = this._packet.Pattern;
         var cutGap = this._cutGap;
         this._laycuts = sortCuts(this._laycuts);
-        this._cuts = packCuts(this._laycuts, this._ctx, xoff, yoff, width, cutGap);
+        this._cuts = packCuts(this._laycuts, this._ctx, xoff, yoff, width, cutGap, this._pattern);
     }
 
     redrawPolygons(force) {
@@ -88,7 +93,8 @@
             } else {
                 this._renderLimit = Date.now();
             }
-            blankRoll(this._ctx, this._width, this._scale);
+            var patt = this._pattern ? this._pattern * this._scale : null;
+            blankRoll(this._ctx, this._width, this._scale, patt);
             readdPolygon(this._ctx, this._cuts, { "color": this._hlColor, "index": this._highlighted }, this._shift);
             this.recalculateLinear();
         }
@@ -100,6 +106,7 @@
     }
 
     compress() {
+        console.log("Compress")
         var bounds = { "min": new THREE.Vector2(5, 60), "max": new THREE.Vector2(this._width - 20, 280) };
         var shift = new THREE.Vector2(-6 / 12 * this._scale, 0);
         for (var i = 0; i < this._cuts.length; i++) {
@@ -145,7 +152,8 @@
             var cloneArray = this._cuts.slice();
             cloneArray.splice(this._highlighted, 1);
 
-            blankRoll(this._ctx, this._width, this._scale);
+            var patt = this._pattern ? this._pattern * this._scale : null;
+            blankRoll(this._ctx, this._width, this._scale, patt);
             readdPolygon(this._ctx, cloneArray, { "color": this._hlColor, "index": -1 }, this._shift);
             this._fake = makeFake(this._canvas, this._container);
             var roll = this;
@@ -177,7 +185,7 @@
             var testCut = this._cuts[this._highlighted];
             var cloneArray = this._cuts.slice();
             cloneArray.splice(this._highlighted, 1);
-            var tst = testPolygonOverlap(testCut, cloneArray, this._shift, bounds, this._scale);
+            var tst = testPolygonOverlap(testCut, cloneArray, this._shift, bounds, this._scale, this._pattern);
             this._cuts[this._highlighted] = tst[1] ? tst[0] : this._cuts[this._highlighted];
         }
     }
@@ -298,10 +306,30 @@ function polygonSnap(test, shift, bounds) {
     return newShift;
 }
 
-function testPolygonOverlap(test, arr, shift, bounds, scl) {
+function snapPattern(test, shift, scale) {
+    if (test.Offset != undefined) {
+        console.log(test);
+        var dif = (test.Offset % test.Pattern) * scale;
+        var cur = (((test.startx - 5 + shift.x) / scale) % test.Pattern) * scale;
+        var newf0 = dif - cur >= 0 ? dif - cur : (test.Pattern * scale) - cur + dif;
+        var newf1 = newf0 - (test.Pattern * scale);
+        var shift0 = new THREE.Vector2(shift.x + newf0, shift.y);
+        var shift1 = new THREE.Vector2(shift.x + newf1, shift.y);
+        return [shift1, shift0];
+    }
+}
+
+function testPolygonOverlap(test, arr, shift, bounds, scl, patt) {
     var fail = false;
 
     shift = polygonSnap(test, shift, bounds);
+
+    console.log(shift);
+
+    var pattTest = patt ? snapPattern(test, shift, scl * 3.28084) : null;
+    shift = pattTest ? pattTest[0] : shift;
+    console.log(pattTest);
+    console.log(shift);
 
     var subj_path = [];
     var scale = 1000;
@@ -330,6 +358,9 @@ function testPolygonOverlap(test, arr, shift, bounds, scl) {
         for (var i = 0; i < test.polygon.length; i++) {
             test.polygon[i] = new THREE.Vector2(test.polygon[i].x + shift.x, test.polygon[i].y + shift.y);
         }
+        test.startx = test.startx + shift.x;
+    } else if (pattTest && patt != undefined) {
+        return testPolygonOverlap(test, arr, pattTest[1], bounds, scl);
     }
     return [test, !fail];
 }
@@ -360,12 +391,33 @@ function convertCanvasToImage(cnv) {
     return image;
 }
 
-function packCuts(cuts, ctx, xoff, yoff, width, cutGap) {
+function packCuts(cuts, ctx, xoff, yoff, width, cutGap, pattern) {
     var retCut = [];
+    var scale = 220 / (width);
+    var remainderY = 280 - yoff;
+    var remainderX = xoff;
     cuts.forEach(function (cut) {
-        ret = addPolygon(ctx, xoff, yoff, cut, width, cutGap);
-        xoff = ret.xoff;
+        console.log(cut);
+        if (pattern != 0 && cut.Offset != undefined) {
+            var dif = (cut.Offset % pattern) * scale;
+            var cur = (((xoff - 5) / scale) % pattern) * scale;
+            var newf = dif - cur >= 0 ? dif - cur : (pattern * scale) - cur + dif;
+            xoff += newf;
+        }
+        console.log((cut.Max.y - cut.Min.y) * scale);
+        console.log(remainderY);
+        if ((cut.Max.y - cut.Min.y) * scale < remainderY) {
+            ret = addPolygon(ctx, remainderX, 280 - remainderY, cut, width, cutGap);
+            xoff = Math.max(ret.xoff, remainderX);
+        } else {
+            ret = addPolygon(ctx, xoff, yoff, cut, width, cutGap);
+            remainderX = xoff;
+            xoff = ret.xoff;
+        }
         ret['Name'] = cut['Name'];
+        ret['Offset'] = cut.Offset;
+        ret['Pattern'] = pattern;
+        remainderY = 280 - ret.yoff;
         retCut.push(ret);
     });
     return retCut;
@@ -374,6 +426,7 @@ function packCuts(cuts, ctx, xoff, yoff, width, cutGap) {
 function makeLayout2D(objs, angle, cutgap) {
     var layc = [];
     var linear = 0;
+    var min, max;
     console.log(objs);
     objs.forEach(function (ob) {
         var verts = ob.geometry.vertices;
@@ -382,14 +435,17 @@ function makeLayout2D(objs, angle, cutgap) {
             vlist.push(new THREE.Vector2(v.x, v.z));
         });
         var cent = getCentroid(vlist);
-        var lpack = rotatePolygon({ "Vertices": vlist, "Centroid": cent[0], "Area": cent[1]}, angle);
+        var lpack = rotatePolygon({ "Vertices": vlist, "Centroid": cent[0], "Area": cent[1] }, angle);
+        min = min ? new THREE.Vector2(Math.min(min.x, lpack.Min.x), Math.min(min.y, lpack.Min.y)) : lpack.Min;
+        max = max ? new THREE.Vector2(Math.max(max.x, lpack.Max.x), Math.max(max.y, lpack.Max.y)) : lpack.Max;
         lpack['Name'] = ob.name;
-        linear += (lpack.Linear * 3.28084);
+        lpack['Offset'] = ob.offset != undefined ? ob.offset : null;
+        linear += lpack.Linear * 3.28084;
         linear += cutgap;
         layc.push(lpack);
     });
     linear -= cutgap;
-    return { "Cuts": layc, "Linear": linear };
+    return { "Cuts": layc, "Linear": linear, "Min": min, "Max": max };
 }
 
 function getCentroid(points) {
@@ -426,15 +482,16 @@ function getCentroid(points) {
 
 function rotatePolygon(poly, angle) {
     var newverts = [];
-    var minX, minY, maxX;
+    var minX, minY, maxX, maxY;
     poly.Vertices.forEach(function (vert) {
         var newv = vert.rotateAround(poly.Centroid, (angle * Math.PI / 180));
         minX = minX ? Math.min(minX, newv.x) : newv.x;
         maxX = maxX ? Math.max(maxX, newv.x) : newv.x;
         minY = minY ? Math.min(minY, newv.y) : newv.y;
+        maxY = maxY ? Math.max(maxY, newv.y) : newv.y;
         newverts.push(newv);
     });
-    return { "Vertices": newverts, "Centroid": poly.Centroid, "Area": poly.Area, "Min" : new THREE.Vector2(minX, minY), "Linear" : maxX-minX };
+    return { "Vertices": newverts, "Centroid": poly.Centroid, "Area": poly.Area, "Min" : new THREE.Vector2(minX, minY), "Max" : new THREE.Vector2(maxX, maxY), "Linear" : maxX-minX };
 }
 
 function restoreRoll() {
@@ -457,9 +514,9 @@ function clearRoll() {
     }
 }
 
-function blankRoll(ctx, width, scale) {
+function blankRoll(ctx, width, scale, pattern) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    drawRoll(scale, width, ctx.canvas, ctx);
+    drawRoll(scale, width, ctx.canvas, ctx, pattern);
 }
 
 function addRoll(editor, name, packet, canvas) {
@@ -489,7 +546,7 @@ function addRoll(editor, name, packet, canvas) {
     return layDiv;
 }
 
-function drawRoll(scale, wid, canvas, ctx) {
+function drawRoll(scale, wid, canvas, ctx, pattern) {
 
     canvas.width = wid;
     canvas.height = 280;
@@ -514,8 +571,17 @@ function drawRoll(scale, wid, canvas, ctx) {
         }
     }
 
+
     ctx.fillStyle = "gray";
     ctx.fillRect(5, 60, wid - 20, 280);
+    
+    if (pattern) {
+        for (var i = 1; i * pattern * 3.28084 <= wid - 100; i++) {
+            ctx.moveTo(5 + i * pattern * 3.28084, 60);
+            ctx.lineTo(5 + i * pattern * 3.28084, 280);
+            ctx.stroke();
+        }
+    }
 
     var cylStart = wid - 90;
     var cylEnd = wid - 15;
@@ -535,6 +601,7 @@ function drawRoll(scale, wid, canvas, ctx) {
 
 function drawCanvas(packet, linear) {
     var scale = 220 / (packet.Width * 3.28084);
+    var patt = packet.Pattern ? packet.Pattern * scale : null;
     var wid = document.getElementById('viewport').offsetWidth;
     var canvas = document.createElement("CANVAS");
     canvas.className = 'rollCanvas';
@@ -542,7 +609,7 @@ function drawCanvas(packet, linear) {
 
     wid = wid - 150 < linear * scale ? linear * scale + 200 : wid;
 
-    drawRoll(scale, wid, canvas, ctx);
+    drawRoll(scale, wid, canvas, ctx, patt);
 
     return { "canvas": canvas, "width": wid, "scale": scale };
 }
@@ -567,7 +634,7 @@ function readdPolygon(ctx, cuts, color, shift) {
     }
 }
 
-function addPolygon(ctx, xoffset, yoffset, polygon, width, cutgap) {
+function addPolygon(ctx, xoffset, yoffset, polygon, width, cutgap, patternStart) {
     //{ "Vertices": newverts, "Centroid": poly.Centroid, "Area": poly.Area, "Min" : new THREE.Vector2(minX, minY) }
     var scale = 220 / (width);
     var translation = new THREE.Vector2(polygon.Min.x, polygon.Min.y);
@@ -607,7 +674,7 @@ function addPolygon(ctx, xoffset, yoffset, polygon, width, cutgap) {
     ctx.fillStyle = '#c3e7ff';
     ctx.stroke();
     ctx.fill();
-    return { "xoff": maxX + (cutgap * 0.3048 * scale), "polygon": newPoly, "min": new THREE.Vector2(minX, minY), "max" : new THREE.Vector2(maxX, maxY)};
+    return { "xoff": maxX + (cutgap * 0.3048 * scale), "yoff": maxY + (cutgap * 0.3048 * scale), "startx" : minX, "polygon": newPoly, "min": new THREE.Vector2(minX, minY), "max" : new THREE.Vector2(maxX, maxY)};
 }
 
 // For dragging polygons use combination of two intersection testing techniques

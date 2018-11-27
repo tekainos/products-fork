@@ -76,7 +76,7 @@
                         console.log(data);
                         if (!data) {
                             createLoginFile(emailReg.value);
-                            editor.signals.login.dispatch(email.value);
+                            editor.signals.login.dispatch(emailReg.value);
                             var home = document.getElementById('loadJob');
                             home.style.display = 'block';
 

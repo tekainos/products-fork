@@ -148,11 +148,17 @@ function createUI(file) {
     elem.appendChild(row);
 }
 
-function writeBlobToFile(blob, filename) {
+function writeBlobToFile(blob, filename, type) {
     var savePicker = new Windows.Storage.Pickers.FileSavePicker();
     savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.objects3D;
     // Dropdown of file types the user can save the file as
-    savePicker.fileTypeChoices.insert("Tek Measure File", [".Tek"]);
+    if (type) {
+        for (var i = 0; i < type.length; i++) {
+            savePicker.fileTypeChoices.insert(type[i].description, [type[i].suffix]);
+        }
+    } else {
+        savePicker.fileTypeChoices.insert("Tek Measure File", [".Tek"]);
+    }
     // Default file name if the user does not type one in or select a file to replace
     savePicker.suggestedFileName = filename;
 

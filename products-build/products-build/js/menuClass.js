@@ -2,41 +2,112 @@
     constructor(editor) {
         this._editor = editor;
         this._signals = editor.signals;
-        this._container = new UI.Panel();
-        this._container.setId('menubar');
+        this._container = document.getElementById('menubar');
         this._head = new MenuHead(editor);
-        this._file = new MenuFile(editor);
-        this._insert = new MenuInsert(editor);
-        this._layout = new MenuLayout(editor);
-        this._settings = new MenuSettings(editor);
-
-        this._container.add(this._head);
-        this._container.add(this._file);
-        this._container.add(this._insert);
-        this._container.add(this._layout);
-        this._container.add(this._settings);
-        this._container.add(this._project);
     }
 
     get signals()   { return this._signals; }
     get container() { return this._container; }
-
 }
 
 MenuHead = function (editor) {
-    var textLogo = document.createElement('span');
-    textLogo.setAttribute('class', 'tekfont');
-    textLogo.appendChild(document.createTextNode('TekMeasure 2D'));
 
-    var row = new UI.Row();
-    row.onClick(function () {
-        editor.signals.changePage.dispatch('splashPage');
-    });
-    row.dom.appendChild(textLogo);
+    var op1 = document.getElementById("menuop-logout");
+    op1.onclick = function () {
+        editor.clear();
+    };
 
-    return row;
-}
+    var op2 = document.getElementById("menuop-save");
+    op2.onclick = function () {
+        editor.signals.savePacket.dispatch();
+    };
 
+    var op3 = document.getElementById("menuop-pdf");
+    op3.onclick = function () {
+        editor.signals.savePDF.dispatch();
+    };
+
+    var op4 = document.getElementById("menuop-export");
+    op4.onclick = function () {
+        editor.signals.exportDXF.dispatch();
+    };
+
+    var op41 = document.getElementById("menuop-exportObj");
+    op41.onclick = function () {
+        editor.signals.export.dispatch('OBJ');
+    };
+
+    var op42 = document.getElementById("menuop-exportStl");
+    op42.onclick = function () {
+        editor.signals.export.dispatch('STL');
+    };
+    var op5 = document.getElementById("menuop-tape");
+    op5.onclick = function () {
+        editor.signals.measure.dispatch();
+    };
+
+    var op6 = document.getElementById("menuop-addRoom");
+    op6.onclick = function () {
+        editor.signals.addRoom.dispatch();
+    };
+
+    var op7 = document.getElementById("menuop-addStair");
+    op7.onclick = function () {
+        editor.signals.addFeature.dispatch("Stairs");
+    };
+
+    var op8 = document.getElementById("menuop-addDoor");
+    op8.onclick = function () {
+        editor.signals.addFeature.dispatch("Door");
+    };
+
+    var op9 = document.getElementById("menuop-addCutout");
+    op9.onclick = function () {
+        editor.signals.floorFeature.dispatch();
+    };
+
+    var op10 = document.getElementById("menuop-drag");
+    op10.onclick = function () {
+        editor.signals.dragRoom.dispatch();
+    };
+
+    var op11 = document.getElementById("menuop-delete");
+    op11.onclick = function () {
+        editor.signals.deleteRoom.dispatch();
+    };
+
+    var op12 = document.getElementById("menuop-newLayout");
+    op12.onclick = function () {
+        editor.signals.layout.dispatch();
+    };
+
+    var op13 = document.getElementById("menuop-tseam");
+    op13.onclick = function () {
+        editor.signals.tseam.dispatch();
+    };
+
+    var op14 = document.getElementById("menuop-compress");
+    op14.onclick = function () {
+        editor.signals.compress.dispatch();
+    };
+
+    var op15 = document.getElementById("menuop-clear");
+    op15.onclick = function () {
+        editor.signals.clearLayout.dispatch();
+    };
+
+    var op16 = document.getElementById("menuop-camera");
+    op16.onclick = function () {
+        editor.signals.cameraSwitch.dispatch();
+    };
+    var op17 = document.getElementById("menuop-bluetooth");
+    op17.onclick = function () {
+        editor.signals.startWatcher.dispatch();
+    };
+};
+
+
+/*
 MenuSettings = function (editor) {
     var container = new UI.Panel();
     container.setClass('menu');
@@ -581,7 +652,7 @@ MenuFile = function (editor) {
     //
 
     */
-
+/*
     var link = document.createElement('a');
     link.style.display = 'none';
     document.body.appendChild(link); // Firefox workaround, see #6594
@@ -610,4 +681,4 @@ MenuFile = function (editor) {
 
     return container;
 
-};
+};*/

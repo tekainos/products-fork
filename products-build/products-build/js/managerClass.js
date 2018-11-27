@@ -260,7 +260,7 @@
             this._sidebar.changeRoom(this._room.name);
             this.removeCollision();
         } else {
-            this._sidebar.deleteRoom(this._room.name);
+            this._room ? this._sidebar.deleteRoom(this._room.name) : null;
             this.clear();
         }
         this._drawing = false; 
@@ -666,13 +666,24 @@
         return this._raycaster.intersectObjects(meshlist);
     }
 
-    export() {
+    export(type) {
         var keys = Object.keys(this._rooms);
-        var obs = [];
-        for (var i = 0; i < keys.length; i++) {
-            obs.push(this._rooms[keys[i]].wallList.vertices); //.sketch.pointArray);
+        if (type == 'DXF') {
+            var obs = [];
+            for (var i = 0; i < keys.length; i++) {
+                obs.push({ 'room': this._rooms[keys[i]].wallList.vertices, 'door': this._rooms[keys[i]].getDoors() }); //.sketch.pointArray);
+            }
+            exportToDXF(obs);
+        } else if (type == 'OBJ' || type == 'STL') {
+            var ob2 = [];
+            /*for (var b = 0; b < keys.length; b++) {
+                ob2.push({ 'walls': this._rooms[keys[b]].meshList, 'floor' : this._rooms[keys[b]].floor,'features' : this._rooms[keys[b]].features }); //.sketch.pointArray);
+            }*/
+            ob2.push({ 'walls': this._room.wallList.currentWalls, 'floor': this._room.floor, 'features': this._room.features });
+            //this.updateRoomModel();
+            //this._scene.add(exportToOBJ(ob2));
+            exportModel(ob2, type);
         }
-        exportToDXF(obs);
     }
 
     clearDrag() {

@@ -94,6 +94,14 @@
         return { 'Boundary': floor, 'Layout': layout, 'Features': features, "Perimeter": this.perimeter, "Area": this.surfaceArea};
     }
 
+    getDoors() {
+        var feat = [];
+        for (var i = 0; i < this._wallFeatures.length; i++) {
+            feat.push(this._wallFeatures[i].get2D().Coordinates);
+        }
+        return feat;
+    }
+
     remakeFeatures() {
         for (var i = 0; i < this._featRemake.length; i++) {
             var feat = this._featRemake[i];
@@ -101,7 +109,7 @@
             if (!feat[1]) {
                 feat[1] = 0;
             }
-            var msh = this._walls.addFeature(feat[0], feat[1], feat[2], feat[3], feat[4], feat[5], feat[6]);
+            var msh = this._walls.addFeature(feat[0], feat[1], feat[2], feat[3], feat[4], feat[5], feat[6], feat[7], feat[8]);
             if (msh) {
                 this._wallFeatures.push(msh);
                 this._features.push(msh.mesh);
@@ -125,7 +133,7 @@
         var msh;
         if (feature === 'Door') {
             msh = this._walls.addFeature(position, feature, wall);
-            this._featRemake.push([msh.dist, feature, wall, msh._width, msh.height, msh.top, msh.bottom]);
+            this._featRemake.push([msh.dist, feature, wall, msh._width, msh.height, msh.top, msh.bottom, msh.type, msh.swing]);
             this._wallFeatures.push(msh);
         } else if (feature === 'Stairs') {
             var rise = 7 * 0.0254;
@@ -153,7 +161,6 @@
     }
 
     getFeatureByName(name) {
-        console.log(name);
         if (name && (name.slice(0, 3) === 'Str' || name.slice(0, 3) === 'Cus')) {
             for (var i = 0; i < this._floorFeatures.length; i++) {
                 if (this._floorFeatures[i].name === name) {

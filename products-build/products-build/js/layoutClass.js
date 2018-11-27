@@ -121,17 +121,22 @@
 
     generate(full) {
         var res;
+        var min;
         if (this._type === 'carpet') {
-            res = calcLayout(this._floorMesh, this._layoutPacket, this._grainDir, this._offset, this._tseams, this._floorFeatures, full);
+            var preres = calcLayout(this._floorMesh, this._layoutPacket, this._grainDir, this._offset, this._tseams, this._floorFeatures, full);
+            res = preres[0];
+            min = preres[1];
         } else if (this._type === 'tile') {
             res = calcTileLayout(this._floorMesh, this._layoutPacket, this._grainDir, this._offset, this._floorFeatures);
             this._signals.tileEditor.dispatch();
         }
         for (var z = 0; z < res.length; z++) {
+            res[z][0].offset = res[z].length > 2 ? res[z][3] - min : null;
             this._layout.push(res[z][0]);
             this._layoutEdges.push(res[z][1]);
             res[z].length > 2 ? this._layoutArrows.push(res[z][2]) : null;
             res[z].length > 2 ? this._scene.add(res[z][2]) : null;
+            this._min = res[z].length > 2 ? Math.min(this._min, res[z][3]) : null;
             this._scene.add(res[z][0]);
             this._scene.add(res[z][1]);
         }
@@ -617,6 +622,7 @@ function calcLayout(oldMesh, packet, grain, offset, tseams, holes, full) {
     var wind = getWinding(mesh.geometry.vertices);
     var subj_path = [];
     var scale = 1000;
+    var min;
 
     if (wind == -1) {
         for (var i = 0; i < mesh.geometry.vertices.length; i++) {
@@ -641,7 +647,7 @@ function calcLayout(oldMesh, packet, grain, offset, tseams, holes, full) {
     for (var i = 0; i < lerped.length; i++) {
         var newgeo = new THREE.Geometry();
         var ln = lerped[i];
-        var clip_path = [{ X: ln[0].x * scale, Y: ln[0].y * scale }, { X: ln[1].x * scale, Y: ln[1].y * scale }, { X: ln[3].x * scale, Y: ln[3].y * scale }, { X: ln[2].x * scale, Y: ln[2].y * scale }] 
+        var clip_path = [{ X: ln[0].x * scale, Y: ln[0].y * scale }, { X: ln[1].x * scale, Y: ln[1].y * scale }, { X: ln[3].x * scale, Y: ln[3].y * scale }, { X: ln[2].x * scale, Y: ln[2].y * scale }]; 
 
         var path = full && holePaths.length > 0 ? [subj_path].concat(holePaths) : [subj_path];
         var solves = full && holePaths.length > 0 ? intersect(path, clip_path, wind) : intersect(path, clip_path);
@@ -650,14 +656,15 @@ function calcLayout(oldMesh, packet, grain, offset, tseams, holes, full) {
             if (tseams[ct.toString()]) {
                 splitset = splitGeo(solves[z], tseams[ct.toString()]);
                 for (var s = 0; s < splitset.length; s++) {
-                    var arrows = addArrows(solves[z], -1 * grain, centroid);
+                    var arrows = addArrows(splitset[s], -1 * grain, centroid);
                     rotate = rotateFloor(splitset[s], -1 * grain, centroid);
                     newgeo = rotate.mesh.geometry;
                     var newflr = new THREE.Mesh(newgeo, material[1]);
                     newflr.name = 'Lay' + ct + '-' + s;
                     var pledge = new THREE.EdgesGeometry(newgeo);
                     var plline = new THREE.LineSegments(pledge, lineMat);
-                    results.push([newflr, plline, arrows]);
+                    min = min ? Math.min(arrows[1], min) : arrows[1];
+                    results.push([newflr, plline, arrows[0], arrows[1]]);
                 }
                 ct += 1;
             } else {
@@ -669,18 +676,21 @@ function calcLayout(oldMesh, packet, grain, offset, tseams, holes, full) {
                 ct += 1;
                 pledge = new THREE.EdgesGeometry(newgeo);
                 plline = new THREE.LineSegments(pledge, lineMat);
-                results.push([newflr, plline, arrows]);
+                min = min ? Math.min(arrows[1], min) : arrows[1];
+                results.push([newflr, plline, arrows[0], arrows[1]]);
             }
         }
     }
-    return results;
+    return [results, min];
 }
 
 function addArrows(path, rot, cent) {
     var newpath = [];
     var ht = path.vertices[0].y;
+    var minx = path.vertices[0].x;
     path.vertices.forEach(function (v) {
         var newv = new THREE.Vector2(v.x, v.z);
+        minx = Math.min(minx, v.x);
         newpath.push(newv);
     });
     var ext = getExtremes(newpath);
@@ -704,7 +714,7 @@ function addArrows(path, rot, cent) {
         rotGeo.vertices.push(new THREE.Vector3(v.x, ht+0.01, v.y));
     });
     var ln = new THREE.LineSegments(rotGeo, new THREE.LineBasicMaterial({ color: 0xff0000, linewidth: 3 }));
-    return ln;
+    return [ln, minx];
 }
 
 function splitGeo(geo, num) {

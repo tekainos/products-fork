@@ -95,6 +95,7 @@ var Editor = function () {
         // Save/Load
         savePDF: new Signal(),
         loadRoomModel: new Signal(),
+        export: new Signal(),
 
         // Dragging
         activateDrag: new Signal(),

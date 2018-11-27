@@ -79,11 +79,15 @@
 
     WinJS.UI.processAll();
 
-    document.addEventListener('DOMContentLoaded', function () {
+    /*document.addEventListener('DOMContentLoaded', function () {
         adddev();
     }, false);
+    */
+    adddev();
 
     function adddev() {
+        console.log("addev");
+
         // Hook up button event handlers
         startWatcherButton.dom.addEventListener("click", startWatcher, false);
 
@@ -284,6 +288,7 @@
     }
 
     function bluetoothLeConnect(deviceInfo) {
+        console.log(deviceInfo);
         Windows.Devices.Bluetooth.BluetoothLEDevice.fromIdAsync(deviceInfo.id).done(function (result) {
             console.log("Completed" + "- " + result);
             device = result;

@@ -227,7 +227,10 @@ var Viewport = function (editor) {
         }
     });
     signals.exportDXF.add(function () {
-        manager.export();
+        manager.export('DXF');
+    });
+    signals.export.add(function (type) {
+        manager.export(type);
     });
     signals.completeRoom.add(function (n) {
         console.log("Complete Room");
@@ -364,7 +367,7 @@ var Viewport = function (editor) {
         render();
     });
     signals.updateFeature.add(function (id) {
-        console.log("Update Feature");
+        //console.log("Update Feature");
         manager.room.updateFeature(id);
         render();
     });

@@ -31,7 +31,16 @@
     get meshSet() { return this._meshSet; }
     get lineSet() { return this._lineSet; }
     get vertices() { return this._genVerts; }
+    get currentWalls() { return this.getCurrent(); }
 
+
+    getCurrent() {
+        var walls = [];
+        for (var i = 0; i < this._wallSet.length; i++) {
+            walls.push(this._wallSet[i].mesh);
+        }
+        return walls;
+    }
 
     generateWalls(vertices, thickness) {
         thickness = thickness ? thickness : 0.1143; //Default value 4 inches
@@ -106,19 +115,21 @@
         var featureList = [];
         for (var i = 0; i < this._features.length; i++) {
             var featemp = this._features[i];
-            featureList.push([featemp.dist, featemp.name, featemp.wall, featemp._width, featemp.height, featemp.top, featemp.bottom]);
+            featureList.push([featemp.dist, featemp.name, featemp.wall, featemp._width, featemp.height, featemp.top, featemp.bottom, featemp.type, featemp.swing]);
         }
         return featureList;
     }
 
-    addFeature(pos, feature, name, width, height, top, bottom) {
+    addFeature(pos, feature, name, width, height, top, bottom, type, swing) {
         height = height ? height : 2.5484; //Default Value 8 foot 4 inches
         width = width ? width : 0.7112; //Default Value 2 feet 4 inches
         top = top ? top : 2.032; //Default Value 2 feet 4 inches
         bottom = bottom ? bottom : 0; //Default Value 2 feet 4 inches
+        type = type ? type : 'Door';
+        swing = swing ? swing : 'LH In Swing';
         var wl = this.getWallByName(name);
         pos = pos.isVector3 ? new THREE.Vector3(pos.x, 0.1, pos.z) : pos;
-        var msh = wl.addFeature(pos, feature, height, width, top, bottom);
+        var msh = wl.addFeature(pos, feature, height, width, top, bottom, type, swing);
         this._features.push(msh);
         return msh;
     }

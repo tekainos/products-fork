@@ -102,10 +102,102 @@
     <script src="js/notationClass.js"></script>
     <script src="js/makeJobClass.js"></script>
     <script src="js/jobLoadClass.js"></script>
-    <script src="js/productPicker.js"></script>
-
+    <script src="js/productPicker3.js"></script>
+    <script src="js/OBJExporter.js"></script>
+    <script src="js/STLExporter.js"></script>
     <script src="js/init.js"></script>
-
+    <div class="Panel" id="sidebar" style="display: none;">
+        <span id="measureSidebar">
+            <div class="Panel" id="pledit3">
+                <div class="collapseBar" id="pledit3-collapse">Project Information<span class="glyphicon glyphicon-menu-down" id="pledit3-carrot" style="margin-right: 15px; float: right;"></span><span class="glyphicon glyphicon-menu-up" id="pledit3-carrot2" style="margin-right: 15px; display: none; float: right;"></span></div>
+                <div class="collapsePanel" id="pledit3-container" style="display: none;">
+                </div>
+            </div>
+            <div class="Panel viewportSidebar" id="pledit">
+                <div class="collapseBar viewportSidebar" id="pledit-collapse">
+                    Walls
+                    <span class="glyphicon glyphicon-menu-down" id="pledit-carrot" style="margin-right: 15px; float: right;"></span>
+                    <span class="glyphicon glyphicon-menu-up" id="pledit-carrot2" style="margin-right: 15px; display: none; float: right;"></span>
+                </div>
+                <div class="collapsePanel" id="pledit-container" style="display: none;">
+                </div>
+            </div>
+            <div class="Panel viewportSidebar" id="pledit2">
+                <div class="collapseBar viewportSidebar" id="pledit2-collapse">Features<span class="glyphicon glyphicon-menu-down" id="pledit2-carrot" style="margin-right: 15px; float: right;"></span><span class="glyphicon glyphicon-menu-up" id="pledit2-carrot2" style="margin-right: 15px; display: none; float: right;"></span></div>
+                <div class="collapsePanel" id="pledit2-container" style="display: none;">
+                </div>
+            </div>
+            <div class="Panel viewportSidebar" id="pledit4">
+                <div class="collapseBar viewportSidebar" id="pledit4-collapse">Layout<span class="glyphicon glyphicon-menu-down" id="pledit4-carrot" style="margin-right: 15px; float: right;"></span><span class="glyphicon glyphicon-menu-up" id="pledit4-carrot2" style="margin-right: 15px; display: none; float: right;"></span></div>
+                <div class="collapsePanel" id="pledit4-container" style="display: none;">
+                </div>
+            </div>
+            <div class="Panel" id="pledit6">
+            </div>
+            <div class="Panel viewportSidebar" id="pledit5"></div>
+        </span>
+    </div>
+    <div class="Panel" id="menubar" style="display: none;">
+        <div class="Row"><span class="tekfont">TekMeasure 2D</span></div>
+        <div class="menu">
+            <div class="title">File</div>
+            <div class="options" id="dropdown-file">
+                <div class="option" id="menuop-logout">Logout</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-save">Save Project</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-pdf">Save PDF</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-export">Export DXF</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-exportObj">Export OBJ</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-exportStl">Export STL</div>
+                <hr class="HorizontalRule">
+            </div>
+        </div>
+        <div class="menu">
+            <div class="title">Edit</div>
+            <div class="options" id="dropdown-edit">
+                <div class="option" id="menuop-tape">Tape Measure</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-addRoom">Add Room</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-addStair">Add Stairs</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-addDoor">Add Wall Feature</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-addCutout">Add Room Feature</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-drag">Drag Room</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-delete">Delete Room</div>
+                <hr class="HorizontalRule">
+            </div>
+        </div>
+        <div class="menu">
+            <div class="title">Layout</div>
+            <div class="options" id="dropdown-layout">
+                <div class="option" id="menuop-newLayout">New Layout</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-tseam">T-Seam</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-compress">Compress Roll</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-clear">Clear Layout</div>
+                <hr class="HorizontalRule">
+            </div>
+        </div>
+        <div class="menu">
+            <div class="title">Settings</div>
+            <div class="options" id="dropdown-settings">
+                <div class="option" id="menuop-camera">Change Camera</div>
+                <hr class="HorizontalRule">
+                <div class="option" id="menuop-bluetooth">Add Bluetooth Device</div>
+                <hr class="HorizontalRule">
+            </div>
+        </div>
+    </div>
     <div class="appPage" id="login" style="display: none;">
         <div class="NameBox">Tekainos</div>
         <div class="InternalBox" style="width: 50%; margin-left: 25%;">
@@ -286,63 +378,21 @@
                 <div class="product-category">
                     <h3 id="floor-picker" class="prodcat-picker">Select floor type</h3>
                     <div class="prodcat-options">
-                        <div class="product-type">
-                            <img src="https://lda.lowes.com/is/image/Lowes/Carpet_4COL_carpettile?$JPEG-HQ$&wid=234" />
-                            <p>Carpet</p>
-                        </div><!-- end product-type -->
-                        <div class="product-type">
-                            <img src="https://lda.lowes.com/is/image/Lowes/Carpet_4COL_tile?$JPEG-HQ$&wid=234" />
-                            <p>Tile</p>
-                        </div><!-- end product-type -->
-                        <div class="product-type">
-                            <img src="https://lda.lowes.com/is/image/Lowes/DP18-47440_082918_DT_Flooring_hardwood?$JPEG-HQ$&wid=234" />
-                            <p>Hardwoood</p>
-                        </div><!-- end product-type -->
                     </div>
                 </div><!-- end floor-selection -->
                 <div class="product-category">
                     <h3 id="transition-picker" class="prodcat-picker">Select transition type for doorways and room changes</h3>
                     <div class="prodcat-options">
-                        <div class="product-type">
-                            <img src="https://mobileimages.lowes.com/product/converted/043374/043374119244lg.jpg" />
-                            <p>Wood Threshold</p>
-                        </div><!-- end product-type -->
-                        <div class="product-type">
-                            <img src="https://mobileimages.lowes.com/product/converted/043374/043374110562lg.jpg" />
-                            <p>Metal Threshold</p>
-                        </div><!-- end product-type -->
-                        <div class="product-type">
-                            <img src="https://mobileimages.lowes.com/product/converted/077578/077578056906lg.jpg" />
-                            <p>Plastic</p>
-                        </div><!-- end product-type -->
                     </div>
                 </div><!-- end transition-selection -->
                 <div class="product-category">
                     <h3 id="moulding-picker" class="prodcat-picker">Select moulding/trim type</h3>
                     <div class="prodcat-options">
-                        <div class="product-type">
-                            <img src="https://mobileimages.lowes.com/product/converted/836217/836217118548lg.jpg" />
-                            <p>Stair Nose</p>
-                        </div><!-- end product-type -->
-                        <div class="product-type">
-                            <img src="https://mobileimages.lowes.com/product/converted/604743/604743122106lg.jpg" />
-                            <p>Threshold</p>
-                        </div><!-- end product-type -->
-                        <div class="product-type">
-                            <img src="https://mobileimages.lowes.com/product/converted/836211/836211690910lg.jpg" />
-                            <p>Quarter Round</p>
-                        </div><!-- end product-type -->
                     </div>
                 </div><!-- end moulding-selection -->
                 <div class="product-category">
                     <h3 id="grout-picker" class="prodcat-picker">Select grout & mortar</h3>
                     <div class="prodcat-options">
-                        <div class="product-type">
-                        </div><!-- end product-type -->
-                        <div class="product-type">
-                        </div><!-- end product-type -->
-                        <div class="product-type">
-                        </div><!-- end product-type -->
                     </div>
                 </div><!-- products load test -->
             </div>

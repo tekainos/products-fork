@@ -41,6 +41,7 @@
             var cont4 = containerInit('pledit4', "Layout", 'viewportSidebar');
             this._layoutContainer = cont4.container;
             this._layoutCollapse = cont4.collapse;
+            
         }
     }
 
@@ -113,9 +114,9 @@
             } else {
                 this._lines[roomname] = [addWall(sb, this._n, roomname)];
             }
-            if (this._animate) {
+            /*if (this._animate) {
                 $(this._wallContainer).is(':visible') ? null : $(this._wallCollapse).trigger('click');
-            }
+            }*/
             this._n += 1;
         }
     }
@@ -137,11 +138,11 @@
             if (num >= 0) {
                 var x = this._lines[roomname][num].length - 1;
                 var ln = this._lines[roomname][num][x];
-                $(box).animate(
+                /*$(box).animate(
                     {
                         scrollTop: $(box).scrollTop() + $(ln).position().top - ($(box).height() / 2 + 2 * $(ln).height())
                     }
-                );
+                );*/
                 //$(box).scrollTop($(ln).offset().top-10);
                 $(ln).css("background-color", '#444');
             }
@@ -149,12 +150,12 @@
             box = this._boxes[roomname].featurebox;
             for (var i = 0; i < box.childNodes.length; i++) {
                 box.childNodes[i].style.backgroundColor = box.childNodes[i].id == num ? '#444' : '#222';
-                box.childNodes[i].id == num ? box.childNodes[i].scrollIntoView({ behavior: "smooth" }) : null;
+                //.childNodes[i].id == num ? box.childNodes[i].scrollIntoView({ behavior: "smooth" }) : null;
             }
         }
     }
 
-    addFeatureLine(feature, roomname, featname, winding, top, bottom) {
+    addFeatureLine(feature, roomname, featname, winding, top, bottom, type, swing) {
         //feature = { "mesh": msh, "dist": d1 / odist.length(), "odist" : odist.length(), "doorway": new THREE.Mesh(ge2, material) }
         var fb = this._boxes[roomname].featurebox;
         if (!(roomname in this._features)) {
@@ -166,7 +167,7 @@
                 var d1 = feature.dist * feature.odist;
                 var d2 = feature.dist2 * feature.odist;
                 var wd = feature.width;
-                ln = addDoorLine(fb, this._f, featname, d1, d2, wd, winding, top, bottom);
+                ln = addDoorLine(fb, this._f, featname, d1, d2, wd, winding, top, bottom, type, swing);
                 break;
             case "Cus":
                 ln = { "box": addCustomBox(fb, this._f, featname), "lines": [], "name": featname, "boxname": featname + '-container' + this._f };
@@ -176,9 +177,9 @@
                 break;
         }
         this._features[roomname].push(ln);
-        if (this._animate) {
+        /*if (this._animate) {
             $(this._featureContainer).is(':visible') ? null : $(this._featureCollapse).trigger('click');
-        }
+        }*/
         this._f += 1;
         return this._f-1;
     }
@@ -187,9 +188,9 @@
         var sb = this._features[roomname][f];
         if (sb) {
             this._features[roomname][f].lines.push(addCustomLine(sb.box, sb.lines.length, sb.name, f));
-            if (this._animate) {
+            /*if (this._animate) {
                 $(this._featureContainer).is(':visible') ? null : $(this._featureCollapse).trigger('click');
-            }
+            }*/
         }
     }
 
@@ -198,7 +199,7 @@
         console.log(this._boxes);
         console.log(this._features[roomname]);
         var bx = document.getElementById(sb.boxname);
-        this._boxes[roomname].featurebox.removeChild(bx);
+        this._boxes[roomname] ? this._boxes[roomname].featurebox.removeChild(bx) : null;
         this._features[roomname][f] = [];
     }
 
@@ -217,9 +218,10 @@
             this._measureContainer = cont3.container;
             this._measureCollapse = cont3.collapse;
         }
+        /*
         if (this._animate) {
             $(this._measureContainer).is(':visible') ? null : $(this._measureCollapse).trigger('click');
-        }
+        }*/
         addMeasure(this._measureContainer, meas);
     }
 
@@ -325,11 +327,11 @@
     }
 
     newLayout(roomname, pack) {
-        if (this._animate) {
+        /*if (this._animate) {
             $(this._featureContainer).is(':visible') ? $(this._featureCollapse).trigger('click') : null;
             $(this._wallContainer).is(':visible') ? $(this._wallCollapse).trigger('click') : null;
             $(this._layoutContainer).is(':visible') ? null : $(this._layoutCollapse).trigger('click');
-        }
+        }*/
 
         addCalculated(this._boxes[roomname].layoutbox, pack);
     }
@@ -341,6 +343,7 @@
             'Price': $("#" + box.id).find(".price").val(),
             'Height': parseFloat($("#" + box.id).find(".height").val()) * 0.3048,
             'Width': parseFloat($("#" + box.id).find(".width").val()) * 0.3048,
+            'Pattern': parseFloat($("#" + box.id).find(".pattern").val()) * 0.0254,
             'Grain': parseFloat($("#" + box.id).find(".angle").val()),
             'Stagger': $("#" + box.id).find(".stagger").val()
         };
@@ -399,9 +402,9 @@
 
     clear() {
         if (this._wallContainer) {
-            document.getElementById('pledit').innerHTML = '';
-            document.getElementById('pledit2').innerHTML = '';
-            document.getElementById('pledit4').innerHTML = '';
+            document.getElementById('pledit-container').innerHTML = '';
+            document.getElementById('pledit2-container').innerHTML = '';
+            document.getElementById('pledit4-container').innerHTML = '';
             this._wallContainer = null;
             this._wallCollapse = null;
             this._featureContainer = null;
@@ -774,33 +777,15 @@ function addMeasure(container, measurement) {
 function containerInit(id, words, subclass) {
     var container = document.getElementById(id);
 
-    var collapse = document.createElement('div');
-    collapse.id = id + '-collapse';
-    collapse.className = subclass ? 'collapseBar ' + subclass : 'collapseBar';
-    collapse.textContent = words;
+    var collapse = document.getElementById(id + '-collapse');
 
-    var carrot = document.createElement('span');
-    carrot.id = id + '-carrot';
-    carrot.className = 'glyphicon glyphicon-menu-down';
-    carrot.style.cssFloat = 'right';
-    carrot.style.marginRight = '15px';
+    var carrot = document.getElementById(id + '-carrot');
+    var carrot2 = document.getElementById(id + '-carrot2');
+    var content = document.getElementById(id + '-container');
 
-    var carrot2 = document.createElement('span');
-    carrot2.id = id + '-carrot2';
-    carrot2.className = 'glyphicon glyphicon-menu-up';
-    carrot2.style.cssFloat = 'right';
-    carrot2.style.marginRight = '15px';
-    carrot2.style.display = 'none';
+    console.log(content);
 
-    collapse.appendChild(carrot);
-    collapse.appendChild(carrot2);
-    container.appendChild(collapse);
-
-    var content = document.createElement('div');
-    content.id = id + '-container';
-    content.className = 'collapsePanel';
-    content.style.display = 'none';
-    container.appendChild(content);
+    $(collapse).off();
 
     $(collapse).click(function () {
         $(content).slideToggle('fast', function () {
@@ -1101,11 +1086,6 @@ function createLayoutbox(name) {
     htrow.style.display = 'none';
     layoutForm.appendChild(htrow);
 
-    sel.onchange = function () {
-        $(htrow).toggle();
-        $(stag).toggle();
-    };
-
     var angRow = document.createElement("span");
     angRow.className = 'rowbar';
     var ang = document.createElement("input");
@@ -1117,6 +1097,25 @@ function createLayoutbox(name) {
     angRow.appendChild(document.createTextNode("Angle (deg) : "));
     angRow.appendChild(ang);
     layoutForm.appendChild(angRow);
+
+    var patRow = document.createElement("span");
+    patRow.className = 'rowbar';
+    var pat = document.createElement("input");
+    pat.setAttribute('type', 'number');
+    pat.className = 'layinput pattern';
+    pat.min = '0';
+    pat.id = 'patmatch';
+    pat.value = '0';
+    patRow.appendChild(document.createTextNode("Pattern (in) : "));
+    patRow.appendChild(pat);
+    layoutForm.appendChild(patRow);
+
+    sel.onchange = function () {
+        $(patRow).toggle();
+        $(htrow).toggle();
+        $(stag).toggle();
+    };
+
 
     var priceRow = document.createElement("form");
     priceRow.className = 'rowbar';
@@ -1210,7 +1209,7 @@ function addCalculated(layoutbox, pack) {
     $(layoutbox).scrollTop($(layoutbox)[0].scrollHeight);
 }
 
-function addDoorLine(featurebox, f, featname, len1, len2, width, winding, top, bottom) {
+function addDoorLine(featurebox, f, featname, len1, len2, width, winding, top, bottom, type, swing) {
 
     var dist1 = convertToFeetInch(len1);
     var dist2 = convertToFeetInch(len2);
@@ -1240,13 +1239,17 @@ function addDoorLine(featurebox, f, featname, len1, len2, width, winding, top, b
     swingSel.className = 'boxselect swing';
     swingSel.id = 'sel' + f;
 
+    var selected = 0;
     for (var i = 0; i < oplist.length; i++) {
         var option = document.createElement("option");
         option.value = oplist[i];
         option.text = oplist[i];
+        if (oplist[i] == swing) {
+            selected = i;
+        }
         swingSel.appendChild(option);
     }
-
+    swingSel.selectedIndex = selected;
     swingSel.onchange = function () {
         editor.signals.updateFeature.dispatch(this.parentNode.id);
     };
@@ -1273,6 +1276,12 @@ function addDoorLine(featurebox, f, featname, len1, len2, width, winding, top, b
         option1.value = oplist1[d];
         option1.text = oplist1[d];
         typeSel.appendChild(option1);
+    }
+
+    if (type != 'Door') {
+        typeSel.selectedIndex = 1;
+        $(cutSel).toggle();
+        $(swingSel).toggle();
     }
 
     typeSel.onchange = function () {
