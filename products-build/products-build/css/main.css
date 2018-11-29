@@ -1,9 +1,36 @@
-﻿body {
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	margin: 0;
-	overflow: hidden;
+﻿/********* Universal Colors 
+
+lowes blue = #004990;
+midnight blue = #036;
+navy blue = #002040;
+light blue = #198EFF or rgb(25,142,255);
+turquoise = #3D6C99;
+seafoam? = #00FFF6;
+
+Tekainos orange = #cc9900;
+
+blood red = #CC1F14;
+
+green for go = #A2B209;
+
+
+almost white = #eee;
+off-white = #ddd;
+
+light gray = #e5e4e7 or hsl(255, 5%, 90%);
+
+*********/
+
+
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin: 0;
+    overflow: hidden;
+    background: #e5e3df !important;
 }
+
 
 hr {
 	border: 0;
@@ -11,11 +38,10 @@ hr {
 }
 
 input[type=text] {
-    background-color: #eee;
     color: black;
     border: 0;
     box-shadow: none;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .hiddenSubmit {
@@ -38,6 +64,10 @@ input[type=text] {
    z-index: 3;
 }
 
+#submitCreateButton, #loginButton {
+    background: #3CB371;
+}
+
 .headerInputs {
     padding: 1px;
     border: 1px white solid;
@@ -51,10 +81,13 @@ input[type=text] {
 }
 
 .block-title {
-    color: #fff;
+    color: #198EFF;
     opacity: .9;
-    font-family: 'Times New Roman';
     font-size: 45px;
+}
+
+.LoremIpsum {
+    color: #FFF;
 }
 
 .tileContainer {
@@ -136,7 +169,6 @@ input[type=text] {
     width: 100%;
     height: 100%;
     text-align: center;
-    background: #222;
 }
 
 .NavPage {
@@ -175,17 +207,23 @@ input[type=text] {
     height: 55%;
     width: 45%;
     margin: 2%;
-    box-shadow: 5px 5px #888;
-    border-radius: 3px;
+    box-shadow: 5px 5px 10px #888;
+    border-radius: 10px;
     z-index: 1;
     opacity: 0.9;
-    border: 1px solid #111;
-    background-color: #003a77;
+    border: 5px solid #002040;
+    background-color: #002040;
 }
 
     .splashBox:hover {
         opacity: 1;
+        color: #FFF;
         background-color: #004690;
+        border: 5px solid #FFF;
+    }
+
+    .splashBox:hover .block-title {
+        color: #FFF;
     }
 
 .BigBox {
@@ -216,23 +254,23 @@ input[type=text] {
     width: 75%;
     margin: auto;
     margin-top: 5%;
-    box-shadow: 5px 5px #888;
-    border-radius: 3px;
+    box-shadow: 5px 5px 10px #ddd;
+    border-radius: 10px;
     text-align: center;
     z-index: 1;
     opacity: 1;
-    border: 1px solid #111;
-    background-color: #003a77;
+    border: 3px solid #ddd;
+    background-color: #FFF;
 }
 
 .loginButton {
-    background-color: mediumseagreen;
+    background-color: #198EFF;
     width: 70%;
     height: 50px;
     border-radius: 10px;
     font-size: 20px;
     color: white;
-    border: 1px solid black;
+    border: none;
 }
 
 .questionPage {
@@ -303,22 +341,20 @@ input[type=text] {
 }
 
 .submitButton {
-    background-color: mediumseagreen;
     width: 100%;
     height: 50px;
     color: white;
-    border: 1px solid black;
+    border: none;
     position: absolute;
     bottom: 0;
     left: 0;
 }
 
 .submitPageButton {
-    background-color: mediumseagreen;
     width: 80%;
     height: 50px;
     color: white;
-    border: 1px solid black;
+    border: none;
 }
 
 .rollCanvas {
@@ -333,13 +369,12 @@ input[type=text] {
 }
 
 .NameBox {
-    background-color: #222;
     margin: auto;
     margin-top: 5%;
     text-align: center;
     font-size: 130px;
     font-family: tekainosFont;
-    color: #cc9900;
+    color: #004990;
     display: block;
 }
 .questionGroup {
@@ -400,21 +435,20 @@ input[type=text] {
     height: 50px;
     width: 70%;
     margin-left: 15%;
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 10px;
     margin-bottom: 20px;
-    background-color: #eee;
+    background-color: #FFF;
+    border: 1px solid #aaa;
 }
 
 .loginInput {
-    background-color: #eee;
     color: black;
     height: 30px;
     width: 80%;
     margin-left: 10px;
     border: 0;
     box-shadow: none;
-    border-radius: 0px 5px 5px 0px;
 }
 
 .inputIcon {
@@ -540,7 +574,6 @@ textarea, input { outline: none; } /* osx */
 }
 
 #productsPage {
-    font-family: 'Times New Roman';
     position: relative;
 }
 
@@ -587,17 +620,9 @@ textarea, input { outline: none; } /* osx */
     height: 150px;
 }
 
-.visible {
-    display: block;
-}
-
-.hidden {
-    display: none;
-}
 
 
-
-/* CodeMirror */
+/************************************** CodeMirror **************************************/
 
 .CodeMirror {
 

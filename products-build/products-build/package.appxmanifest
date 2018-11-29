@@ -18,10 +18,10 @@
       <uap:ApplicationContentUriRules>
         <uap:Rule Match="ms-appx-web:///index.html" Type="include" WindowsRuntimeAccess="all" />
       </uap:ApplicationContentUriRules>
-      <uap:VisualElements DisplayName="TekMeasure2D" Description="TMFloorPlanner" BackgroundColor="transparent" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
+      <uap:VisualElements DisplayName="TekMeasure" Description="TMFloorPlanner" BackgroundColor="transparent" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="images\Wide310x150Logo.png" Square310x310Logo="images\LargeTile.png" Square71x71Logo="images\SmallTile.png">
         </uap:DefaultTile>
-        <uap:SplashScreen Image="images\splashscreen.png" BackgroundColor="#222222" />
+        <uap:SplashScreen Image="images\splashscreen.png" BackgroundColor="#e5e3df" />
       </uap:VisualElements>
     </Application>
   </Applications>

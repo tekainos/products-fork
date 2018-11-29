@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Tekainos FloorPlanner</title>
+    <title>TekMeasure by Tekainos</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/default.css" rel="stylesheet" />
     <link href="css/all.css" rel="stylesheet" />
@@ -138,7 +138,7 @@
         </span>
     </div>
     <div class="Panel" id="menubar" style="display: none;">
-        <div class="Row"><span class="tekfont">TekMeasure 2D</span></div>
+        <div class="Row"><span class="tekfont">TekMeasure</span></div>
         <div class="menu">
             <div class="title">File</div>
             <div class="options" id="dropdown-file">
@@ -199,11 +199,11 @@
         </div>
     </div>
     <div class="appPage" id="login" style="display: none;">
-        <div class="NameBox">Tekainos</div>
+        <div class="NameBox">TekMeasure</div>
         <div class="InternalBox" style="width: 50%; margin-left: 25%;">
             <div class="DarkBox" id="LoginBox">
                 <form class="form-group" style="display: none;" id="registerForm">
-                    <h1 class="block-title">Create Account</h1>
+                    <h1 class="block-title">Create an account</h1>
                     <h3 style="color: red; display: none;" id="regPassMatch">Passwords Do Not Match</h3>
                     <h3 style="color: red; display: none;" id="contactAdmin">This is a Closed Beta, Please Contact Administrator for Instructions</h3>
                     <h3 style="color: red; display: none;" id="unableReg">Unable to Create Account, E-Mail in Use</h3>
@@ -215,22 +215,22 @@
                     <br><button class="loginButton" type="submit" id="submitCreateButton">Create Account</button>
                 </form>
                 <form class="form-group" id="LoginForm">
-                    <h1 class="block-title">Login</h1>
+                    <!--<h1 class="block-title">Login</h1>-->
                     <h3 style="color: red; display: none;" id="loginWrong">E-Mail or Password Incorrect</h3>
                     <div class="loginRow"><label class="inputIcon" for="username"><i class="fas fa-user-shield fa-fw" id="icon"></i></label><input name="username" class="loginInput" id="username" required="" type="text" placeholder="Email"></div>
                     <br>
                     <div class="loginRow"><label class="inputIcon" for="password"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password" class="loginInput" id="password" required="" type="password" placeholder="Password"></div>
                     <button class="loginButton" type="submit" id="loginButton">Login</button>
                 </form>
-                <button class="loginButton" style="background-color: rgb(0, 70, 144);" id="createAccountButton">Create Account</button>
-                <button class="loginButton" style="display: none; background-color: rgb(0, 70, 144);" id="loginBackButton">Back</button>
+                <button class="loginButton" id="createAccountButton">Create Account</button>
+                <button class="loginButton" style="display: none;" id="loginBackButton">Back</button>
                 <button class="loginButton" style="display: none;" id="offlineButton">Start Offline</button>
-                <button class="loginButton" style="display: none; background-color: rgb(0, 70, 144);" id="retryConnectionButton">Retry Connection</button>
+                <button class="loginButton" style="display: none;" id="retryConnectionButton">Retry Connection</button>
             </div>
         </div>
     </div>
     <div class="NavDark appPage" id="loadJob" style="display: none;">
-        <div class="NameBox">Tekainos</div>
+        <div class="NameBox">TekMeasure</div>
         <div class="InternalBox" style="width: 75%; margin-left: 12.5%;">
             <div class="DarkBox" id="JobBox">
                 <div class="splashBox" id="CreateJobBox" style="float: left;">
@@ -253,12 +253,12 @@
         </div>
     </div>
     <div class="NavDark appPage" id="makeJob" style="display: none;">
-        <div class="NameBox">Tekainos</div>
+        <div class="NameBox">TekMeasure</div>
         <div class="InternalBox" style="width: 75%; margin-left: 12.5%;">
             <div class="DarkBox" id="JobBox">
                 <div class="form-group" id="createJobBox">
                 </div>
-                <button class="loginButton" id="createJobLocal" style="background-color: rgb(0, 70, 144);">Create Job</button>
+                <button class="loginButton" id="createJobLocal">Create Job</button>
             </div>
         </div>
     </div>
@@ -268,7 +268,7 @@
             <div class="splashBox" id="ViewportBox" style="float: left;">
                 <img class="NavIcon" src="/icon/bluetooth-REC.png">
                 <h1 class="block-title">Measure</h1>
-                <div class="LoremIpsum"> Capture room measurements, add room features such as stairs, cabinets, doors, pillars.  Select new flooring type, layout patterns and directions, and  seam placement .  Calculate material sizes needed.</div>
+                <div class="LoremIpsum">Capture room measurements, add room features such as stairs, cabinets, doors, pillars.  Select new flooring type, layout patterns and directions, and  seam placement .  Calculate material sizes needed.</div>
             </div>
             <div class="splashBox" id="FormBox" style="float: right;">
                 <img class="NavIcon" src="/icon/note-REC.png">
@@ -283,7 +283,7 @@
             <div class="splashBox" id="SubmitBox" style="float: right;">
                 <img class="NavIcon" src="/icon/approve-REC.png">
                 <h1 class="block-title">Submit</h1>
-                <div class="LoremIpsum"> Submit completed projects to enter into the bid process defined by your organization.</div>
+                <div class="LoremIpsum">Submit completed projects to enter into the bid process defined by your organization.</div>
             </div>
         </div>
     </div>
@@ -371,7 +371,7 @@
 
     <div class="NavDark appPage" id="productsPage" style="display: none; width: 100%;">
         <div class="InternalFrame overflow--hidden">
-            <div class="NameBox">Tekainos</div>
+            <div class="NameBox">TekMeasure</div>
             <div class="overflow--y-scroll">
                 <h2>Products Picker</h2>
                 <!-- <div class="products-breadcrumbs">Flooring > Carpet</div> -->
