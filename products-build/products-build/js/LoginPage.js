@@ -6,6 +6,9 @@
     var scene = editor.scene;
     var config = editor.config;
 
+    // initialize header
+    initializeHeader();
+
     var container = document.getElementById("login");
 
     var form = document.getElementById("LoginForm");
@@ -63,45 +66,6 @@
         $(unable).hide();
         $(contactAdmin).hide();
     };
-        
-    registerForm.onsubmit = function () {
-        if (passReg.value === passReg2.value) {
-            if (emailReg.value.substring(emailReg.value.length-11).toLowerCase() === 'uhs-llc.com' || emailReg.value.substring(emailReg.value.length-9).toLowerCase() === 'lowes.com') {
-                $.ajax({
-                    data: { "email": emailReg.value, "pass": passReg.value },
-                    method: 'POST',
-                    url: 'http://austinteets.com/createAccount.php',
-                    dataType: 'text',
-                    success: function (data) {
-                        console.log(data);
-                        if (!data) {
-                            createLoginFile(emailReg.value);
-                            editor.signals.login.dispatch(emailReg.value);
-                            var home = document.getElementById('loadJob');
-                            home.style.display = 'block';
-
-                            var login = document.getElementById('login');
-                            login.style.display = 'none';
-                        } else {
-                            $(unable).show();
-                            $(contactAdmin).hide();
-                            $(passMatch).hide();
-                        }
-                    }
-                });
-            } else {
-                console.log(emailReg.value.substring(emailReg.value.length-11).toLowerCase());
-                $(passMatch).hide();
-                $(unable).hide();
-                $(contactAdmin).show();
-            }
-        } else {
-            $(passMatch).show();
-            $(unable).hide();
-            $(contactAdmin).hide();
-        }
-        return false;
-    };
 
     form.onsubmit = function (formans) {
         $.ajax({
@@ -114,11 +78,16 @@
                 if (!data) {
                     createLoginFile(email.value);
                     editor.signals.login.dispatch(email.value);
-                    var home = document.getElementById('loadJob');
-                    home.style.display = 'block';
+                    //var home = document.getElementById('loadJob');
+                    //home.style.display = 'block';
+
+                    var dashboard = document.getElementById('dashboard');
+                    dashboard.style.display = 'block';
 
                     var login = document.getElementById('login');
                     login.style.display = 'none';
+
+                    swapHeader(login);
                 } else {
                     $(passWrong).show();
                 }
@@ -140,11 +109,16 @@
                         if (!data) {
                             createLoginFile(emailReg.value);
                             editor.signals.login.dispatch(email.value);
-                            var home = document.getElementById('loadJob');
-                            home.style.display = 'block';
+                            //var home = document.getElementById('loadJob');
+                            //home.style.display = 'block';
+
+                            var dashboard = document.getElementById('dashboard');
+                            dashboard.style.display = 'block';
 
                             var login = document.getElementById('login');
                             login.style.display = 'none';
+
+                            swapHeader(login);
                         } else {
                             $(unable).show();
                             $(contactAdmin).hide();
@@ -218,8 +192,11 @@ function checkLoginFile(email) {
                 if (parseInt(cont[2]) > Date.now()) {
                     editor.signals.offlineMode.dispatch(cont[0]);
                     editor.signals.login.dispatch(email.value);
-                    var home = document.getElementById('loadJob');
-                    home.style.display = 'block';
+                    //var home = document.getElementById('loadJob');
+                    //home.style.display = 'block';
+
+                    var dashboard = document.getElementById('dashboard');
+                    dashboard.style.display = 'block';
 
                     var login = document.getElementById('login');
                     login.style.display = 'none';
@@ -240,4 +217,36 @@ function createLoginFile(email) {
             Windows.Storage.FileIO.writeTextAsync(file, email + ".-." + Date.now() + ".-." + (Date.now() + 604800000));
         }
     );
+}
+
+
+function initializeHeader() {
+    var logo = document.querySelector('.NameBox > h1');
+    var nameBox = document.querySelector('.NameBox');
+
+    logo.className = 'loginLogo';
+    nameBox.classList.remove('col-sm-3')
+    nameBox.classList.add('col-sm-12');
+
+}
+
+
+function swapHeader(displayStatus) {
+    // get elements
+    var burgerButton = document.getElementById('burgerButton');
+    var mainNav = document.getElementById('mainNav');
+    var logo = document.querySelector('.NameBox > h1');
+    var nameBox = document.querySelector('.NameBox');
+
+    //alert(displayStatus);
+
+    if (displayStatus.style.display === 'none') {
+        burgerButton.style.display = 'block';
+        mainNav.style.display = 'block';
+
+        logo.classList.remove('loginLogo');
+        logo.className = 'smallLogo';
+        nameBox.classList.remove('col-sm-12');
+        nameBox.classList.add('col-sm-3');
+    }
 }

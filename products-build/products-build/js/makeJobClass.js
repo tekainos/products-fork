@@ -106,8 +106,8 @@
     var lines = document.getElementById("createJobLocal");
     lines.onclick = function () {
         $('#loadJob').hide();
-        $('#sidebar').show();
-        $('#menubar').show();
+        $('#sidebar').hide();
+        $('#menubar').hide();
         var data = {
             "PN": $("#inputJobid").val(),
             "Address": $("#inputAddress").val(),

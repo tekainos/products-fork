@@ -198,68 +198,244 @@
             </div>
         </div>
     </div>
-    <div class="appPage" id="login" style="display: none;">
-        <div class="NameBox">TekMeasure</div>
-        <div class="InternalBox" style="width: 50%; margin-left: 25%;">
-            <div class="DarkBox" id="LoginBox">
-                <form class="form-group" style="display: none;" id="registerForm">
-                    <h1 class="block-title">Create an account</h1>
-                    <h3 style="color: red; display: none;" id="regPassMatch">Passwords Do Not Match</h3>
-                    <h3 style="color: red; display: none;" id="contactAdmin">This is a Closed Beta, Please Contact Administrator for Instructions</h3>
-                    <h3 style="color: red; display: none;" id="unableReg">Unable to Create Account, E-Mail in Use</h3>
-                    <div class="loginRow"><label class="inputIcon" for="emailReg"><i class="fas fa-user-shield fa-fw" id="icon"></i></label><input name="emailReg" class="loginInput" id="emailReg" required="" type="text" placeholder="E-Mail"></div>
-                    <br>
-                    <div class="loginRow"><label class="inputIcon" for="password2"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password2" class="loginInput" id="password2" required="" type="password" placeholder="Password"></div>
-                    <br>
-                    <div class="loginRow"><label class="inputIcon" for="password3"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password3" class="loginInput" id="password3" required="" type="password" placeholder="Re-Enter Password"></div>
-                    <br><button class="loginButton" type="submit" id="submitCreateButton">Create Account</button>
-                </form>
-                <form class="form-group" id="LoginForm">
-                    <!--<h1 class="block-title">Login</h1>-->
-                    <h3 style="color: red; display: none;" id="loginWrong">E-Mail or Password Incorrect</h3>
-                    <div class="loginRow"><label class="inputIcon" for="username"><i class="fas fa-user-shield fa-fw" id="icon"></i></label><input name="username" class="loginInput" id="username" required="" type="text" placeholder="Email"></div>
-                    <br>
-                    <div class="loginRow"><label class="inputIcon" for="password"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password" class="loginInput" id="password" required="" type="password" placeholder="Password"></div>
-                    <button class="loginButton" type="submit" id="loginButton">Login</button>
-                </form>
-                <button class="loginButton" id="createAccountButton">Create Account</button>
-                <button class="loginButton" style="display: none;" id="loginBackButton">Back</button>
-                <button class="loginButton" style="display: none;" id="offlineButton">Start Offline</button>
-                <button class="loginButton" style="display: none;" id="retryConnectionButton">Retry Connection</button>
-            </div>
+
+
+
+
+
+
+
+
+    <div class="container pageWindow">
+        <header>
+            <div class="row">
+                <div class="col-sm-1">
+                    <div id="burgerButton" style="display: none;">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div id="logoclickable" class="col-sm-3 NameBox">
+                    <h1>TekMeasure</h1>
+                </div>
+                <nav class="col-sm-8">
+                    <ul id="mainNav" style="display: none;">
+                        <li><span id="CreateJobBox"><i class="fas fa-file-medical"></i>new job</span></li>
+                        <!--<li><span id="loadLocalJob"><i class="fas fa-folder-open"></i>load job</span></li>-->
+                        <li><span id="loadHelpDocs"><i class="fas fa-question-circle"></i>help</span></li>
+                        <!--<li><span id="CreateJobBox"><i class="fab fa-bluetooth"></i>add device</span></li>-->
+                        <li><span id="CreateJobBox"><i class="fas fa-sign-out-alt"></i>logout</span></li>
+                    </ul>
+                </nav>
+            </div> <!-- end row -->
+        </header>
+        <!-- end "first tier" -->
+        <!-- begin second tier - login / create account -->
+        <div class="row appPage" id="login" style="display: none;">
+            <div class="col-sm-12">
+                <div class="DarkBox" id="LoginBox">
+                    <form class="form-group" style="display: none;" id="registerForm">
+                        <p>Create an account</p>
+                        <h3 style="color: red; display: none;" id="regPassMatch">Passwords Do Not Match</h3>
+                        <h3 style="color: red; display: none;" id="contactAdmin">This is a Closed Beta, Please Contact Administrator for Instructions</h3>
+                        <h3 style="color: red; display: none;" id="unableReg">Unable to Create Account, E-Mail in Use</h3>
+                        <div class="loginRow"><label class="inputIcon" for="emailReg"><i class="fas fa-user-shield fa-fw" id="icon"></i></label><input name="emailReg" class="loginInput" id="emailReg" required="" type="text" placeholder="E-Mail"></div>
+                        <br>
+                        <div class="loginRow"><label class="inputIcon" for="password2"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password2" class="loginInput" id="password2" required="" type="password" placeholder="Password"></div>
+                        <br>
+                        <div class="loginRow"><label class="inputIcon" for="password3"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password3" class="loginInput" id="password3" required="" type="password" placeholder="Re-Enter Password"></div>
+                        <br><button class="loginButton" type="submit" id="submitCreateButton">Create Account</button>
+                    </form>
+                    <form class="form-group" id="LoginForm">
+                        <!--<h1 class="block-title">Login</h1>-->
+                        <h3 style="color: red; display: none;" id="loginWrong">E-Mail or Password Incorrect</h3>
+                        <div class="loginRow"><label class="inputIcon" for="username"><i class="fas fa-user-shield fa-fw" id="icon"></i></label><input name="username" class="loginInput" id="username" required="" type="text" placeholder="Email"></div>
+                        <br>
+                        <div class="loginRow"><label class="inputIcon" for="password"><i class="fas fa-shield-alt fa-fw" id="icon"></i></label><input name="password" class="loginInput" id="password" required="" type="password" placeholder="Password"></div>
+                        <button class="loginButton" type="submit" id="loginButton">Login</button>
+                    </form>
+                    <button class="loginButton" id="createAccountButton">Create Account</button>
+                    <button class="loginButton" style="display: none;" id="loginBackButton">Back</button>
+                    <button class="loginButton" style="display: none;" id="offlineButton">Start Offline</button>
+                    <button class="loginButton" style="display: none;" id="retryConnectionButton">Retry Connection</button>
+                </div>
+            </div><!-- end col-sm-12 -->
         </div>
-    </div>
-    <div class="NavDark appPage" id="loadJob" style="display: none;">
-        <div class="NameBox">TekMeasure</div>
-        <div class="InternalBox" style="width: 75%; margin-left: 12.5%;">
-            <div class="DarkBox" id="JobBox">
-                <div class="splashBox" id="CreateJobBox" style="float: left;">
-                    <h1 class="block-title">Create Job</h1>
-                    <div class="LoremIpsum">Create a new job to be saved locally or assigned to project number at a future date.</div>
+        <!-- end tier 2 -->
+        <!-- begin third tier - dashboard view -->
+        <div class="row appPageView" id="dashboard" style="display: none;">
+            <div class="col-sm-12">
+                <div class="col-sm-1 dashboardLeft">
+                    <div class="statusPaneHidden" id="statusPaneButton">
+                        <div>
+                            <i class="fa fa-caret-square-left"></i>
+                        </div>
+                    </div>
+                    <div class="sideContent" style="display: none;">
+                        <h2>12/4/2018</h2>
+                        <div id="progress-bar">
+                            <div id="progress"></div>
+                        </div>
+                        <p>All jobs status is currently X% complete</p>
+                        <p class="StatusBlock"><span>6 <span class="subtext">of</span> 8</span><br />jobs completed today</p>
+                        <p class="StatusBlock"><span>1 <span class="subtext">of</span> 8</span><br />jobs on hold</p>
+                        <p class="StatusBlock"><span>1 <span class="subtext">of</span> 8</span><br />jobs not started</p>
+                        <p class="StatusBlock"><span class="error">24 <span class="subtext">of</span> 40</span><br />jobs complete this week</p>
+                    </div>
                 </div>
-                <div class="splashBox" id="LoadLocalBox" style="float: left;">
-                    <h1 class="block-title">Load Local</h1>
-                    <div class="LoremIpsum">Load a job that has been saved locally to this device.</div>
+                <div class="col-sm-11 dashboardRight">
+                    <div class="dbViewPane">
+                        <!-- insert the appPages for the dashboard view - create job, load job,  -->
+                        <!-- begin job listing screen -->
+                        <div class="appPage" id="jobsAccordion">
+                            <h2>Job Listings</h2>
+                            <ul id="JobsList--filter">
+                                <li><a href="#">Date</a></li>
+                                <li><a href="#">Store #</a></li>
+                                <li><a href="#">Customer</a></li>
+                                <li><a href="#">Address</a></li>
+                            </ul>
+                            <div id="JobsList">
+                            </div>
+                        </div>
+                        <!-- end job listing screen -->
+                        <!-- begin new job creation screen -->
+                        <div class="appPage" id="makeJob" style="display: none;">
+                            <div class="DarkBox" id="JobBox">
+                                <div class="form-group" id="createJobBox">
+                                </div>
+                                <button class="loginButton" id="createJobLocal">Create Job</button>
+                            </div>
+                        </div>
+                        <!-- end new job creation screen -->
+                        <!-- end the appPage(s) for the dashboard view -->
+                    </div>
                 </div>
-                <div class="splashBox" id="LoadIMSBox" style="float: left;">
-                    <h1 class="block-title">Load From IMS</h1>
-                    <div class="LoremIpsum">Load a job from the cloud that has been assigned to this account.</div>
-                </div>
-                <div class="splashBox" id="UploadJobBox" style="float: left;">
-                    <h1 class="block-title">Upload</h1>
-                    <div class="LoremIpsum">Upload jobs that have been saved locally, assign them to a project number, or share with another account</div>
-                </div>
-            </div>
+            </div><!-- end dashboard > col -->
+        </div> <!-- end row -->
+        <!-- end tier 3 -->
+        <!-- begin fourth tier - project info view -->
+        <div class="row appPageView" id="projectView" style="display: none;">
+            <div class="row customerTitleBar">
+                <div class="col-sm-1 text-center">X</div>
+                <div class="col-sm-2">07556513501</div>
+                <div class="col-sm-2">Jeff Stauffer</div>
+                <div class="col-sm-7">6638 Merwin Rd. Columbus OH 43235</div>
+            </div><!-- end row -->
+            <!-- begin the appPages for the project / drawing views-->
+            <div class="row appPage" id="jobScreen">
+                <div class="col-sm-7">
+                    <div class="JobDesc">
+                        <h2>JOB DESCRIPTION</h2>
+                        <p class="date">01/01/2019</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus ligula, molestie in tristique vitae, ultricies in tortor. Praesent aliquet eros a magna ornare pellentesque. Duis convallis sollicitudin mauris at suscipit. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et diam id arcu efficitur congue. Donec facilisis tortor id lorem rutrum, a commodo tellus sagittis. Mauris eget enim pellentesque tortor fermentum venenatis sed condimentum leo. Fusce finibus volutpat nulla sit amet mattis. Phasellus volutpat erat a ex interdum, porttitor ornare felis euismod. Sed sit amet diam dictum, iaculis dolor eu, venenatis nibh.</p>
+                        <label for="AddNotes">additional notes</label>
+                        <textarea id="AddNotes"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="JobDetails">
+                                <h2>JOB DETAILS</h2>
+                                <p>year home built</p>
+                                <p>customer preferred product(s)</p>
+                                <p>home have basement?</p>
+                                <p>Entry/exit issues?</p>
+                                <p>Any pets in the home?</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="JobMeasures">
+                                <h2>MEASURE DETAILS</h2>
+                                <p>number & identities of rooms measured</p>
+                                <p>room(s) dimensions</p>
+                                <p>products necessary (under flooring, floor type, transition types...)?
+                                <p>room(s) notes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-sm-5">
+                    <div class="JobRooms">
+                        <h2>Level: Ground</h2>
+                        <a href="#">LIVING ROOM</a>
+                        <a href="#">FOYER</a>
+                        <button>&plus; Add a Room</button>
+                        <h2>Level: Basement</h2>
+                        <a href="#">Family Room</a>
+                        <button>&plus; Add a Room</button>
+                        <button id="JobAddLevel">Add a Level</button>
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row  / appPage -->
         </div>
-    </div>
-    <div class="NavDark appPage" id="makeJob" style="display: none;">
-        <div class="NameBox">TekMeasure</div>
-        <div class="InternalBox" style="width: 75%; margin-left: 12.5%;">
-            <div class="DarkBox" id="JobBox">
-                <div class="form-group" id="createJobBox">
+        <!-- end tier 4 -->
+        <!-- flyout side navigation -->
+        <div class="row" id="sideNav" style="display: none;">
+            <div class="col-sm-12">
+                <div class="NameBox">
+                    <h1>TekMeasure</h1>
                 </div>
-                <button class="loginButton" id="createJobLocal">Create Job</button>
+                <div id="sideNavClose">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <ul class="sideNavLinks">
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                    <li>Menu Item</li>
+                </ul>
             </div>
+        </div> <!-- end row -->
+        <!-- end flyout navigation -->
+
+    </div><!-- end pageWindow -->
+
+
+
+
+
+
+    <div class="DarkBox" id="JobBox" style="display: none;">
+        <div class="splashBox" style="float: left;">
+            <h1 class="block-title">Create Job</h1>
+            <div class="LoremIpsum">Create a new job to be saved locally or assigned to project number at a future date.</div>
+        </div>
+        <div class="splashBox" id="LoadLocalBox" style="float: left;">
+            <h1 class="block-title">Load Local</h1>
+            <div class="LoremIpsum">Load a job that has been saved locally to this device.</div>
+        </div>
+        <div class="splashBox" id="LoadIMSBox" style="float: left;">
+            <h1 class="block-title">Load From IMS</h1>
+            <div class="LoremIpsum">Load a job from the cloud that has been assigned to this account.</div>
+        </div>
+        <div class="splashBox" id="UploadJobBox" style="float: left;">
+            <h1 class="block-title">Upload</h1>
+            <div class="LoremIpsum">Upload jobs that have been saved locally, assign them to a project number, or share with another account</div>
         </div>
     </div>
 
@@ -398,5 +574,13 @@
             </div>
         </div><!-- end InternalFrame-->
     </div>
+
+
+
+    <script src="js/accordionClass.js"></script>
+    <script src="js/viewSwitch.js"></script>
+    <script src="js/sideNav.js"></script>
+    <script src="js/statusPane.js"></script>
+    <script src="js/progressBar.js"></script>
 </body>
 </html>

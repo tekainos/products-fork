@@ -23,13 +23,427 @@ light gray = #e5e4e7 or hsl(255, 5%, 90%);
 
 
 
-body {
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 14px;
+
+/************************************** general styles **************************************/
+
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
     margin: 0;
-    overflow: hidden;
-    background: #e5e3df !important;
+    padding: 0;
 }
+
+body {
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    color: #333 !important;
+    background: #FFF !important;
+}
+
+html, body {
+    height: 100%;
+}
+
+a {
+    color: #0571af;
+    font-weight: 600;
+}
+
+img {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+}
+
+.appPage {
+    overflow: auto;
+}
+
+
+
+
+
+/************************************** tier 1 - page window **************************************/
+.pageWindow {
+    position: relative;
+    width: 100% !important; /* --enable to make screen stretch to fill window */
+    height: 100%;
+}
+
+header {
+    line-height: 80px;
+    margin: 0;
+    padding: 0;
+    min-height: 80px;
+}
+
+#burgerButton {
+    margin: 1.4em 0 0 1em;
+    float: left;
+}
+
+    #burgerButton .bar {
+        width: 30px;
+        height: 5px;
+        background: #c2e8fe;
+        margin: 6px 0;
+    }
+
+.NameBox h1 {
+    font-family: tekainosFont;
+    color: #004990;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    /* No support for these yet */
+    -o-user-select: none;
+    user-select: none;
+}
+    .loginLogo {
+        font-size: 100px;
+        margin-top: 1em;
+        text-align: center;
+    }
+    .smallLogo {
+        font-size: 4em;
+        line-height: 80px;
+    }
+
+#mainNav {
+    height: 80px;
+    text-align: right;
+}
+
+    #mainNav li {
+        font-size: 1.4em;
+        list-style: none;
+        display: inline;
+        color: #198EFF;
+        font-weight: 600;
+        padding: 0 1em;
+        cursor: pointer;
+    }
+    #mainNav li:nth-child(3), #mainNav li:nth-child(4) {
+        border-left: 1px solid #DDD;
+    }
+    #mainNav li:first-child {
+        margin-left: 0;
+    }
+    #mainNav li:last-child {
+        margin-right: 0;
+    }
+
+    #mainNav li i {
+        margin-right: .25em;
+        color: #198EFF;
+        font-size: 1.5em;
+    }
+
+
+
+
+/************************************** dashboard tier **************************************/
+.appPageView {
+    height: 100%;
+}
+
+#dashboard > div {
+    background: radial-gradient(circle at 50% center, rgb(194, 232, 254), rgb(5, 113, 175));
+    padding: 2em 0;
+    height: 100%;
+}
+
+.dashboardLeft {
+    padding: 0 !important;
+    position: relative;
+}
+
+#statusPaneButton {
+    z-index: 1;
+}
+
+    #statusPaneButton i {
+        font-size: 2em;
+        color: #0571af;
+        font-weight: 100;
+    }
+
+    #statusPaneButton .fa {
+        font-weight: normal;
+    }
+
+.statusPaneVisible {
+    float: left;
+    padding: 1.5em 0 1.5em 4em;
+    /* position: absolute;
+		top: 0;
+		left: 0; */
+}
+
+.statusPaneHidden {
+    background: #FFF;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 1.5em 0 1.5em 37%;
+}
+
+.sideContent {
+    background: linear-gradient(to left, #ffffff, #F5F5F5);
+    border-radius: 0 10px 10px 0;
+    text-align: center;
+    padding: 1em 0;
+}
+
+    .sideContent h2 {
+        color: #004990;
+        font-size: 40px;
+        font-weight: 600;
+        margin: 0 auto;
+        width: 35%;
+    }
+
+.SideContentOpen {
+    background: #FFF;
+    width: auto;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.StatusBlock {
+    background: #FFF;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    margin: 2em;
+    padding: 1em 0;
+}
+
+    .StatusBlock span {
+        color: #5ebb48;
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+        .StatusBlock span.subtext {
+            font-size: 20px;
+            color: inherit;
+        }
+
+        .StatusBlock span.error {
+            color: #ff2a00;
+        }
+
+.dbViewPane {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1em;
+    background: #FFF;
+}
+
+
+
+
+/* Job list accordion */
+
+#jobsAccordion h2 {
+    color: #004990;
+    background: #d1d1d1;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    margin: 0;
+    font-size: 2em;
+}
+
+#JobsList {
+    overflow: auto;
+    max-height: 60vh;
+}
+
+#JobsList--filter {
+    padding: 1em;
+    border-bottom: 1px solid #004990;
+}
+
+    #JobsList--filter li {
+        list-style: none;
+        display: inline;
+        font-size: 1em;
+    }
+
+#JobsList .panelAccordion {
+    padding: 1em;
+    border-bottom: 1px solid #BBB;
+}
+
+    #JobsList .panelAccordion h3 {
+        font-size: 1.5em;
+        padding: 0;
+        margin: 0;
+    }
+
+    #JobsList .panelAccordion:nth-child(odd) {
+        background: #F5F5F5;
+    }
+
+    #JobsList .panelAccordion:last-child {
+        border: 0;
+    }
+
+
+
+
+/************************************** project view tier **************************************/
+#projectView > .row {
+    margin: 0 15px;
+}
+
+#projectView > appPage {
+    overflow: auto;
+}
+
+.customerTitleBar {
+    background: linear-gradient(to bottom, #f9f9f9, #f9fbfc 12%, #e5eaed);
+    height: 60px;
+    font-size: 1.5em;
+    line-height: 60px;
+    margin: 0 !important;
+}
+
+#jobScreen h2 {
+    font-size: 1.5em;
+    margin: 2em 0 1em 0;
+    padding: 0 0 5px 0;
+    color: #000;
+    border-bottom: 2px solid #c2e8fe;
+}
+
+.JobDesc .date {
+    margin-bottom: 1em;
+    font-weight: 600;
+}
+
+.JobDesc label {
+    display: block;
+    margin-top: 1em;
+}
+
+.JobDesc textarea {
+    width: 100%;
+}
+
+
+.JobRooms {
+    margin: 11em 0;
+}
+
+    .JobRooms button {
+        width: 100%;
+        background: #FFF;
+        border: 0;
+        padding: 0;
+        text-align: right;
+        margin: .5em 0;
+        color: #004990;
+    }
+
+        .JobRooms button#JobAddLevel {
+            margin: 2em 0;
+            text-align: center;
+            border: 2px solid #004990;
+            background: #0571af;
+            color: #FFF;
+        }
+
+    .JobRooms a {
+        padding: 10px;
+        display: block;
+        text-transform: uppercase;
+    }
+
+        .JobRooms a:hover {
+            background: #B1FFFF;
+        }
+
+
+
+
+/************************************** flyout side navigation menu **************************************/
+#sideNav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 300px;
+    max-width: 400px;
+    width: 100%;
+    background: #000055;
+    color: #FFF;
+}
+
+    #sideNav .NameBox h1 {
+        color: #FFF;
+        width: 50%;
+        float: left;
+        margin: .5em;
+    }
+
+#sideNavClose {
+    display: inline-block;
+    cursor: pointer;
+    float: right;
+    margin: 0;
+    padding: 1em;
+    border: 1px solid #ff2a00;
+    background: #ff2a00;
+}
+
+    #sideNavClose i {
+        font-size: 3em;
+        font-weight: 600;
+    }
+
+    #sideNavClose:hover {
+        cursor: pointer;
+        background: #FFF;
+        color: #ff2a00;
+    }
+
+.sideNavLinks {
+    clear: both;
+}
+
+    .sideNavLinks li {
+        list-style: none;
+        border-bottom: solid 1px #FFF;
+        margin: 0 0 1em 0;
+        padding: 0;
+        line-height: 40px;
+    }
+
+
+
+
+/************************************** progress bar **************************************/
+#progress-bar {
+    height: 10px;
+    background: #eaeaea;
+    margin: 1em;
+}
+
+#progress {
+    width: 0%;
+    max-width: 100%;
+    height: 100%;
+    background: #EF5F3C;
+}
+
+
+
+
+
+
+
+
+
 
 
 hr {
@@ -62,10 +476,6 @@ input[type=text] {
 
 .backCanv {
    z-index: 3;
-}
-
-#submitCreateButton, #loginButton {
-    background: #3CB371;
 }
 
 .headerInputs {
@@ -368,15 +778,14 @@ input[type=text] {
     width: 100%;
 }
 
-.NameBox {
+/* .NameBox {
     margin: auto;
-    margin-top: 5%;
     text-align: center;
     font-size: 130px;
     font-family: tekainosFont;
     color: #004990;
     display: block;
-}
+} */
 .questionGroup {
     display: inline-block;
     height: 90%;

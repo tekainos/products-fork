@@ -24,6 +24,11 @@ $(function () {
     var upload = new Upload(editor);
     var submit = new Submit(editor);
     var menubar = new Menubar(editor);
+
+    var logo = document.getElementById('logoclickable');
+    logo.onclick = function () {
+        editor.signals.changePage.dispatch('jobsAccordion', false);
+    };
     //var head = new Sidebar.Head(editor);
     //var ld = new Sidebar.Load(editor);
     //var sv = new Sidebar.Save(editor);
@@ -112,6 +117,13 @@ editor.signals.changePage.add(function (page, back, backret) {
     hideAll();
     var pg = document.getElementById(page);
     pg.style.display = 'block';
+    var logo = document.getElementById('logoclickable');
+    logo.onclick = backret ? function () {
+        editor.signals.changePage.dispatch(backret, false);
+    } : function () {
+        editor.signals.changePage.dispatch('splashPage', false);
+    };
+
     var bk = document.getElementById('backButton');
     bk.style.display = back ? 'block' : 'none';
     bk.onclick = backret ? function () {

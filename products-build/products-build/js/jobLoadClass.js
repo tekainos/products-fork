@@ -10,7 +10,7 @@
 
     var bx1 = document.getElementById("CreateJobBox");
     bx1.onclick = function () {
-        signals.changePage.dispatch('makeJob', true, 'loadJob');
+        signals.changePage.dispatch('makeJob', true, 'jobsAccordion');
     };
 
     var bx2 = document.getElementById("LoadLocalBox");

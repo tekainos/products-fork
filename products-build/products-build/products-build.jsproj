@@ -120,6 +120,7 @@
     <Content Include="img\measle.png" />
     <Content Include="JSON\products-test.json" />
     <Content Include="JSON\products-test2.json" />
+    <Content Include="js\accordionClass.js" />
     <Content Include="js\exportToDXF.js" />
     <Content Include="js\jobLoadClass.js" />
     <Content Include="js\LoadPage.js" />
@@ -131,9 +132,13 @@
     <Content Include="js\productPicker.js" />
     <Content Include="js\productPicker2.js" />
     <Content Include="js\productPicker3.js" />
+    <Content Include="js\progressBar.js" />
+    <Content Include="js\sideNav.js" />
+    <Content Include="js\statusPane.js" />
     <Content Include="js\uhs.js" />
     <Content Include="js\tileClass.js" />
     <None Include="TMFloorPlanner_TemporaryKey.pfx" />
+    <Content Include="js\viewSwitch.js" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-brands-400.ttf" />
