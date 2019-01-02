@@ -22,9 +22,13 @@
         signals.changePage.dispatch('splashPage', false);
     };
 
+    //var bx3 = document.getElementById("LoadIMSBox");
+    //bx3.onclick = function () {
+    //    signals.changePage.dispatch('Home', true, 'loadJob');
+    //};
     var bx3 = document.getElementById("LoadIMSBox");
     bx3.onclick = function () {
-        signals.changePage.dispatch('Home', true, 'loadJob');
+        signals.changePage.dispatch('projectView', true, 'dashboard');
     };
 
     var bx4 = document.getElementById("UploadJobBox");

@@ -31,11 +31,14 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li {
     padding: 0;
 }
 
-body {
+body, body * {
     font-family: Roboto, sans-serif;
     font-size: 15px;
-    color: #333 !important;
-    background: #FFF !important;
+    box-sizing: border-box;
+}
+
+body {
+    color: #000;
 }
 
 html, body {
@@ -53,41 +56,71 @@ img {
     height: auto;
 }
 
-.appPage {
+label {
+    font-weight: normal;
+}
+
+.appWrapper {
+    height: 100vh;
+    background: radial-gradient(circle at 50% center, rgb(194, 232, 254), rgb(5, 113, 175));
+    padding: 0;
+}
+
+.contentWindow {
+    margin: 3vh 0;
+}
+
+.whiteBG {
+    background: #FFF;
+}
+
+.lightBG {
+    background: #F5F5F5;
+}
+
+.overflow--x {
+    overflow-x: auto;
+}
+
+.overflow--y {
+    overflow-y: auto;
+}
+
+.overflow {
     overflow: auto;
 }
 
-
-
-
-
-/************************************** tier 1 - page window **************************************/
-.pageWindow {
-    position: relative;
-    width: 100% !important; /* --enable to make screen stretch to fill window */
-    height: 100%;
+.contentPane {
+    height: 84vh;
+    padding: 1em;
 }
 
+
+
+
+
+/************************************** header **************************************/
 header {
-    line-height: 80px;
-    margin: 0;
-    padding: 0;
-    min-height: 80px;
+    display: flex;
+    height: 13vh;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
 }
 
 #burgerButton {
-    margin: 1.4em 0 0 1em;
-    float: left;
+    margin: 0 0 0 15px;
+    width: 30px;
 }
 
     #burgerButton .bar {
-        width: 30px;
+        width: 100%;
         height: 5px;
         background: #c2e8fe;
         margin: 6px 0;
     }
 
-.NameBox h1 {
+.logo h1 {
     font-family: tekainosFont;
     color: #004990;
     -moz-user-select: none;
@@ -96,64 +129,123 @@ header {
     /* No support for these yet */
     -o-user-select: none;
     user-select: none;
+    font-size: 3.5em;
 }
-    .loginLogo {
-        font-size: 100px;
-        margin-top: 1em;
-        text-align: center;
-    }
-    .smallLogo {
-        font-size: 4em;
-        line-height: 80px;
-    }
 
-#mainNav {
-    height: 80px;
+.mainNav {
     text-align: right;
+    height: 27px;
 }
 
-    #mainNav li {
-        font-size: 1.4em;
+    .mainNav li {
         list-style: none;
-        display: inline;
-        color: #198EFF;
-        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
         padding: 0 1em;
+        font-size: 1.25em;
+        color: #004990;
+        font-weight: 600;
         cursor: pointer;
     }
-    #mainNav li:nth-child(3), #mainNav li:nth-child(4) {
-        border-left: 1px solid #DDD;
-    }
-    #mainNav li:first-child {
-        margin-left: 0;
-    }
-    #mainNav li:last-child {
-        margin-right: 0;
-    }
 
-    #mainNav li i {
-        margin-right: .25em;
-        color: #198EFF;
-        font-size: 1.5em;
-    }
+        .mainNav li:nth-child(3), .mainNav li:nth-child(4) {
+            border-left: 1px solid #DDD;
+        }
+
+        .mainNav li:first-child {
+            margin-left: 0;
+        }
+
+        .mainNav li:last-child {
+            margin-right: 0;
+        }
+
+        .mainNav li i {
+            margin-right: .25em;
+            color: inherit;
+            font-size: 1.75em;
+            font-weight: initial;
+        }
 
 
 
 
-/************************************** dashboard tier **************************************/
-.appPageView {
-    height: 100%;
+/************************************** login page **************************************/
+#LoginBox .logo h1 {
+    font-size: 10vw;
+    margin-bottom: 40px;
 }
 
-#dashboard > div {
-    background: radial-gradient(circle at 50% center, rgb(194, 232, 254), rgb(5, 113, 175));
-    padding: 2em 0;
-    height: 100%;
+
+
+
+/************************************** job listings **************************************/
+#jobsAccordion h2 {
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    margin: 0;
+    font-size: 2em;
 }
 
-.dashboardLeft {
-    padding: 0 !important;
-    position: relative;
+#JobsList--filter {
+    padding: 1em;
+    border-bottom: 1px solid #004990;
+}
+
+    #JobsList--filter li {
+        list-style: none;
+        display: inline;
+        font-size: 1em;
+    }
+.jobListings {
+    height: 64vh;
+}
+
+    .jobListings .panelAccordion {
+        padding: 1em;
+        border-bottom: 1px solid #BBB;
+    }
+
+        .jobListings .panelAccordion:nth-child(even) {
+            background: #FFF;
+        }
+
+        .jobListings .panelAccordion:last-child {
+            border: 0;
+        }
+
+        .jobListings .panelAccordion h3 {
+            font-size: 1.5em;
+            padding: 0;
+            margin: 0;
+        }
+
+
+
+/************************************** jobs status menu **************************************/
+.statusPane {
+    background: linear-gradient(to left, #ffffff, #F5F5F5);
+    border-radius: 0 10px 10px 0;
+    text-align: center;
+    max-height: 70vh;
+    height: 100%;
+    overflow: auto;
+}
+
+    .statusPane h2 {
+        color: #004990;
+        font-size: 2.5vw;
+        font-weight: 600;
+        margin: 0 auto;
+    }
+
+.sideContent {
+    width: auto;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-top: 2em;
 }
 
 #statusPaneButton {
@@ -166,45 +258,17 @@ header {
         font-weight: 100;
     }
 
-    #statusPaneButton .fa {
-        font-weight: normal;
-    }
-
 .statusPaneVisible {
-    float: left;
-    padding: 1.5em 0 1.5em 4em;
-    /* position: absolute;
-		top: 0;
-		left: 0; */
+    position: absolute;
+	top: 2em;
+	left: 2em;
 }
 
 .statusPaneHidden {
-    background: #FFF;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
-    padding: 1.5em 0 1.5em 37%;
-}
-
-.sideContent {
-    background: linear-gradient(to left, #ffffff, #F5F5F5);
-    border-radius: 0 10px 10px 0;
-    text-align: center;
     padding: 1em 0;
-}
-
-    .sideContent h2 {
-        color: #004990;
-        font-size: 40px;
-        font-weight: 600;
-        margin: 0 auto;
-        width: 35%;
-    }
-
-.SideContentOpen {
-    background: #FFF;
-    width: auto;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    position: relative;
 }
 
 .StatusBlock {
@@ -230,137 +294,242 @@ header {
             color: #ff2a00;
         }
 
-.dbViewPane {
-    width: 100%;
-    margin: 0 auto;
-    padding: 1em;
+
+
+
+
+/************************************** customer navigation bar **************************************/
+#customerInfo {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    margin-bottom: 1em;
+    padding: 0;
+}
+
+    #customerInfo p {
+        font-size: 1.5em;
+    }
+
+.projectClose {
+    background: red;
+    height: 100%;
+}
+
+    .projectClose:hover {
+        background: #000;
+    }
+
+#closeProjectBtn {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+    #closeProjectBtn i {
+        color: #FFF;
+        font-size: 2.25em;
+    }
+
+.projectSubmit {
+    text-align: center;
+}
+
+    .projectSubmit button {
+        padding: 5px 25px;
+        margin: 0 auto;
+        border-radius: 3px;
+    }
+
+    .projectSubmit .disabledSubmitBtn {
+        background: #ccc;
+        border: 0;
+        color: #aaa;
+        cursor: default;
+    }
+
+    .projectSubmit .activeSubmitBtn {
+        background: #A2B209;
+        border: 0;
+        color: #FFF;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+
+
+
+
+/************************************** room's navigation **************************************/
+#roomNav {
+    /*display: flex;
+    align-items: center;*/
+    height: 30px;
+    line-height: 30px;
+    margin-top: -1em;
+}
+
+    #roomNav div {
+        font-size: 1em;
+        font-weight: 600;
+        color: #004990;
+        text-align: center;
+    }
+
+        #roomNav div:first-child {
+            color: #000;
+            text-transform: uppercase;
+            font-size: 1.25em;
+        }
+
+        #roomNav div i {
+            color: #004990;
+            font-size: 1em;
+        }
+
+.activeNavBtn {
     background: #FFF;
 }
 
 
 
 
-/* Job list accordion */
 
-#jobsAccordion h2 {
-    color: #004990;
-    background: #d1d1d1;
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-    padding: 20px;
-    margin: 0;
-    font-size: 2em;
-}
-
-#JobsList {
-    overflow: auto;
-    max-height: 60vh;
-}
-
-#JobsList--filter {
-    padding: 1em;
-    border-bottom: 1px solid #004990;
-}
-
-    #JobsList--filter li {
-        list-style: none;
-        display: inline;
-        font-size: 1em;
-    }
-
-#JobsList .panelAccordion {
-    padding: 1em;
-    border-bottom: 1px solid #BBB;
-}
-
-    #JobsList .panelAccordion h3 {
-        font-size: 1.5em;
-        padding: 0;
-        margin: 0;
-    }
-
-    #JobsList .panelAccordion:nth-child(odd) {
-        background: #F5F5F5;
-    }
-
-    #JobsList .panelAccordion:last-child {
-        border: 0;
-    }
-
-
-
-
-/************************************** project view tier **************************************/
-#projectView > .row {
-    margin: 0 15px;
-}
-
-#projectView > appPage {
-    overflow: auto;
-}
-
-.customerTitleBar {
-    background: linear-gradient(to bottom, #f9f9f9, #f9fbfc 12%, #e5eaed);
-    height: 60px;
-    font-size: 1.5em;
-    line-height: 60px;
-    margin: 0 !important;
-}
-
-#jobScreen h2 {
-    font-size: 1.5em;
-    margin: 2em 0 1em 0;
-    padding: 0 0 5px 0;
-    color: #000;
-    border-bottom: 2px solid #c2e8fe;
-}
-
-.JobDesc .date {
-    margin-bottom: 1em;
-    font-weight: 600;
-}
-
-.JobDesc label {
-    display: block;
-    margin-top: 1em;
-}
-
-.JobDesc textarea {
-    width: 100%;
+/************************************** project view screen **************************************/
+#projectView .contentPane {
+    padding: 0;
 }
 
 
-.JobRooms {
-    margin: 11em 0;
+.detailsTop {
+    margin: 2em 0 2em 0;
 }
 
-    .JobRooms button {
-        width: 100%;
-        background: #FFF;
-        border: 0;
-        padding: 0;
-        text-align: right;
-        margin: .5em 0;
+    .detailsTop h2 {
+        border-bottom: solid 2px #c2e8fe;
         color: #004990;
+        padding: 1em 0 .25em 0;
+        font-size: 1.5em;
     }
 
-        .JobRooms button#JobAddLevel {
-            margin: 2em 0;
-            text-align: center;
-            border: 2px solid #004990;
-            background: #0571af;
-            color: #FFF;
-        }
+    .detailsTop h3 {
+        padding: 0;
+        font-size: 1.2em;
+        margin-top: 2em;
+    }
 
-    .JobRooms a {
-        padding: 10px;
-        display: block;
+
+.detailsLeft {
+    height: 73vh;
+    overflow: auto;
+    border-right: 1px solid #BBB;
+    padding: 0 1.5em;
+}
+
+    .detailsLeft h2 {
+        border-bottom: solid 2px #c2e8fe;
+        color: #004990;
+        padding: 1em 0 .25em 0;
+        font-size: 1.5em;
+    }
+
+    .detailsLeft h3 {
+        padding: 0;
+        font-size: 1.2em;
+        margin-top: 2em;
+    }
+
+
+.detailsRight {
+    height: 73vh;
+    overflow: auto;
+}
+
+    .detailsRight h2 {
+        font-size: 1.25em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #004990;
+        padding: 1em 0 .25em 0;
+    }
+
+    .detailsRight h3 {
+        font-size: 1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #000;
+        padding: 1.5em 0 .25em 0;
+    }
+
+.projectRoom {
+    border: solid 1px #c2e8fe;
+    margin: 1em 0;
+    padding: .5em;
+    background: #f5f5f5;
+}
+
+    .projectRoom p {
+        color: #004990;
+        font-weight: 600;
         text-transform: uppercase;
     }
 
-        .JobRooms a:hover {
-            background: #B1FFFF;
-        }
+
+#projectSummary {
+    padding: 0 1.5em;
+    overflow: auto;
+    height: 73vh;
+}
+
+    #projectSummary .date, #projectSummary .customerContact {
+        font-weight: 600;
+    }
+
+    #projectSummary textarea {
+        width: 75%;
+    }
+
+
+
+
+/************************************** measure view screen **************************************/
+
+
+
+
+
+/************************************** attach view screen **************************************/
+#roomAttachView .detailsLeft, #roomAttachView .detailsRight {
+    height: 54vh;
+}
+
+    #roomAttachView .detailsRight h3 {
+        text-transform: uppercase;
+        border: 0;
+        margin: 0 auto .5em auto;
+        padding: 0;
+        max-width: 250px;
+    }
+
+#roomAttachView .detailsTop h2 {
+    text-transform: uppercase;
+    border: 0;
+}
+
+#roomAttachView .uploadBox {
+    margin: 0 auto;
+}
+
+
+
+/************************************** estimate view screen **************************************/
+#estimateDetails .detailsLeft h2 {
+    border: solid 2px #c2e8fe;
+    text-transform: uppercase;
+    padding: .5em;
+    margin: 1em;
+}
 
 
 
@@ -376,35 +545,36 @@ header {
     max-width: 400px;
     width: 100%;
     background: #000055;
-    color: #FFF;
+    z-index: 1000;
+    overflow: auto;
+    height: 100%;
 }
 
-    #sideNav .NameBox h1 {
+    #sideNav .logo h1 {
         color: #FFF;
         width: 50%;
         float: left;
-        margin: .5em;
+        margin: .5em 0;
+        font-size: 2.5em;
     }
 
 #sideNavClose {
     display: inline-block;
-    cursor: pointer;
     float: right;
     margin: 0;
     padding: 1em;
-    border: 1px solid #ff2a00;
-    background: #ff2a00;
 }
 
-    #sideNavClose i {
+    #sideNavClose .sideNavCloseBtn {
         font-size: 3em;
         font-weight: 600;
+        cursor: pointer;
+        color: #CC1F14;
     }
 
-    #sideNavClose:hover {
+    #sideNavClose .sideNavCloseBtn:hover {
         cursor: pointer;
-        background: #FFF;
-        color: #ff2a00;
+        color: #000;
     }
 
 .sideNavLinks {
@@ -417,7 +587,9 @@ header {
         margin: 0 0 1em 0;
         padding: 0;
         line-height: 40px;
+        color: #FFF;
     }
+
 
 
 
@@ -440,6 +612,86 @@ header {
 
 
 
+/************************************** buttons **************************************/
+.projectButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .projectButtons > div {
+        background: #F5F5F5;
+        margin: 1em;
+        padding: 1em 3em;
+        border: solid 1px #c2e8fe;
+        color: #004990;
+        border-radius: 5px;
+        box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.25);
+    }
+
+        .projectButtons > div:first-child {
+            margin-left: 0;
+        }
+
+        .projectButtons > div:last-child {
+            margin-right: 0;
+        }
+
+        .projectButtons > div i {
+            color: inherit;
+            margin-right: .25em;
+        }
+
+.addRoomBtns {
+    justify-content: flex-end;
+}
+
+    .addRoomBtns > div {
+        background: #FFF;
+        padding: .5em 1em;
+    }
+
+.uploadButton {
+    background: #004990;
+    border: 0;
+    color: #FFF;
+    border-radius: 3px;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.25);
+    height: 50px;
+    padding: 0 1em;
+}
+
+.uploadButton i {
+    color: inherit;
+    margin-right: .5em;
+}
+
+.uploadBox {
+    max-width: 250px;
+    max-height: 250px;
+    height: 100%;
+    width: 100%;
+    background: #F5F5F5;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.radioGroup {
+    float: left;
+    max-width: 49%;
+    width: 100%;
+}
+
+.formGroup {
+    float: left;
+    width: 100%;
+}
+
+
+
+
+
+
 
 
 
@@ -452,8 +704,8 @@ hr {
 }
 
 input[type=text] {
-    color: black;
     border: 0;
+    color: black;
     box-shadow: none;
     border-radius: 3px;
 }
@@ -649,26 +901,21 @@ input[type=text] {
 }
 
 .DarkBox {
-    height: 65%;
-    width: 75%;
-    margin: auto;
-    margin-top: 4%;
+    /*height: 65%;*/
+    width: 60%;
+    margin: 2em auto;
+    padding-bottom: 1em;
     border-radius: 3px;
     text-align: center;
-    z-index: 1;
-    opacity: 1;
 }
 
 .loginBox {
-    height: 65%;
-    width: 75%;
+    width: 55%;
     margin: auto;
     margin-top: 5%;
-    box-shadow: 5px 5px 10px #ddd;
+    padding-bottom: 1em;
     border-radius: 10px;
     text-align: center;
-    z-index: 1;
-    opacity: 1;
     border: 3px solid #ddd;
     background-color: #FFF;
 }

@@ -35,11 +35,11 @@
         };
     </script>
 
-    <link href="css/main.css" rel="stylesheet" />
     <link id="theme" href="css/dark.css" rel="stylesheet" />
     <link id="switch" href="css/switch.css" rel="stylesheet" />
     <link href="WinJS/css/ui-dark.css" rel="stylesheet" />
     <link href="WinJS/css/winjs.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
 
     <script src="WinJS/js/base.js"></script>
     <script src="WinJS/js/ui.js"></script>
@@ -137,8 +137,15 @@
             <div class="Panel viewportSidebar" id="pledit5"></div>
         </span>
     </div>
+    <div class="Panel " id="toolsMenu" style="display: none;">
+        <div class="toolsMenuBtn" id="toolsMenuHide"><i class="fa fa-angle-double-left"></i></div>
+        <div class="toolsMenuBtn"><i class="fas fa-tape"></i></div>
+        <div class="toolsMenuBtn"><i class="fas fa-door-closed"></i></div>
+        <div class="toolsMenuBtn"><i class="fas fa-tape"></i></div>
+        <div class="toolsMenuBtn"><i class="fas fa-tape"></i></div>
+    </div>
     <div class="Panel" id="menubar" style="display: none;">
-        <div class="Row"><span class="tekfont">TekMeasure</span></div>
+        <!--<div class="Row"><span class="tekfont">TekMeasure</span></div>-->
         <div class="menu">
             <div class="title">File</div>
             <div class="options" id="dropdown-file">
@@ -203,38 +210,14 @@
 
 
 
-
-
-
-    <div class="container pageWindow">
-        <header>
-            <div class="row">
-                <div class="col-sm-1">
-                    <div id="burgerButton" style="display: none;">
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                    </div>
-                </div>
-                <div id="logoclickable" class="col-sm-3 NameBox">
-                    <h1>TekMeasure</h1>
-                </div>
-                <nav class="col-sm-8">
-                    <ul id="mainNav" style="display: none;">
-                        <li><span id="CreateJobBox"><i class="fas fa-file-medical"></i>new job</span></li>
-                        <!--<li><span id="loadLocalJob"><i class="fas fa-folder-open"></i>load job</span></li>-->
-                        <li><span id="loadHelpDocs"><i class="fas fa-question-circle"></i>help</span></li>
-                        <!--<li><span id="CreateJobBox"><i class="fab fa-bluetooth"></i>add device</span></li>-->
-                        <li><span id="CreateJobBox"><i class="fas fa-sign-out-alt"></i>logout</span></li>
-                    </ul>
-                </nav>
-            </div> <!-- end row -->
-        </header>
-        <!-- end "first tier" -->
-        <!-- begin second tier - login / create account -->
-        <div class="row appPage" id="login" style="display: none;">
+    <div class="container-fluid appWrapper" style="display: block;">
+        <!-- begin login / create account -->
+        <div class="row appPage" id="login">
             <div class="col-sm-12">
-                <div class="DarkBox" id="LoginBox">
+                <div class="loginBox" id="LoginBox">
+                    <div class="logo" id="logoclickable">
+                        <h1>TekMeasure</h1>
+                    </div>
                     <form class="form-group" style="display: none;" id="registerForm">
                         <p>Create an account</p>
                         <h3 style="color: red; display: none;" id="regPassMatch">Passwords Do Not Match</h3>
@@ -260,124 +243,352 @@
                     <button class="loginButton" style="display: none;" id="offlineButton">Start Offline</button>
                     <button class="loginButton" style="display: none;" id="retryConnectionButton">Retry Connection</button>
                 </div>
-            </div><!-- end col-sm-12 -->
+            </div>
         </div>
-        <!-- end tier 2 -->
-        <!-- begin third tier - dashboard view -->
-        <div class="row appPageView" id="dashboard" style="display: none;">
+        <!-- end login / create account -->
+        <!-- begin header / main nav -->
+        <div class="row" id="appHeader" style="display: none;">
+            <header>
+                <div class="col-sm-1">
+                    <div id="burgerButton">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div class="col-sm-3 logo" id="logoclickable">
+                    <h1>TekMeasure</h1>
+                </div>
+                <nav class="col-sm-8">
+                    <ul class="mainNav">
+                        <li id="CreateJobBox"><i class="fas fa-plus-square"></i> new job</li>
+                        <li id="LoadHelpDocs"><i class="fas fa-question-circle"></i> help</li>
+                        <!--<li><span id="CreateJobBox"><i class="fab fa-bluetooth"></i>add device</span></li>-->
+                        <li id="Logout"><i class="fas fa-sign-out-alt" style="font-weight: 600;"></i> logout</li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        <!-- end header / main nav -->
+        <!-- begin dashboard view -->
+        <div class="row contentWindow" id="dashboard" style="display: none;">
+            <div class="col-sm-3 statusPane" id="dashboardLeft">
+                <div class="statusPaneVisible" id="statusPaneButton">
+                    <div>
+                        <i class="fa fa-caret-square-left"></i>
+                    </div>
+                </div>
+                <div class="sideContent">
+                    <h2>12/31/2018</h2>
+                    <div id="progress-bar">
+                        <div id="progress"></div>
+                    </div>
+                    <p>All jobs status is currently X% complete</p>
+                    <p class="StatusBlock"><span>6 <span class="subtext">of</span> 8</span><br />jobs completed today</p>
+                    <p class="StatusBlock"><span>1 <span class="subtext">of</span> 8</span><br />jobs on hold</p>
+                    <p class="StatusBlock"><span>1 <span class="subtext">of</span> 8</span><br />jobs not started</p>
+                    <p class="StatusBlock"><span class="error">24 <span class="subtext">of</span> 40</span><br />jobs complete this week</p>
+                </div><!-- end sideContent -->
+            </div>
+            <div class="col-sm-9" id="dashboardRight">
+                <!-- begin job listing screen -->
+                <div class="contentPane lightBG appPage" id="jobsAccordion">
+                    <h2>Job Listings</h2>
+                    <ul id="JobsList--filter">
+                        <li><a href="#">Date</a></li>
+                        <li><a href="#">Store #</a></li>
+                        <li><a href="#">Customer</a></li>
+                        <li><a href="#">Address</a></li>
+                    </ul>
+                    <div class="jobListings overflow" id="JobsList">
+                    </div>
+                </div>
+                <!-- end job listing screen -->
+                <!-- begin new job creation screen -->
+                <div class="contentPane lightBG appPage overflow" id="makeJob" style="display: none;">
+                    <div class="DarkBox" id="JobBox">
+                        <div class="form-group" id="createJobBox">
+                        </div>
+                        <button class="loginButton" id="createJobLocal">Create Job</button>
+                    </div>
+                </div>
+                <!-- end new job creation screen -->
+            </div>
+        </div>
+        <!-- end dashboard view -->
+        <!-- begin project view -->
+        <div class="row contentWindow" id="projectView" style="display: none;">
             <div class="col-sm-12">
-                <div class="col-sm-1 dashboardLeft">
-                    <div class="statusPaneHidden" id="statusPaneButton">
-                        <div>
-                            <i class="fa fa-caret-square-left"></i>
+                <div class="contentPane whiteBG">
+                    <!-- begin customer info bar -->
+                    <div class="col-sm-12 lightBG" id="customerInfo">
+                        <div class="col-sm-1 projectClose">
+                            <div id="closeProjectBtn"><i class="fas fa-times"></i></div>
                         </div>
+                        <div class="col-sm-2"><p>589000000</p></div>
+                        <div class="col-sm-2"><p>Jeff Stauffer</p></div>
+                        <div class="col-sm-5"><p>6638 Merwin Rd. Columbus OH 43235</p></div>
+                        <div class="col-sm-2 projectSubmit"><button class="disabledSubmitBtn">submit</button></div>
                     </div>
-                    <div class="sideContent" style="display: none;">
-                        <h2>12/4/2018</h2>
-                        <div id="progress-bar">
-                            <div id="progress"></div>
-                        </div>
-                        <p>All jobs status is currently X% complete</p>
-                        <p class="StatusBlock"><span>6 <span class="subtext">of</span> 8</span><br />jobs completed today</p>
-                        <p class="StatusBlock"><span>1 <span class="subtext">of</span> 8</span><br />jobs on hold</p>
-                        <p class="StatusBlock"><span>1 <span class="subtext">of</span> 8</span><br />jobs not started</p>
-                        <p class="StatusBlock"><span class="error">24 <span class="subtext">of</span> 40</span><br />jobs complete this week</p>
+                    <!-- end customer info bar -->
+                    <!-- begin room navigation -->
+                    <div class="col-sm-12 lightBG" id="roomNav" style="display: none;">
+                        <div class="col-sm-2" id="backToJob"><i class="fa fa-chevron-circle-left"></i> Living Room</div>
+                        <div class="col-sm-2" id="roomMeasure"><i class="fa fa-pencil-square-o"></i> measure</div>
+                        <div class="col-sm-2" id="roomAttachment"><i class="fas fa-paperclip"></i> attach</div>
+                        <div class="col-sm-2" id="roomEstimate"><i class="fas fa-calculator"></i> estimate</div>
                     </div>
-                </div>
-                <div class="col-sm-11 dashboardRight">
-                    <div class="dbViewPane">
-                        <!-- insert the appPages for the dashboard view - create job, load job,  -->
-                        <!-- begin job listing screen -->
-                        <div class="appPage" id="jobsAccordion">
-                            <h2>Job Listings</h2>
-                            <ul id="JobsList--filter">
-                                <li><a href="#">Date</a></li>
-                                <li><a href="#">Store #</a></li>
-                                <li><a href="#">Customer</a></li>
-                                <li><a href="#">Address</a></li>
-                            </ul>
-                            <div id="JobsList">
+                    <!-- end room navigation -->
+                    <!-- begin job details view-->
+                    <div id="jobDetails" style="display: block">
+                        <!-- begin measure details screen -->
+                        <div class="col-sm-7 detailsLeft" id="measureDetails">
+                            <div class="projectButtons">
+                                <div><i class="fas fa-paperclip"></i> attach</div>
+                                <div><i class="fas fa-calculator"></i> estimate</div>
                             </div>
-                        </div>
-                        <!-- end job listing screen -->
-                        <!-- begin new job creation screen -->
-                        <div class="appPage" id="makeJob" style="display: none;">
-                            <div class="DarkBox" id="JobBox">
-                                <div class="form-group" id="createJobBox">
+                            <h2>Rooms</h2>
+                            <div class="projectButtons addRoomBtns">
+                                <div>add a level</div>
+                                <div>add a room</div>
+                            </div>
+                            <div class="projectRooms">
+                                <h3>Level 1</h3>
+                                <div class="projectRoom">
+                                    <p id="livingRoomBtn">Living Room</p>
                                 </div>
-                                <button class="loginButton" id="createJobLocal">Create Job</button>
+                                <div class="projectRoom">
+                                    <p>Foyer</p>
+                                    <form>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="vinylPlank" name="floorType" />
+                                                <label for="vinylPlank">Vinyl Plank</label>
+                                            </div>
+                                            <div class="radioButton">
+                                                <input type="radio" id="tile" name="floorType" />
+                                                <label for="tile">Tile</label>
+                                            </div>
+                                        </div>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="carpet" name="floorType" />
+                                                <label for="carpet">Carpet</label>
+                                            </div>
+                                            <div class="radioButton">
+                                                <input type="radio" id="laminate" name="floorType" />
+                                                <label for="laminate">Laminate</label>
+                                            </div>
+                                        </div>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="wood" name="floorType" />
+                                                <label for="wood">Wood</label>
+                                            </div>
+                                            <div class="radioButton">
+                                                <input type="radio" id="backsplash" name="floorType" />
+                                                <label for="backsplash">Backsplash</label>
+                                            </div>
+                                        </div>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="sheetVinyl" name="floorType" />
+                                                <label for="sheetVinyl">Sheet Vinyl</label>
+                                            </div>
+                                            <div class="radioButton">
+                                                <input type="radio" id="otherFlooring" name="floorType" />
+                                                <label for="otherFlooring">Other Floor Type</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <h3 class="levelHeadline">Level 2</h3>
+                                <div class="projectRoom">
+                                    <p>Bedroom A</p>
+                                </div>
+                                <h3 class="levelHeadline">Level 3</h3>
+                                <div class="projectRoom">
+                                    <p>Bathroom A</p>
+                                </div>
+                                <div class="projectRoom">
+                                    <p>Bathroom B</p>
+                                </div>
+                                <div class="projectRoom">
+                                    <p>Hallway A</p>
+                                </div>
+                            </div><!-- end project rooms container -->
+                        </div>
+                        <div class="col-sm-5 detailsRight">
+                            <!-- begin job profile / summary page-->
+                            <div id="projectSummary">
+                                <h2>Job Profile:</h2>
+                                <p class="date">12/31/2018</p>
+                                <p class="customerContact">Customer Contact:<br />555-555-5555<br />email@email.com</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis velit non porta placerat. Sed a sapien consequat leo hendrerit egestas vitae nec dui. Ut augue tortor, semper a elit id, venenatis lobortis ex. Duis vitae urna eu lectus egestas euismod. Curabitur rhoncus orci quis massa vehicula, semper pellentesque nunc pharetra. Aenean lobortis eu est a sodales. Nunc semper vel tortor vel bibendum. </p>
+                                <form>
+                                    <div class="formGroup">
+                                        <h3>Job Notes</h3>
+                                        <textarea row="20" placeholder="Enter comments regarding job site access, hazards, damages, and other issues..."></textarea>
+                                    </div>
+                                    <div class="formGroup">
+                                        <h3>Build Year:</h3>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="before78" name="buildDate" />
+                                                <label for="before78">Before 1978</label>
+                                            </div>
+                                            <div class="radioButton">
+                                                <input type="radio" id="78to86" name="buildDate" />
+                                                <label for="78to86">1978 to 1986</label>
+                                            </div>
+                                        </div>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="after86" name="buildDate" />
+                                                <label for="after86">After 1986</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="formGroup">
+                                        <h3>Job Type:</h3>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="replacementJob" name="jobType" />
+                                                <label for="before78">Replacement</label>
+                                            </div>
+                                            <div class="radioButton">
+                                                <input type="radio" id="newJob" name="jobType" />
+                                                <label for="newJob">New Construction / Renovation</label>
+                                            </div>
+                                        </div>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="refigureJob" name="jobType" />
+                                                <label for="refigureJob">Refigure</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="formGroup">
+                                        <h3>Job Site:</h3>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="ranchHome" name="jobSite" />
+                                                <label for="ranchHome">Ranch Style</label>
+                                            </div>
+                                            <div class="radioButton">
+                                                <input type="radio" id="storiedHome" name="jobSite" />
+                                                <label for="storiedHome">Storied / Multiple Levels</label>
+                                            </div>
+                                        </div>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="mobileHome" name="jobSite" />
+                                                <label for="mobileHome">Mobile</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="formGroup">
+                                        <h3>Pets:</h3>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="petsYes" name="jobPets" />
+                                                <label for="petsYes">Yes</label>
+                                            </div>
+                                        </div>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="petsNo" name="jobPets" />
+                                                <label for="petsNo">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="formGroup">
+                                        <h3>Understand Scope:</h3>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="scopeYes" name="jobScope" />
+                                                <label for="scopeYes">Yes</label>
+                                            </div>
+                                        </div>
+                                        <div class="radioGroup">
+                                            <div class="radioButton">
+                                                <input type="radio" id="scopeNo" name="jobScope" />
+                                                <label for="scopeNo">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end job profile / summary page-->
+                        </div>
+                    </div>
+                    <!-- end job details view-->
+                    <!-- begin measure view-->
+                    <div id="measureView" style="display: none">
+                        <div class="col-sm-7 detailsLeft">
+                            <h2>Rooms</h2>
+                        </div>
+                        <div class="col-sm-5 detailsRight">
+                        </div>
+                    </div>
+                    <!-- end measure view-->
+                    <!-- begin attach to room view-->
+                    <div id="roomAttachView" style="display: none">
+                        <div class="col-sm-12 detailsTop">
+                            <h2>Attach Files</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis velit non porta placerat. Sed a sapien consequat leo hendrerit egestas vitae nec dui. </p>
+                        </div>
+                        <div class="col-sm-7 detailsLeft">
+                            <div class="projectButtons">
+                                <div><i class="fas fa-paperclip"></i> attach files</div>
                             </div>
                         </div>
-                        <!-- end new job creation screen -->
-                        <!-- end the appPage(s) for the dashboard view -->
-                    </div>
-                </div>
-            </div><!-- end dashboard > col -->
-        </div> <!-- end row -->
-        <!-- end tier 3 -->
-        <!-- begin fourth tier - project info view -->
-        <div class="row appPageView" id="projectView" style="display: none;">
-            <div class="row customerTitleBar">
-                <div class="col-sm-1 text-center">X</div>
-                <div class="col-sm-2">07556513501</div>
-                <div class="col-sm-2">Jeff Stauffer</div>
-                <div class="col-sm-7">6638 Merwin Rd. Columbus OH 43235</div>
-            </div><!-- end row -->
-            <!-- begin the appPages for the project / drawing views-->
-            <div class="row appPage" id="jobScreen">
-                <div class="col-sm-7">
-                    <div class="JobDesc">
-                        <h2>JOB DESCRIPTION</h2>
-                        <p class="date">01/01/2019</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus ligula, molestie in tristique vitae, ultricies in tortor. Praesent aliquet eros a magna ornare pellentesque. Duis convallis sollicitudin mauris at suscipit. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et diam id arcu efficitur congue. Donec facilisis tortor id lorem rutrum, a commodo tellus sagittis. Mauris eget enim pellentesque tortor fermentum venenatis sed condimentum leo. Fusce finibus volutpat nulla sit amet mattis. Phasellus volutpat erat a ex interdum, porttitor ornare felis euismod. Sed sit amet diam dictum, iaculis dolor eu, venenatis nibh.</p>
-                        <label for="AddNotes">additional notes</label>
-                        <textarea id="AddNotes"></textarea>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="JobDetails">
-                                <h2>JOB DETAILS</h2>
-                                <p>year home built</p>
-                                <p>customer preferred product(s)</p>
-                                <p>home have basement?</p>
-                                <p>Entry/exit issues?</p>
-                                <p>Any pets in the home?</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="JobMeasures">
-                                <h2>MEASURE DETAILS</h2>
-                                <p>number & identities of rooms measured</p>
-                                <p>room(s) dimensions</p>
-                                <p>products necessary (under flooring, floor type, transition types...)?
-                                <p>room(s) notes</p>
+                        <div class="col-sm-5 detailsRight">
+                            <h3>Drag and Drop Files</h3>
+                            <div class="uploadBox">
                             </div>
                         </div>
                     </div>
-                </div><!-- end col -->
-                <div class="col-sm-5">
-                    <div class="JobRooms">
-                        <h2>Level: Ground</h2>
-                        <a href="#">LIVING ROOM</a>
-                        <a href="#">FOYER</a>
-                        <button>&plus; Add a Room</button>
-                        <h2>Level: Basement</h2>
-                        <a href="#">Family Room</a>
-                        <button>&plus; Add a Room</button>
-                        <button id="JobAddLevel">Add a Level</button>
+                    <!-- end attach to room view-->
+                    <!-- begin estimate view-->
+                    <div id="estimateDetails" style="display: none">
+                        <div class="col-sm-7 detailsLeft">
+                            <h2>Project</h2>
+                            <h2>Products</h2>
+                            <h2>Demolition</h2>
+                            <h2>Preparation</h2>
+                            <h2>Moving / Relocation</h2>
+                            <h2>Custom</h2>
+                        </div>
+                        <div class="col-sm-5 detailsRight">
+                            <h2>Summary / Subtotal</h2>
+                            <h3>Labor Category:</h3>
+                            <p>Vinyl Plank Detail</p>
+                            <h3>Job Type:</h3>
+                            <p>Refigure</p>
+                            <h3>Areas To Update:</h3>
+                            <p>Living Room</p>
+                            <p>Bedroom A</p>
+                            <p>Bathroom A</p>
+                            <h3>Build Year:</h3>
+                            <p>Before 1978</p>
+                            <h3>Pets:</h3>
+                            <p>No</p>
+                        </div>
                     </div>
-                </div><!-- end col -->
-            </div><!-- end row  / appPage -->
+                    <!-- end estimate view-->
+                </div><!-- end content pane -->
+            </div>
         </div>
-        <!-- end tier 4 -->
+        <!-- end project view -->
         <!-- flyout side navigation -->
         <div class="row" id="sideNav" style="display: none;">
             <div class="col-sm-12">
-                <div class="NameBox">
+                <div class="logo">
                     <h1>TekMeasure</h1>
                 </div>
                 <div id="sideNavClose">
-                    <i class="fas fa-times-circle"></i>
+                    <i class="fas fa-times sideNavCloseBtn"></i>
                 </div>
                 <ul class="sideNavLinks">
                     <li>Menu Item</li>
@@ -412,9 +623,7 @@
             </div>
         </div> <!-- end row -->
         <!-- end flyout navigation -->
-
-    </div><!-- end pageWindow -->
-
+    </div>
 
 
 
@@ -579,6 +788,7 @@
 
     <script src="js/accordionClass.js"></script>
     <script src="js/viewSwitch.js"></script>
+    <script src="js/projectView.js"></script>
     <script src="js/sideNav.js"></script>
     <script src="js/statusPane.js"></script>
     <script src="js/progressBar.js"></script>

@@ -7,7 +7,7 @@
     var config = editor.config;
 
     // initialize header
-    initializeHeader();
+    //initializeHeader();
 
     var container = document.getElementById("login");
 
@@ -84,10 +84,13 @@
                     var dashboard = document.getElementById('dashboard');
                     dashboard.style.display = 'block';
 
+                    var header = document.getElementById('appHeader');
+                    header.style.display = 'block';
+
                     var login = document.getElementById('login');
                     login.style.display = 'none';
 
-                    swapHeader(login);
+                    //swapHeader(login);
                 } else {
                     $(passWrong).show();
                 }
@@ -115,10 +118,13 @@
                             var dashboard = document.getElementById('dashboard');
                             dashboard.style.display = 'block';
 
+                            var header = document.getElementById('appHeader');
+                            header.style.display = 'block';
+
                             var login = document.getElementById('login');
                             login.style.display = 'none';
 
-                            swapHeader(login);
+                            //swapHeader(login);
                         } else {
                             $(unable).show();
                             $(contactAdmin).hide();
@@ -197,6 +203,9 @@ function checkLoginFile(email) {
 
                     var dashboard = document.getElementById('dashboard');
                     dashboard.style.display = 'block';
+
+                    var header = document.getElementById('appHeader');
+                    header.style.display = 'block';
 
                     var login = document.getElementById('login');
                     login.style.display = 'none';

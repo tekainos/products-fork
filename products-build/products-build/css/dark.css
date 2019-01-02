@@ -195,7 +195,7 @@ button.delbutt {
     height: 200px;
     margin-left: auto;
     overflow-y: scroll;
-    background-color: #222;
+    background-color: #FFF;
     padding-right: 25px;
     box-sizing: content-box;
 }
@@ -206,18 +206,18 @@ button.delbutt {
     height: 35px;
     margin: auto;
     margin-bottom: 5px;
-    color: #888;
-    border: 2px solid #333;
+    color: #004990;
+    /*border: 2px solid #333;*/
     font-size: 22px;
     text-align: left;
-    background-color: #111;
+    background-color: #FFF;
 }
 
 .layinput {
     width: 100px;
     height: 30px;
     float: right;
-    background-color: #222;
+    background-color: #FFF;
 }
 
 .rowbar {
@@ -225,8 +225,9 @@ button.delbutt {
     height: 35px;
     display: block;
     margin-top: 5px;
-    border-bottom : 1px solid #333;
+    /*border-bottom : 1px solid #333;*/
     overflow: hidden;
+    font-weight: 600;
 }
 
 #QA {
@@ -278,7 +279,7 @@ button.delbutt {
     position: absolute;
     width: 310px;
     height: 100px;
-    background: #111;
+    background: #FFF;
     padding: 0;
     margin: 0;
     right: 0;
@@ -309,7 +310,7 @@ button.delbutt {
 			position: absolute;
 			display: none;
 			padding: 5px 5px;
-			background: #111;
+			background: #FFF;
 			width: 150px;
 		}
 
@@ -318,7 +319,7 @@ button.delbutt {
 		}
 
         #menubar .menu .options hr {
-            border-color: #222;
+            border-color: #FFF;
             margin: 0 !important;
         }
 
@@ -351,7 +352,7 @@ button.delbutt {
 	top: 100px;
 	bottom: 0;
 	width: 310px;
-	background-color: #111;
+	background-color: #FFF;
 	overflow: auto;
 	overflow-x: hidden;
 }
@@ -363,7 +364,7 @@ button.delbutt {
 	#sidebar input,
 	#sidebar textarea,
 	#sidebar select {
-		background: #222;
+		background: #FFF;
 		border: 1px solid transparent;
 		color: #888;
 	}
@@ -373,8 +374,8 @@ button.delbutt {
         height: 35px;
         width: 45%;
         margin: auto;
-        border: 1px solid #111;
-        background-color: #222;
+        border: 1px solid #FFF;
+        background-color: #FFF;
     }
 
 	#sidebar .Panel {
@@ -395,21 +396,53 @@ button.delbutt {
 		margin-bottom: 10px;
 	}
 
+#toolsMenu {
+    position: absolute;
+    left: 0;
+    top: 100px;
+    /*bottom: 0;*/
+    width: 50px;
+    background-color: #FFF;
+    border: 1px solid #333;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.toolsMenuBtn {
+    margin: 1em auto;
+    padding: 1px;
+    color: #004990;
+    font-size: 1em;
+    width: 80%;
+    text-align: center;
+    border: 1px solid #FFF;
+}
+
+    .toolsMenuBtn:hover {
+        border: 1px solid #ccc;
+    }
+
+#toolsMenuHide {
+    margin-top: 5px;
+    background: #004990;
+    color: #FFF;
+}
+
 #tabs {
 	background-color: #1b1b1b;
-	border-top: 1px solid #222;
+	border-top: 1px solid #FFF;
 }
 
 	#tabs span {
-		color: #222;
+		color: #FFF;
 		background-color: #F2F2F2;
-		border: 1px solid #222;
+		border: 1px solid #FFF;
 		padding: 10px;
 	}
 
 	#tabs span.selected {
 		color: #888;
-		background-color: #111;
+		background-color: #FFF;
 	}
 
 #toolbar {
@@ -418,7 +451,7 @@ button.delbutt {
     right: 300px;
     bottom: 0;
     height: 300px;
-    background-color: #111;
+    background-color: #FFF;
     color: #333;
     overflow-x: auto;
     overflow-y: hidden;
